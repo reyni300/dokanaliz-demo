@@ -1,0 +1,2272 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ДокАнализ — просмотр разбора</title>
+<!-- Просмотр — атомарный блок: ему нужен только ID разбора (?id=...), всё
+     остальное он забирает у сервиса разбора сам. Своей шапки и навигации у
+     него нет, поэтому его можно открыть как страницу или встроить куда угодно:
+     <iframe src="/view?id=<ID разбора>"></iframe> -->
+<link rel="stylesheet" href="static/common.css">
+<style>
+  /* ── Layout: оригинал | результат, над ними строка текста, под ними лог ── */
+
+  .workspace {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto 1fr auto;
+    flex: 1; min-height: 0; height: 100vh;
+  }
+
+  /* ── Плашка «Результат по ссылке» над предпросмотром и результатом ── */
+  .parse-bar {
+    grid-column: 1 / -1; grid-row: 1;
+    display: none; align-items: center; gap: 14px; flex-wrap: wrap;
+    padding: 10px 18px;
+    background: linear-gradient(90deg, rgba(79,142,247,.16), rgba(124,92,252,.10));
+    border-bottom: 1px solid rgba(79,142,247,.45);
+    border-left: 3px solid var(--accent);
+  }
+  .parse-bar.visible { display: flex; }
+  /* Высота строки над документом постоянная: если бы она росла, когда
+     появляются плашки значений, документ под курсором съезжал бы вниз и
+     курсор оказывался бы уже на соседнем блоке */
+  .parse-bar { flex-wrap: nowrap; height: 112px; overflow: hidden; }
+  /* Документ длинный, и прокручивается вся страница: без закрепления строка
+     уезжала вверх вместе с шапкой панелей, и у нижних блоков текста при
+     наведении не было видно. Строка прилипает к верху окна (или фрейма) и
+     остаётся на экране при любой прокрутке. Фон непрозрачный, чтобы документ
+     под ней не просвечивал. */
+  .parse-bar {
+    position: sticky; top: 0; z-index: 60;
+    background: linear-gradient(90deg, rgba(79,142,247,.16), rgba(124,92,252,.10)), var(--surface);
+    box-shadow: 0 4px 12px rgba(0,0,0,.35);
+  }
+  .parse-bar-id {
+    font-family: var(--mono); font-size: 11px; color: var(--accent);
+    background: var(--bg); border: 1px solid var(--border); border-radius: 6px;
+    padding: 4px 8px; user-select: all; cursor: text; white-space: nowrap;
+  }
+  .parse-bar-side { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; flex-shrink: 0; }
+  .parse-bar-actions { display: flex; gap: 6px; }
+  .parse-bar-actions .btn { width: auto; padding: 5px 10px; font-size: 11px; text-decoration: none; }
+
+  /* Текст блока под курсором — крупно, над документом */
+  /* Кнопка «Связанные значения»: включена — над документом текст вместе со
+     связанными значениями, выключена — только текст блока под курсором.
+     На подсветку листов не влияет. */
+  .vis-btn.links-toggle {
+    flex: 0 0 auto; align-self: center; width: auto;
+    padding: 8px 12px; font-size: 12px; white-space: nowrap;
+    color: var(--text); border-color: #4a5570;
+  }
+  .vis-btn.links-toggle.active { color: #000; font-weight: 600; box-shadow: 0 0 0 3px rgba(79,142,247,.25); }
+  .raw-link { color: var(--accent); text-decoration: none; white-space: nowrap; }
+  .raw-link:hover { text-decoration: underline; }
+  .focus-box { flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: center; gap: 4px; }
+  .focus-context { font-size: 12px; color: #9fb7e8; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .focus-text { font-size: 22px; font-weight: 700; color: #ffffff; line-height: 1.25; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .focus-text.number { font-family: var(--mono); letter-spacing: .5px; }
+  .focus-hint { font-size: 14px; font-weight: 500; color: var(--muted); }
+  .focus-values { display: flex; gap: 8px; flex-wrap: nowrap; overflow: hidden; }
+  .focus-values:empty { display: none; }
+  .focus-chip { background: #dbeafe; color: #0b1f44; border: 1px solid #3b82f6; border-radius: 6px; padding: 3px 10px; font-size: 12px; white-space: nowrap; }
+  .focus-chip b { font-family: var(--mono); font-size: 15px; margin-left: 4px; }
+
+  .panel { border-right: 1px solid var(--border); display: flex; flex-direction: column; overflow: hidden; }
+  .panel:last-child { border-right: none; }
+  /* ── Открыть результат по ID ── */
+  .id-open { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; display: flex; flex-direction: column; gap: 8px; }
+  .id-open-title { font-family: var(--mono); font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); }
+  .id-open-row { display: flex; gap: 6px; }
+  .id-open-row .search-input { min-width: 0; font-family: var(--mono); font-size: 11px; padding: 6px 8px; }
+  .id-open-row .btn { width: auto; padding: 6px 12px; font-size: 12px; }
+
+  /* ── Preview panel ── */
+  .preview-panel { background: var(--bg); }
+  .preview-body { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; overflow: hidden; position: relative; padding: 12px; overflow-y: auto; }
+  .preview-empty { text-align: center; color: var(--muted); }
+  .preview-empty-icon { font-size: 44px; margin-bottom: 10px; opacity: .4; }
+
+  /* Image + canvas overlay container.
+     РАНЬШЕ картинка ограничивалась ещё и по высоте (max-height: calc(100vh - 220px))
+     — для высокого узкого чека это ужимало его СИЛЬНЕЕ, чем нужно: браузер
+     одновременно вписывал изображение и по высоте, и по ширине (object-fit:
+     contain), и для типичного длинного чека именно высота была "бутылочным
+     горлышком" — итоговая ширина (а с ней и весь текст/блоки) получалась в
+     разы меньше, чем позволяла панель. Теперь картинка занимает всю ширину
+     панели, а высота растёт свободно — .preview-body и так прокручивается
+     (overflow-y: auto), так что длинный документ просто читается со
+     скроллом, зато крупно и разборчиво. */
+  .preview-img-wrap { display: none; position: relative; width: 100%; }
+  .preview-img-wrap.visible { display: block; }
+  .preview-img { display: block; width: 100%; height: auto; border-radius: 6px; border: 1px solid var(--border); transition: transform .3s ease; }
+  /* Canvas sits exactly on top of the image */
+  #highlightCanvas {
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none; /* mouse passes through to image */
+    border-radius: 6px;
+  }
+  /* Invisible hit-area divs for OCR blocks */
+  #ocrHitLayer {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: all;
+  }
+  .ocr-hit {
+    position: absolute;
+    cursor: crosshair;
+  }
+  .ocr-hit:hover ~ #highlightCanvas { /* handled via JS */ }
+
+  .preview-nav { display: flex; align-items: center; gap: 8px; padding: 8px 14px; border-bottom: 1px solid var(--border); flex-shrink: 0; background: var(--surface); justify-content: space-between; }
+  .nav-arrows { display: flex; align-items: center; gap: 5px; }
+  .nav-btn { width: 28px; height: 28px; border-radius: 6px; border: 1px solid var(--border); background: var(--card); color: var(--text); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 13px; transition: all .15s; }
+  .nav-btn:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+  .nav-btn:disabled { opacity: .35; cursor: not-allowed; }
+  .nav-counter { font-family: var(--mono); font-size: 11px; color: var(--muted); min-width: 55px; text-align: center; }
+  .nav-label { font-size: 11px; color: var(--muted); max-width: 130px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+  /* ── Results panel ── */
+  .results-panel { background: var(--bg); }
+  .results-body { flex: 1; overflow-y: auto; padding: 12px; display: flex; flex-direction: column; align-items: center; position: relative; }
+
+  /* ── Annotation panel: white sheet + canvas, same size as left ── */
+  .annotation-wrap {
+    position: relative; display: none;
+    box-shadow: 0 2px 16px rgba(0,0,0,.35);
+    border-radius: 6px; overflow: hidden; flex-shrink: 0;
+  }
+  .annotation-wrap.visible { display: block; }
+  /* Белый лист — такой же размер как левое изображение */
+  .annotation-sheet {
+    display: block; background: #fff;
+    border-radius: 6px;
+    /* размеры выставляются через JS */
+  }
+  .annotation-sheet.hidden { opacity: 0; }
+  #annotationCanvas {
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none; border-radius: 6px;
+  }
+  /* Invisible hit-area divs for blocks on the RIGHT sheet — то же самое, что
+     #ocrHitLayer слева, чтобы можно было навести на блок и справа, а не
+     только слева/в списке значений. */
+  #annoHitLayer {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: all;
+  }
+  /* Кнопки-переключатели видимости фона — теперь живут в nav-барах (не в
+     скроллящемся теле панели), чтобы НЕ сдвигать документ/лист по вертикали
+     относительно друг друга: раньше .visibility-bar рисовался ВНУТРИ
+     results-body, перед annotation-wrap, а слева аналогичного отступа не
+     было — из-за этого верхний край листа справа оказывался ниже верхнего
+     края документа слева, хотя координаты блоков должны совпадать 1-в-1. */
+  .vis-btn {
+    flex: 1; padding: 5px 8px; border-radius: 6px; font-size: 11px;
+    border: 1px solid var(--border); background: var(--card); color: var(--text);
+    cursor: pointer; transition: all .15s; font-family: var(--mono);
+    letter-spacing: .3px;
+  }
+  .vis-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .vis-btn.active { background: var(--accent); border-color: var(--accent); color: #000; }
+  .vis-btn:disabled { opacity: .35; cursor: not-allowed; }
+
+  .annotated-overlay-bar {
+    width: 100%; display: flex; align-items: center; gap: 6px;
+    padding: 8px 0; flex-shrink: 0;
+  }
+  .annotated-overlay-bar .results-search-input { flex: 1; max-width: 220px; }
+  .result-status-bar {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 11px; white-space: nowrap; margin-left: auto;
+  }
+
+  .result-status-bar .category-tag {
+    font-family: var(--mono); font-size: 11px; color: var(--muted);
+  }
+  .result-status-bar .validation-pill {
+    font-size: 11px; padding: 2px 8px; border-radius: 10px;
+  }
+  .result-status-bar .validation-pill.valid { background: rgba(45,212,160,.15); color: rgba(45,212,160,1); }
+  .result-status-bar .validation-pill.invalid { background: rgba(247,111,111,.15); color: rgba(247,111,111,1); }
+  .result-empty { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; color: var(--muted); text-align: center; }
+  .result-empty-icon { font-size: 38px; margin-bottom: 10px; opacity: .35; }
+
+  .validation-block { margin: 0 14px 14px; padding: 9px 12px; border-radius: 8px; border: 1px solid; }
+  .validation-block.valid   { border-color: rgba(45,212,160,.3); background: rgba(45,212,160,.06); }
+  .validation-block.invalid { border-color: rgba(247,111,111,.3); background: rgba(247,111,111,.06); }
+  .validation-status { font-size: 12px; font-weight: 600; display: flex; align-items: center; gap: 6px; }
+  .validation-status.valid   { color: var(--green); }
+  .validation-status.invalid { color: var(--red); }
+  .validation-errors { margin-top: 5px; display: flex; flex-direction: column; gap: 3px; }
+  .validation-err-item { font-size: 11px; color: var(--red); padding-left: 12px; position: relative; }
+  .validation-err-item::before { content: '•'; position: absolute; left: 2px; }
+
+  /* ── Log ── */
+  .log-panel { grid-column: 1 / -1; grid-row: 3; border-top: 1px solid var(--border); background: var(--surface); display: flex; flex-direction: column; max-height: 150px; flex-shrink: 0; }
+  .log-header { display: flex; align-items: center; justify-content: space-between; padding: 7px 16px; border-bottom: 1px solid var(--border); cursor: pointer; user-select: none; }
+  .log-title { font-family: var(--mono); font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; gap: 8px; }
+  .log-toggle { font-size: 10px; color: var(--muted); transition: transform .2s; }
+  .log-toggle.collapsed { transform: rotate(-90deg); }
+  .log-body { flex: 1; overflow-y: auto; padding: 6px 16px; font-family: var(--mono); font-size: 11px; color: var(--muted); line-height: 1.7; }
+  .log-body.hidden { display: none; }
+  .log-line { display: flex; gap: 8px; }
+  .log-line .ts { color: var(--border); flex-shrink: 0; }
+  .log-line.info .msg    { color: var(--muted); }
+  .log-line.success .msg { color: var(--green); }
+  .log-line.error .msg   { color: var(--red); }
+  .log-line.step .msg    { color: var(--accent); }
+
+  .actions-row { display: flex; gap: 8px; padding: 8px 14px; border-top: 1px solid var(--border); background: var(--surface); flex-shrink: 0; }
+  .actions-row .btn { width: auto; flex: 1; padding: 7px 10px; font-size: 12px; }
+
+  /* ── Processing overlay ── */
+  .processing-overlay { display: none; position: absolute; inset: 0; background: rgba(15,17,23,.85); z-index: 10; align-items: center; justify-content: center; flex-direction: column; gap: 14px; }
+  .processing-overlay.active { display: flex; }
+  .spinner { width: 38px; height: 38px; border: 3px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin .8s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .processing-text { font-family: var(--mono); font-size: 13px; color: var(--accent); }
+  .processing-step { font-size: 11px; color: var(--muted); }
+
+  /* ── Results search bar ── */
+  .results-search-bar {
+    display: flex; align-items: center; gap: 8px;
+    padding: 8px 14px; border-bottom: 1px solid var(--border);
+    background: var(--surface); flex-shrink: 0; position: sticky; top: 0; z-index: 5;
+  }
+  .results-search-input {
+    flex: 1; padding: 5px 10px;
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 6px; color: var(--text);
+    font-family: var(--sans); font-size: 12px; outline: none;
+    transition: border-color .15s;
+  }
+  .results-search-input:focus { border-color: var(--accent); }
+  .results-search-input::placeholder { color: var(--muted); }
+  .results-search-count {
+    font-family: var(--mono); font-size: 11px; color: var(--muted);
+    white-space: nowrap; min-width: 24px; text-align: right;
+  }
+  .results-search-clear {
+    background: none; border: none; color: var(--muted);
+    cursor: pointer; font-size: 14px; padding: 0 2px;
+    display: none; transition: color .15s;
+  }
+  .results-search-clear:hover { color: var(--red); }
+  .hl-all-btn {
+    background: none; border: 1px solid var(--border);
+    color: var(--muted); cursor: pointer; font-size: 14px;
+    padding: 3px 8px; border-radius: 6px; transition: all .15s;
+    white-space: nowrap; font-family: var(--sans);
+  }
+  .hl-all-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .hl-all-btn.active { border-color: var(--accent); color: var(--accent); background: rgba(79,142,247,.12); }
+</style>
+</head>
+<body>
+
+
+<main>
+  <!-- Просмотр ОДНОГО разбора: /view?id=<ID разбора> -->
+    <div class="workspace">
+
+      <!-- Middle: Preview -->
+      <!-- Результат по ссылке: ID разбора и ссылка, по которой его открывает кто угодно -->
+      <!-- Над документами: крупно текст блока под курсором (если на скане его
+           не разглядеть) и ID разбора со ссылкой на результат -->
+      <div class="parse-bar" id="parseBar">
+        <button class="vis-btn links-toggle active" id="linksToggle" type="button"
+                onclick="toggleLinkedValues()" aria-pressed="true"
+                title="Включено: над документом текст вместе со связанными значениями. Выключено: только текст блока под курсором">🔗 Связанные значения</button>
+        <div class="focus-box" id="focusBox">
+          <div class="focus-context" id="focusContext"></div>
+          <div class="focus-text" id="focusText"><span class="focus-hint">Наведите на любой блок документа — здесь появится его текст</span></div>
+          <div class="focus-values" id="focusValues"></div>
+        </div>
+        <div class="parse-bar-side">
+          <div id="globalStatus" class="status-chip idle"><div class="status-dot"></div><span>Нет разбора</span></div>
+          <span class="parse-bar-id" id="parseBarId" title="ID разбора — выделите, чтобы скопировать"></span>
+          <div class="parse-bar-actions">
+            <button class="btn btn-primary" onclick="copyParseLink()">⎘ Ссылка на результат</button>
+          </div>
+          <span id="parseBarFile" style="display:none"></span>
+        </div>
+      </div>
+
+      <div class="panel preview-panel" style="grid-row:2; position:relative;">
+        <div class="panel-header">
+          <span class="panel-title">Предпросмотр</span>
+          <span class="panel-badge" id="previewCounter">—</span>
+        </div>
+        <div class="preview-nav">
+          <span class="nav-label" id="previewFileName">Нет файла</span>
+          <div class="nav-arrows">
+            <button class="nav-btn" id="prevPageBtn" onclick="navigatePage(-1)" disabled>‹</button>
+            <span class="nav-counter" id="previewPageCounter">—</span>
+            <button class="nav-btn" id="nextPageBtn" onclick="navigatePage(1)" disabled>›</button>
+            <button class="nav-btn" id="downloadPageBtn" onclick="downloadCurrentPage()" disabled title="Скачать изображение">⬇</button>
+            <button class="vis-btn active" id="btnToggleLeft" disabled
+                    onclick="toggleLeftBg()" title="Показать/скрыть оригинал слева"
+                    style="flex:0 0 auto;width:auto;padding:5px 10px;">👁 Оригинал</button>
+            <button class="vis-btn active" id="btnToggleLeftHighlight" disabled
+                    onclick="toggleLeftHighlight()" title="Показать/скрыть подсветку найденных полей слева"
+                    style="flex:0 0 auto;width:auto;padding:5px 10px;">🔲 Подсветка</button>
+          </div>
+        </div>
+        <div class="preview-body" id="previewBody">
+          <!-- Без ID в адресе: просмотру нечего показывать — спрашиваем ID -->
+          <div class="preview-empty" id="previewEmpty">
+            <div class="preview-empty-icon">🖼</div>
+            <div style="font-size:13px" id="previewEmptyText">Разбор не выбран</div>
+            <div class="id-open" style="margin-top:14px;text-align:left">
+              <div class="id-open-title">Открыть результат по ID</div>
+              <div class="id-open-row">
+                <input class="search-input" type="text" id="openIdInput" placeholder="ID разбора или ссылка"
+                       onkeydown="if (event.key === 'Enter') openFromInput()">
+                <button class="btn btn-secondary" id="openIdBtn" onclick="openFromInput()">Открыть</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Image + highlight canvas + hit layer -->
+          <div class="preview-img-wrap" id="previewImgWrap">
+            <img id="previewImg" class="preview-img" src="" alt="Предпросмотр"
+                 onload="onPreviewImageLoad()">
+            <canvas id="highlightCanvas"></canvas>
+            <div id="ocrHitLayer"></div>
+          </div>
+
+          <div class="processing-overlay" id="processingOverlay">
+            <div class="spinner"></div>
+            <div class="processing-text">Обработка...</div>
+            <div class="processing-step" id="processingStep">Инициализация</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Results -->
+      <div class="panel results-panel" style="grid-row:2;">
+        <div class="panel-header">
+          <span class="panel-title">Результат анализа</span>
+          <span class="panel-badge" id="resultCounter">—</span>
+        </div>
+        <div class="preview-nav" id="resultNav" style="display:none">
+          <span class="nav-label" id="resultFileName">—</span>
+          <div class="nav-arrows">
+            <button class="nav-btn" id="prevResPageBtn" onclick="navigateResultPage(-1)" disabled>‹</button>
+            <span class="nav-counter" id="resultPageCounter">—</span>
+            <button class="nav-btn" id="nextResPageBtn" onclick="navigateResultPage(1)" disabled>›</button>
+            <button class="vis-btn active" id="btnToggleRight"
+                    onclick="toggleRightBg()" title="Показать/скрыть белый фон справа"
+                    style="flex:0 0 auto;width:auto;padding:5px 10px;">👁 Фон справа</button>
+            <button class="vis-btn active" id="btnToggleText"
+                    onclick="toggleRightText()" title="Показать/скрыть весь распознанный текст на листе справа"
+                    style="flex:0 0 auto;width:auto;padding:5px 10px;">¶ Весь текст</button>
+          </div>
+        </div>
+
+        <div class="results-body" id="resultsBody">
+          <div class="result-empty" id="resultEmpty">
+            <div class="result-empty-icon">📊</div>
+            <div style="font-size:13px">Здесь будет результат разбора</div>
+          </div>
+
+          <!-- Annotation sheet: white canvas same size as left image -->
+          <div class="annotation-wrap" id="annotationWrap">
+            <div class="annotation-sheet" id="annotationSheet"></div>
+            <canvas id="annotationCanvas"></canvas>
+            <div id="annoHitLayer"></div>
+          </div>
+
+          <!-- Status bar -->
+          <div class="annotated-overlay-bar" id="annotatedOverlayBar" style="display:none">
+            <input class="results-search-input" type="text" id="resultsSearchInput"
+                   placeholder="Поиск по полям..." oninput="searchResultFields(this.value)">
+            <span class="results-search-count" id="resultsSearchCount"></span>
+            <button class="results-search-clear" id="resultsSearchClear"
+                    onclick="clearResultSearch()" title="Очистить">✕</button>
+            <span class="result-status-bar" id="resultStatusBar"></span>
+          </div>
+
+        </div>
+        <div class="actions-row" id="actionsRow" style="display:none">
+          <button class="btn btn-secondary" onclick="exportJSON()">⬇ JSON</button>
+          <button class="btn btn-secondary" onclick="exportRawJSON()" title="Что распознал OCR, до обработки: слова с координатами, без полей и связей">⬇ Сырой JSON</button>
+          <button class="btn btn-secondary" onclick="copyResult()">⎘ Скопировать</button>
+        </div>
+      </div>
+
+      <!-- Log -->
+      <div class="log-panel">
+        <div class="log-header" onclick="toggleLog()">
+          <span class="log-title">Лог обработки <span id="logCount" style="color:var(--border);font-weight:400">0 записей</span></span>
+          <span class="log-toggle" id="logToggle">▼</span>
+        </div>
+        <div class="log-body" id="logBody">
+          <div class="log-line info"><span class="ts">—</span><span class="msg">Журнал разбора появится, когда он откроется</span></div>
+        </div>
+      </div>
+
+    </div>
+
+</main>
+
+<div class="toast-container" id="toastContainer"></div>
+
+<script src="static/common.js"></script>
+<script>
+// ════════════════════════════════════════════════
+// STATE
+// ════════════════════════════════════════════════
+const state = {
+  // Просмотр показывает ОДИН разбор: files[0] — его страницы, results[0] —
+  // его результат. Массивы оставлены, чтобы подсветка работала как раньше.
+  files: [],              // { name, pages:[{blob,rotation}], status, result, parseId }
+  currentFileIdx: 0,
+  currentPageIdx: 0,
+  results: [],            // { parse_id, filename, parsed_list, field_mappings, png_urls, logs, warnings, raw }
+  currentResFileIdx: 0,
+  currentResPageIdx: 0,
+  logCollapsed: false,
+
+  // Highlight state
+  // activeField: null | { fieldName, blocks }  — field hovered from result panel
+  // activeBlock: null | { fieldName }           — OCR block hovered from preview
+  activeField: null,
+  activeBlock: null,
+  // activeLink: null | { row, column } — ячейка таблицы под курсором (в таблице справа)
+  activeLink: null,
+  activeSegment: null,   // id блока под курсором (pages[].segments)
+  searchIds: [],         // блоки, совпавшие с поиском
+  relatedIds: [],        // значения наведённой подписи (строки или реквизита)
+
+  // OCR image scale info (needed to map OCR pixel coords → displayed image coords)
+  // Filled by onPreviewImageLoad()
+  imgNaturalW: 0,
+  imgNaturalH: 0,
+  imgDisplayW: 0,
+  imgDisplayH: 0,
+};
+
+// ════════════════════════════════════════════════
+// PREVIEW
+// ════════════════════════════════════════════════
+// Правая панель (результат) показывает ту же страницу, что открыта слева
+function syncResultToPreview() {
+  state.currentResFileIdx = state.currentFileIdx;
+  state.currentResPageIdx = state.currentPageIdx;
+  renderResult();
+}
+
+function showPreview() {
+  const empty = document.getElementById('previewEmpty');
+  const wrap  = document.getElementById('previewImgWrap');
+  const img   = document.getElementById('previewImg');
+
+  if (state.files.length === 0) {
+    empty.style.display = ''; wrap.classList.remove('visible');
+    document.getElementById('previewCounter').textContent = '—';
+    document.getElementById('previewPageCounter').textContent = '—';
+    document.getElementById('previewFileName').textContent = 'Нет файла';
+    return;
+  }
+  const f = state.files[state.currentFileIdx];
+  if (!f) return;
+  const page = f.pages[state.currentPageIdx];
+  if (!page) return;
+
+  empty.style.display = 'none'; wrap.classList.add('visible');
+  img.style.transform = `rotate(${page.rotation || 0}deg)`;
+  state.currentRenderScale = page.renderScale || 1.0;
+  img.src = page.blob;
+
+  const pi = state.currentPageIdx + 1,  pt = f.pages.length;
+  document.getElementById('previewCounter').textContent = `стр.${pi}/${pt}`;
+  document.getElementById('previewPageCounter').textContent = `стр.${pi}/${pt}`;
+  document.getElementById('previewFileName').textContent = f.name;
+
+  clearHighlights();
+  // Rebuild OCR hit zones if we have results for this file/page
+  rebuildOcrHitLayer();
+}
+
+// Called when the preview <img> finishes loading (natural size becomes known)
+function onPreviewImageLoad() {
+  const img = document.getElementById('previewImg');
+  requestAnimationFrame(() => {
+    // width:100% в CSS растягивает картинку на всю ширину панели даже если
+    // исходное разрешение меньше — для обычного скана это редкость (там и
+    // так не одна тысяча пикселей), но на всякий случай не даём апскейлить
+    // выше нативного размера, чтобы не размывало мелкий текст ещё сильнее.
+    if (img.naturalWidth) img.style.maxWidth = img.naturalWidth + 'px';
+    state.imgNaturalW = img.naturalWidth;
+    state.imgNaturalH = img.naturalHeight;
+    state.imgDisplayW = img.offsetWidth;
+    state.imgDisplayH = img.offsetHeight;
+    const canvas = document.getElementById('highlightCanvas');
+    canvas.width  = img.offsetWidth;
+    canvas.height = img.offsetHeight;
+    rebuildOcrHitLayer();
+    redrawCanvas();
+    // Перерисовываем правый аннотационный canvas с актуальными размерами
+    const mapping = getCurrentMapping();
+    if (mapping) drawAnnotationCanvas(mapping);
+  });
+}
+
+
+window.addEventListener('resize', () => {
+  const img = document.getElementById('previewImg');
+  if (!img.src || img.src === window.location.href) return;
+  state.imgDisplayW = img.offsetWidth;
+  state.imgDisplayH = img.offsetHeight;
+  const canvas = document.getElementById('highlightCanvas');
+  canvas.width  = img.offsetWidth;
+  canvas.height = img.offsetHeight;
+  redrawCanvas();
+});
+
+function navigatePage(dir) {
+  if (state.files.length === 0) return;
+  const f = state.files[state.currentFileIdx];
+  const newIdx = state.currentPageIdx + dir;
+  if (newIdx < 0 || newIdx >= f.pages.length) return;
+  state.currentPageIdx = newIdx; showPreview(); updateNavButtons(); clearHighlights();
+  // Правая панель едет за страницей предпросмотра; если записи для этой
+  // страницы нет, renderResult() сам прижмёт индекс к допустимому.
+  syncResultToPreview();
+}
+
+function downloadCurrentPage() {
+  const f = state.files[state.currentFileIdx];
+  if (!f) return;
+  const page = f.pages[state.currentPageIdx];
+  if (!page || !page.blob) return;
+
+  const a = document.createElement('a');
+  const pageNum = f.pages.length > 1 ? `_стр${state.currentPageIdx + 1}` : '';
+  const baseName = f.name.replace(/\.[^.]+$/, '');
+  a.download = `${baseName}${pageNum}.png`;
+
+  // Если blob — это URL с сервера (картинка страницы из сервиса разбора), качаем напрямую
+  // Если это data URL (blob:// или data:) — создаём ссылку
+  if (page.blob.startsWith('/') || page.blob.startsWith('http')) {
+    a.href = page.blob;
+  } else {
+    a.href = page.blob;
+  }
+
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+}
+
+function updateNavButtons() {
+  const f = state.files.length > 0 ? state.files[state.currentFileIdx] : null;
+  document.getElementById('prevPageBtn').disabled = state.currentPageIdx <= 0;
+  document.getElementById('nextPageBtn').disabled = !f || state.currentPageIdx >= f.pages.length - 1;
+  document.getElementById('downloadPageBtn').disabled = state.files.length === 0;
+}
+
+// ════════════════════════════════════════════════
+// HIGHLIGHT ENGINE
+// ════════════════════════════════════════════════
+
+// Field colours (consistent across both panels).
+// Раньше значения были довольно бледные (fill alpha .18-.25) — на белом листе
+// справа, без текстовой подписи поверх, такой блок реально выглядит как
+// "прозрачный квадратик", почти не видно. Подняли заливку и сделали обводку
+// полностью непрозрачной, чтобы блок был чётко виден и на белом фоне, и
+// поверх скана. currency сделан отдельным (бирюзовый, чуть темнее) от date,
+// чтобы не путался с ним при беглом взгляде без подписи.
+// Заливка поднята почти до сплошного цвета (alpha ~.88, было .62) — на
+// белом листе бледная полупрозрачная заливка сливалась с фоном и была
+// малозаметна ("не выделяется"). Теперь блок читается как чёткая цветная
+// плашка, а не лёгкий тон, и белый текст поверх неё контрастен без вопросов.
+const FIELD_COLORS = {
+  total:          { fill: 'rgba(59,130,246,0.88)',  stroke: 'rgba(37,99,235,1)',   label: 'Сумма' },
+  date:           { fill: 'rgba(16,185,129,0.88)',  stroke: 'rgba(5,150,105,1)',   label: 'Дата' },
+  company:        { fill: 'rgba(245,158,11,0.88)',  stroke: 'rgba(217,119,6,1)',   label: 'Компания' },
+  invoice_number: { fill: 'rgba(139,92,246,0.88)',  stroke: 'rgba(124,58,237,1)',  label: 'Номер счёта' },
+  vat:            { fill: 'rgba(239,68,68,0.88)',   stroke: 'rgba(220,38,38,1)',   label: 'НДС' },
+  currency:       { fill: 'rgba(6,182,212,0.88)',   stroke: 'rgba(8,145,178,1)',   label: 'Валюта' },
+};
+
+// Цвет для extra-полей (все одним цветом — розовый, чтобы не путать
+// с "компанией", которая раньше случайно была того же жёлтого оттенка)
+// Дополнительные поля (extra::*) раньше все красились в ОДИН малиновый цвет.
+// На плотном чеке таких полей полтора десятка — весь документ превращался в
+// сплошное малиновое месиво, где невозможно понять, где заканчивается одно
+// поле и начинается другое. Теперь цвет выбирается по имени поля из палитры:
+// у каждого поля он свой и, что важно, СТАБИЛЬНЫЙ — один и тот же слева, справа
+// и в списке найденных полей, и не меняется при перерисовке.
+const EXTRA_PALETTE = [
+  { fill: 'rgba(219,39,119,0.85)',  stroke: 'rgba(190,24,93,1)'  },
+  { fill: 'rgba(168,85,247,0.85)',  stroke: 'rgba(147,51,234,1)' },
+  { fill: 'rgba(20,184,166,0.85)',  stroke: 'rgba(13,148,136,1)' },
+  { fill: 'rgba(234,88,12,0.85)',   stroke: 'rgba(194,65,12,1)'  },
+  { fill: 'rgba(132,204,22,0.85)',  stroke: 'rgba(101,163,13,1)' },
+  { fill: 'rgba(56,189,248,0.85)',  stroke: 'rgba(2,132,199,1)'  },
+  { fill: 'rgba(244,63,94,0.85)',   stroke: 'rgba(225,29,72,1)'  },
+  { fill: 'rgba(250,204,21,0.85)',  stroke: 'rgba(202,138,4,1)'  },
+  { fill: 'rgba(129,140,248,0.85)', stroke: 'rgba(79,70,229,1)'  },
+  { fill: 'rgba(94,234,212,0.85)',  stroke: 'rgba(13,148,136,1)' },
+  { fill: 'rgba(251,146,60,0.85)',  stroke: 'rgba(234,88,12,1)'  },
+  { fill: 'rgba(192,132,252,0.85)', stroke: 'rgba(147,51,234,1)' },
+];
+function extraColorFor(key) {
+  let h = 0;
+  for (let i = 0; i < key.length; i++) h = (h * 31 + key.charCodeAt(i)) >>> 0;
+  const c = EXTRA_PALETTE[h % EXTRA_PALETTE.length];
+  return { fill: c.fill, stroke: c.stroke, label: '' };
+}
+
+// Все блоки одного цвета: светло-голубая заливка, синяя рамка, тёмный
+// текст — на белом листе хорошо видно и блок, и текст в нём. Блок под
+// курсором — насыщенно-синий с белым текстом. Названия полей (FIELD_COLORS[].label)
+// по-прежнему используются в подписях.
+const BLOCK = {
+  fill:        '#dbeafe',
+  stroke:      '#3b82f6',
+  text:        '#0b1f44',
+  activeFill:  '#1d4ed8',
+  activeStroke:'#1e3a8a',
+  activeText:  '#ffffff',
+  leftStroke:  'rgba(37,99,235,0.55)',
+  leftActive:  'rgba(29,78,216,0.28)',
+};
+
+function getFieldColor(key) {
+  const label = key.startsWith('extra::') ? '' : ((FIELD_COLORS[key] || {}).label || key);
+  return { fill: BLOCK.fill, stroke: BLOCK.stroke, label };
+}
+
+// Scale OCR pixel coords → canvas coords
+// Теперь OCR работает на том же PNG что и превью — коэффициенты одинаковые
+function scaleBlock(block) {
+  const scaleX = state.imgDisplayW / state.imgNaturalW;
+  const scaleY = state.imgDisplayH / state.imgNaturalH;
+  return {
+    x: block.left   * scaleX,
+    y: block.top    * scaleY,
+    w: block.width  * scaleX,
+    h: block.height * scaleY,
+  };
+}
+
+// Путь скруглённого прямоугольника — общий и для заливки/обводки, и для
+// clip() при рисовании текста внутри (см. drawFieldChip).
+function roundedRectPath(ctx, x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.lineTo(x + w - r, y);
+  ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+  ctx.lineTo(x + w, y + h - r);
+  ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+  ctx.lineTo(x + r, y + h);
+  ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+  ctx.lineTo(x, y + r);
+  ctx.quadraticCurveTo(x, y, x + r, y);
+  ctx.closePath();
+}
+
+// Рисует рамку блока — форма одинаковая и слева, и справа, на тех же
+// координатах. filled=true — сплошная заливка (как на белом листе или
+// когда оригинал слева скрыт); filled=false — только цветной контур без
+// заливки: поверх оригинала со включённой подсветкой сплошная заливка
+// перекрывала настоящий текст документа и всё сливалось в нечитаемое
+// цветное пятно — просили оставить только обводку в этом режиме.
+// Принимает УЖЕ отмасштабированный (и, возможно, расширенный под текст —
+// см. widenBoxForValue) прямоугольник в координатах канваса.
+function drawBlockRectAt(ctx, scaled, fieldName, filled) {
+  const color = getFieldColor(fieldName);
+  ctx.strokeStyle = color.stroke;
+  ctx.lineWidth   = filled ? 2 : 2.5;
+  roundedRectPath(ctx, scaled.x, scaled.y, scaled.w, scaled.h, 3);
+  if (filled) {
+    ctx.fillStyle = color.fill;
+    ctx.fill();
+  }
+  ctx.stroke();
+}
+
+// Объединяет несколько соседних OCR-блоков (напр. слова "ООО" + "Ромашка"
+// одной строки) в один общий прямоугольник — форма, совместимая с
+// scaleBlock() (те же поля left/top/width/height), только уже в исходных
+// (нескейленных) координатах документа.
+function unionBox(blocks) {
+  const lefts   = blocks.map(b => b.left);
+  const tops    = blocks.map(b => b.top);
+  const rights  = blocks.map(b => b.left + b.width);
+  const bottoms = blocks.map(b => b.top + b.height);
+  const left = Math.min(...lefts), top = Math.min(...tops);
+  return { left, top, width: Math.max(...rights) - left, height: Math.max(...bottoms) - top };
+}
+
+// В реальных чеках одно и то же значение (дата, сумма, валюта) часто
+// встречается по всему документу НЕСКОЛЬКО раз в разных местах, а слова
+// одной и той же фразы ("ООО" + "Ромашка") Tesseract отдаёт отдельными
+// блоками. Группируем блоки поля по соседству (одна строка/рядом стоящие
+// строки — один кластер), чтобы потом нарисовать ОДИН объединённый
+// прямоугольник на каждое отдельное место, где значение реально
+// встречается, а не россыпь мелких смежных квадратиков.
+// Раньше блоки группировались по вертикальному ЗАЗОРУ (< 22 px). Но зазор
+// между соседними СТРОКАМИ текста как раз меньше этого порога, поэтому в один
+// кластер сваливались разные строки, и объединяющий прямоугольник накрывал всё
+// между ними — включая чужой текст. На плотном чеке это давало широкие
+// цветные кляксы, наезжающие на соседние поля.
+// Теперь группируем строго ПО СТРОКАМ: в один кластер попадают блоки, которые
+// реально перекрываются по вертикали (то есть стоят на одной строке), а фраза,
+// перенесённая на две строки, честно даёт две рамки — каждая по своей строке.
+function groupBlocksIntoClusters(blocks) {
+  const items = blocks.map(b => ({ block: b, s: scaleBlock(b) }))
+                      .sort((a, b) => (a.s.y - b.s.y) || (a.s.x - b.s.x));
+  const lines = [];
+  for (const item of items) {
+    const top = item.s.y, bottom = item.s.y + item.s.h;
+    let placed = false;
+    for (const line of lines) {
+      const lTop    = Math.min(...line.map(x => x.s.y));
+      const lBottom = Math.max(...line.map(x => x.s.y + x.s.h));
+      const overlap = Math.min(bottom, lBottom) - Math.max(top, lTop);
+      const shortest = Math.min(bottom - top, lBottom - lTop) || 1;
+      if (overlap > 0.4 * shortest) { line.push(item); placed = true; break; }
+    }
+    if (!placed) lines.push([item]);
+  }
+
+  // Внутри строки разрываем кластер там, где по горизонтали большой провал:
+  // два отдельных вхождения значения на одной строке — это два разных места,
+  // а не одна фраза, и одной рамкой через весь разрыв их накрывать нельзя.
+  const clusters = [];
+  lines.forEach(line => {
+    line.sort((a, b) => a.s.x - b.s.x);
+    const avgH = line.reduce((sum, x) => sum + x.s.h, 0) / line.length;
+    const gapLimit = Math.max(18, avgH * 2.5);
+    let current = [line[0]];
+    for (let i = 1; i < line.length; i++) {
+      const prev = current[current.length - 1];
+      const gap = line[i].s.x - (prev.s.x + prev.s.w);
+      if (gap > gapLimit) { clusters.push(current); current = [line[i]]; }
+      else current.push(line[i]);
+    }
+    clusters.push(current);
+  });
+
+  return clusters.map(cl => cl.map(x => x.block));
+}
+
+// Кэш кластеров на время одной перерисовки: считать один раз, использовать
+// и для базовой заливки, и для эмфазиса, и для hit-зон — чтобы координаты
+// НИГДЕ не разъезжались между разными местами кода.
+function getFieldClusterBoxes(mapping, fieldName) {
+  const blocks = mapping[fieldName];
+  if (!blocks || !blocks.length) return [];
+  return groupBlocksIntoClusters(blocks).map(unionBox);
+}
+
+// Комфортный минимальный размер шрифта, ниже которого предпочитаем
+// РАСШИРИТЬ рамку, а не сжимать текст дальше или обрезать его многоточием.
+const MIN_COMFORT_FONT = 11;
+
+// Отдельный 1×1 канвас только для measureText — не завязан на конкретный
+// видимый canvas (лево/право считаются отдельно, но должны сойтись на
+// одной и той же ширине).
+let _measureCtx = null;
+function getMeasureCtx() {
+  if (!_measureCtx) _measureCtx = document.createElement('canvas').getContext('2d');
+  return _measureCtx;
+}
+
+// Минимально комфортная высота чипа в display px. У изолированных чисел в
+// плотных таблицах (финансовая отчётность) Tesseract часто отдаёт очень
+// низкий bounding box — почти впритык к самим цифрам, без запаса на строку
+// целиком (в реальном отчёте пользователя высота была всего 13-14px ДО
+// масштабирования). Отмасштабированная высота могла оказаться меньше
+// порога в fitTextInBox (availH < 9) — тогда чип рисовался вообще БЕЗ
+// текста, пустым цветным пятном.
+const MIN_BOX_HEIGHT = 18;
+// Минимальная ШИРИНА плашки. Одинокая цифра в графе ("6" в строке «Запасы»)
+// обводится рамкой шириной с сам символ; формально значение в неё влезает,
+// но после внутренних отступов на текст остаётся пара пикселей, и вместо
+// цифры рисовался пустой цветной квадратик. Раньше это не вылезало только
+// потому, что OCR отдавал для таких ячеек рамку во всю ширину графы.
+const MIN_BOX_WIDTH = 34;
+
+// Горизонтальный отступ текста внутри чипа — общий для замера и отрисовки.
+const CHIP_PAD_X = 5;
+
+// Нормализация для сравнения текста блоков со значением — та же логика, что и
+// в normalize_for_search на бэкенде: оставляем только буквы и цифры.
+function normForCompare(s) {
+  return String(s == null ? '' : s)
+    .toLowerCase()
+    .split(/\s+/)
+    .map(canonNumberToken)
+    .join(' ')
+    .replace(/[^\p{L}\p{N}]/gu, '');
+}
+
+// "258.00" -> "258", "1.20" -> "1.2", "18.20" -> "18.2".
+// Та же логика, что и _canon_number_token в web_server.py: валидаторы в
+// llm_agent.py дописывают денежным значениям два знака после запятой, а в
+// документе одна и та же сумма может быть напечатана как "258.00", "258" и
+// "258.0". Без приведения к общему виду фронтенд считал такие места РАЗНЫМИ
+// значениями и рисовал там пустые рамки без подписи.
+// Обрезаем только хвостовые нули дробной части и только у токена, который
+// целиком является числом, — дату "07.02.2022" трогать нельзя.
+function canonNumberToken(token) {
+  const m = /^(\d+)[.,](\d+)$/.exec(token);
+  if (!m) return token;
+  const frac = m[2].replace(/0+$/, '');
+  return m[1] + (frac ? '.' + frac : '');
+}
+// Насколько максимум рамке позволено вырасти вширь сверх исходного блока.
+const MAX_BOX_GROW = 220;
+
+// Раскладка ВСЕХ рамок за один проход.
+//
+// Считать её пришлось целиком, а не по одному полю: рамка иногда должна быть
+// шире исходного OCR-блока (значение "726.00 RUB" мы показываем целиком, а в
+// документе рядом с числом валюты нет), и раньше каждая рамка расширялась
+// сама по себе, ничего не зная о соседях. На плотном чеке они из-за этого
+// наезжали друг на друга. Плюс расширение было СИММЕТРИЧНЫМ — рамка расползалась
+// в обе стороны и съезжала с настоящего текста.
+//
+// Теперь: ширина растёт ТОЛЬКО ВПРАВО (левый край остаётся на настоящем начале
+// текста, поэтому рамка не съезжает) и только до ближайшего соседа справа на той
+// же высоте. Высота слишком низких блоков подрастает до читаемой, но тоже не
+// дальше соседей сверху/снизу. Левый край рамки никогда не двигается, поэтому
+// порядок обработки не важен — соседи считаются по ИСХОДНЫМ координатам.
+function computeFieldLayout(mapping, parsed) {
+  const items = [];
+  Object.keys(mapping || {}).forEach(fieldName => {
+    // Сравниваем с СЫРЫМ значением (как искал бэкенд), а пишем в рамке текст
+    // чипа — это разные вещи, см. getFieldRawValue / getChipText.
+    const rawValue = getFieldRawValue(fieldName, parsed);
+    const normValue = normForCompare(rawValue);
+    const composed = getChipText(fieldName, parsed);
+    const blocks = mapping[fieldName];
+    if (!blocks || !blocks.length) return;
+
+    const clusters = groupBlocksIntoClusters(blocks);
+    const fieldItems = clusters.map(cl => {
+      const s = scaleBlock(unionBox(cl));
+      // Кластер содержит значение ЦЕЛИКОМ или это только его кусок?
+      // Фраза, перенесённая на две строки, даёт два куска — и писать в каждом
+      // полное значение бессмысленно (одно и то же дважды, да ещё и рамки ради
+      // этого растягиваются). А вот значение, которое реально встречается в
+      // документе в нескольких местах, даёт несколько ПОЛНЫХ вхождений — там
+      // подпись нужна в каждом.
+      // join(' ') — через ПРОБЕЛ: тексты блоков должны остаться отдельными
+      // токенами, иначе "258.00" + "BYN" склеится в "258.00byn", это уже не
+      // число, и приведение к общему виду (canonNumberToken) не сработает.
+      const printed = cl.map(b => b.text || '').join(' ').replace(/\s+/g, ' ').trim();
+      const clusterText = normForCompare(printed);
+      // Кластер считаем полным вхождением, если он содержит значение целиком
+      // либо покрывает почти всё значение (мелкие расхождения OCR не должны
+      // превращать нормальное вхождение в немую рамку без подписи).
+      const covers = !!normValue && (
+        clusterText.includes(normValue) ||
+        (normValue.includes(clusterText) && clusterText.length >= 0.8 * normValue.length)
+      );
+      // Если в этом месте напечатано РОВНО то же значение (с точностью до
+      // приведения чисел), пишем в рамке именно печатный вид: у суммы "258.00"
+      // блок в документе — это "258", и канонический вид в узкую рамку просто
+      // не влезал бы, обрезаясь в "25…". Там же, где печатный вид не совпадает
+      // со значением (в мэппинг попал лишь фрагмент — например, от даты
+      // "01.03.2026" только год), пишем значение целиком.
+      const exact = !!normValue && clusterText === normValue;
+      const value = (exact && printed) ? printed : composed;
+      return {
+        fieldName, value, covers,
+        x: s.x, y: s.y, w: s.w, h: s.h,      // итоговые
+        x0: s.x, y0: s.y, w0: s.w, h0: s.h,  // исходные (для расчёта соседей)
+      };
+    });
+
+    // Ни один кусок не содержит значение целиком (перенос строки или в мэппинг
+    // попал лишь фрагмент значения) — подписываем самый широкий кусок.
+    if (fieldItems.length && !fieldItems.some(it => it.covers)) {
+      let widest = fieldItems[0];
+      fieldItems.forEach(it => { if (it.w0 > widest.w0) widest = it; });
+      widest.covers = true;
+    }
+    items.push(...fieldItems);
+  });
+  if (!items.length) return {};
+
+  const ctx = getMeasureCtx();
+  ctx.font = chipFont(MIN_COMFORT_FONT);
+  const canvasW = state.imgDisplayW || 0;
+
+  // Высота: очень низкие блоки (изолированные числа в плотных таблицах)
+  // подрастают до читаемой высоты — но не залезая на соседей по вертикали.
+  items.forEach(it => {
+    if (it.h0 >= MIN_BOX_HEIGHT) return;
+    const want = (MIN_BOX_HEIGHT - it.h0) / 2;
+    let up = want, down = want;
+    items.forEach(o => {
+      if (o === it) return;
+      const hOverlap = Math.min(it.x0 + it.w0, o.x0 + o.w0) - Math.max(it.x0, o.x0);
+      if (hOverlap <= 0) return;
+      if (o.y0 + o.h0 <= it.y0)      up   = Math.min(up,   Math.max(0, it.y0 - (o.y0 + o.h0) - 1));
+      else if (o.y0 >= it.y0 + it.h0) down = Math.min(down, Math.max(0, o.y0 - (it.y0 + it.h0) - 1));
+    });
+    it.y = Math.max(0, it.y0 - up);
+    it.h = it.h0 + up + down;
+  });
+
+  // Ширина: растём вправо ровно настолько, насколько нужно значению.
+  // Куски, в которых подпись не пишется, не расширяем вовсе — они должны
+  // просто обводить свой текст.
+  items.forEach(it => {
+    if (!it.value || !it.covers) return;
+    const needW = Math.max(MIN_BOX_WIDTH,
+                           ctx.measureText(String(it.value)).width + CHIP_PAD_X * 2);
+    if (needW <= it.w0) return;
+    let limit = it.x0 + Math.min(needW, it.w0 + MAX_BOX_GROW);
+    if (canvasW) limit = Math.min(limit, canvasW - 2);
+    items.forEach(o => {
+      if (o === it) return;
+      const vOverlap = Math.min(it.y + it.h, o.y + o.h) - Math.max(it.y, o.y);
+      if (vOverlap <= 0) return;            // сосед на другой строке — не мешает
+      if (o.x0 <= it.x0 + it.w0) return;    // сосед не справа
+      limit = Math.min(limit, o.x0 - 3);    // упираемся, оставляя щель
+    });
+    it.w = Math.max(it.w0, limit - it.x0);
+
+    // Вправо упёрлись (край листа или соседнее поле), а места всё равно мало —
+    // добираем ВЛЕВО. Числа в графе прижаты к правому краю, слева внутри той
+    // же ячейки обычно пусто, так что расти туда безопаснее всего.
+    if (it.w < needW) {
+      let влево = needW - it.w;
+      let край = Math.max(0, it.x0 - влево);
+      items.forEach(o => {
+        if (o === it) return;
+        const vOverlap = Math.min(it.y + it.h, o.y + o.h) - Math.max(it.y, o.y);
+        if (vOverlap <= 0) return;
+        if (o.x0 + o.w0 >= it.x0) return;   // сосед не слева
+        край = Math.max(край, o.x0 + o.w0 + 3);
+      });
+      it.w += it.x0 - край;
+      it.x = край;
+    }
+  });
+
+  const byField = {};
+  items.forEach(it => {
+    if (!byField[it.fieldName]) byField[it.fieldName] = [];
+    byField[it.fieldName].push({
+      x: it.x, y: it.y, w: it.w, h: it.h,
+      showText: it.covers,
+      text: it.value,   // текст чипа считается в раскладке — единая точка правды
+    });
+  });
+  return byField;
+}
+
+// Раскладка считается один раз на (маппинг + значения + размер картинки) и
+// переиспользуется: её просят и отрисовка, и ободок при наведении, и hit-зоны.
+let _layoutCache = null;
+function getFieldLayout(mapping, parsed) {
+  if (_layoutCache &&
+      _layoutCache.mapping === mapping && _layoutCache.parsed === parsed &&
+      _layoutCache.dw === state.imgDisplayW && _layoutCache.dh === state.imgDisplayH &&
+      _layoutCache.nw === state.imgNaturalW && _layoutCache.nh === state.imgNaturalH) {
+    return _layoutCache.byField;
+  }
+  const byField = computeFieldLayout(mapping, parsed);
+  _layoutCache = {
+    mapping, parsed, byField,
+    dw: state.imgDisplayW, dh: state.imgDisplayH,
+    nw: state.imgNaturalW, nh: state.imgNaturalH,
+  };
+  return byField;
+}
+
+// Единая точка правды для "где на канвасе находится поле" — уже в
+// отображаемых координатах и уже с учётом раскладки. ВСЕ три места, которым
+// нужны координаты поля — сама заливка/чип, белый ободок-акцент при наведении
+// и невидимая hit-зона — берут прямоугольники именно отсюда, а не считают
+// каждое своё. Иначе то, что видно, и то, что реагирует на курсор, могли бы
+// разойтись между собой.
+function getFieldDisplayBoxes(mapping, fieldName, parsed) {
+  if (!mapping) return [];
+  return getFieldLayout(mapping, parsed)[fieldName] || [];
+}
+
+// Шрифт подписи внутри блока — жирный и покрупнее (было до 12px обычным
+// начертанием — жаловались, что еле видно). Вынесен в одну функцию, чтобы
+// fitTextInBox (замер) и drawFieldChip (отрисовка) ВСЕГДА считали одним и
+// тем же шрифтом — иначе обрезка по ширине могла бы разъехаться с реальной
+// шириной отрисованного текста.
+function chipFont(size) {
+  return `700 ${size}px IBM Plex Mono, monospace`;
+}
+
+// Подбирает максимальный размер шрифта, при котором текст помещается в
+// доступную ширину/высоту, и обрезает многоточием, если не помещается даже
+// на минимальном размере. Возвращает null, если блок совсем крохотный —
+// тогда просто оставляем цветной квадратик без текста (само значение всегда
+// доступно в списке справа и в подсказке при наведении).
+function fitTextInBox(ctx, text, availW, availH) {
+  if (!text || availW < 10 || availH < 9) return null;
+  const minFont = 8;
+  const maxFont = Math.max(minFont, Math.min(Math.floor(availH * 0.74), 17));
+  for (let fontSize = maxFont; fontSize >= minFont; fontSize--) {
+    ctx.font = chipFont(fontSize);
+    if (ctx.measureText(text).width <= availW) return { fontSize, text };
+  }
+  ctx.font = chipFont(minFont);
+  let t = text;
+  while (t.length > 0) {
+    const candidate = t.length < text.length ? t + '…' : t;
+    if (ctx.measureText(candidate).width <= availW) return { fontSize: minFont, text: candidate };
+    t = t.slice(0, -1);
+  }
+  return null;
+}
+
+// Рисует ОДИН прямоугольник (объединённый по кластеру) + значение поля
+// ПРЯМО ВНУТРИ него — так, как в итоге попросил ментор/пользователь: текст
+// должен быть в самой цветной рамке, а не отдельной подписью сверху. Текст
+// обрезается по границе блока (clip), поэтому никогда не вылезает за его
+// пределы и не может наехать на подпись соседнего поля — в отличие от
+// прежнего варианта с плавающими подписями это в принципе не может
+// "закосячиться" при коллизиях, потому что подписи просто нет вне блока.
+//
+// solid=false рисует ТОЛЬКО цветной контур, без заливки и без текста —
+// нужно для левой панели, когда поверх виден оригинал: сплошная заливка
+// перекрывала настоящий текст документа, а свой текст поверх него только
+// путал (два почти одинаковых текста в одном месте) — получалось нечитаемое
+// цветное пятно. Когда оригинал скрыт (или это правый белый лист, где
+// оригинала никогда и не было), рисуем полноценный "чип": заливка + текст
+// внутри рамки, который как раз и заменяет собой документ.
+// box — уже отмасштабированный и расширенный под текст прямоугольник
+// (см. getFieldDisplayBoxes), а не сырой OCR-блок в координатах документа.
+function drawFieldChip(ctx, scaled, fieldName, value, solid) {
+  drawBlockRectAt(ctx, scaled, fieldName, solid);
+  // scaled.showText === false — это кусок значения, перенесённого на другую
+  // строку: подпись пишется только в одном (основном) куске, чтобы не
+  // дублировать одно и то же значение несколько раз подряд.
+  if (!solid || !value || scaled.showText === false) return;
+
+  const padX = CHIP_PAD_X;
+  ctx.save();
+  roundedRectPath(ctx, scaled.x, scaled.y, scaled.w, scaled.h, 3);
+  ctx.clip();
+  const fit = fitTextInBox(ctx, value, scaled.w - padX * 2, scaled.h);
+  if (fit) {
+    ctx.font = chipFont(fit.fontSize);
+    ctx.fillStyle = '#ffffff';
+    ctx.textBaseline = 'middle';
+    ctx.shadowColor = 'rgba(0,0,0,.65)';
+    ctx.shadowBlur = 3;
+    ctx.fillText(fit.text, scaled.x + padX, scaled.y + scaled.h / 2 + 1);
+  }
+  ctx.restore();
+}
+
+// Достаёт реальное РАСПОЗНАННОЕ ЗНАЧЕНИЕ поля (не название поля!) —
+// именно его не хватало на канвасе: раньше рисовалась только подпись
+// "Компания"/"Дата" и т.п., а самого значения ("ООО Ромашка", "07.02.2022")
+// нигде не было видно — квадратики выглядели пустыми.
+// СЫРОЕ значение поля — ровно в том виде, в каком его искал бэкенд, без
+// дописанной валюты. Именно с ним надо сравнивать текст OCR-блоков: бэкенд
+// для суммы ищет "258.00", а в блоке лежит "258" — код валюты стоит отдельным
+// блоком рядом. Сравнение с отображаемым "258.00 BYN" не совпадало никогда,
+// и рамка считалась неполным вхождением, из-за чего оставалась без подписи.
+function getFieldRawValue(fieldName, parsed) {
+  if (!parsed) return '';
+  if (fieldName.startsWith('extra::')) {
+    const key = fieldName.replace('extra::', '');
+    const v = parsed.extra_fields && parsed.extra_fields[key];
+    return (v === undefined || v === null || v === '') ? '' : String(v);
+  }
+  const v = parsed[fieldName];
+  return (v === undefined || v === null || v === '') ? '' : String(v);
+}
+
+// Текст, который пишется ВНУТРИ рамки на холсте.
+//
+// Валюту сюда НЕ дописываем. Правый лист — это реконструкция документа: в
+// рамке должно стоять ровно то, что напечатано в этом месте. Раньше к сумме
+// добавлялся код валюты, если его не было в документе отдельным блоком, и на
+// отчёте, где напечатано просто "726", чип показывал "726.00 RUB" — значение,
+// которого в документе нет. Полное значение с валютой всегда доступно в списке
+// найденных полей справа (см. getFieldValue).
+function getChipText(fieldName, parsed) {
+  return getFieldRawValue(fieldName, parsed);
+}
+
+function getFieldValue(fieldName, parsed) {
+  if (!parsed) return '';
+  if (fieldName.startsWith('extra::')) {
+    const key = fieldName.replace('extra::', '');
+    const v = parsed.extra_fields && parsed.extra_fields[key];
+    return (v === undefined || v === null || v === '') ? '' : String(v);
+  }
+  const v = parsed[fieldName];
+  if (v === undefined || v === null || v === '') return '';
+  if (fieldName === 'total' && parsed.currency) return `${v} ${parsed.currency}`;
+  return String(v);
+}
+
+// Рисует ВСЕ найденные поля: один объединённый прямоугольник на каждое
+// отдельное место, где значение реально встречается в документе (см.
+// getFieldClusterBoxes). Используется и слева (highlightCanvas), и справа
+// (annotationCanvas) одной и той же функцией — форма и координаты
+// совпадают 1-в-1, как просил ментор; solid решает, сплошная ли заливка +
+// текст внутри рамки (см. drawFieldChip), или только контур — слева это
+// зависит от видимости оригинала (виден оригинал → только контур, чтобы не
+// перекрывать настоящий текст документа), справа заливка+текст всегда.
+function drawBaseBlocks(ctx, mapping, parsed, solid) {
+  Object.keys(mapping).forEach(fieldName => {
+    getFieldDisplayBoxes(mapping, fieldName, parsed).forEach(scaled =>
+      drawFieldChip(ctx, scaled, fieldName, scaled.text, solid));
+  });
+}
+
+// Доп. акцент поверх базы — белая обводка с свечением, когда поле активно
+// (наведение на "кирпичик" справа, на OCR-блок слева, или совпадение поиска).
+// Обводится тот же (уже расширенный под текст) прямоугольник, что и в
+// drawBaseBlocks — иначе рамка эмфазиса не совпадала бы с уже нарисованным
+// цветным блоком.
+function drawEmphasis(ctx, mapping, fieldName, parsed) {
+  const color = getFieldColor(fieldName);
+  getFieldDisplayBoxes(mapping, fieldName, parsed).forEach(scaled => {
+    ctx.save();
+    ctx.shadowColor = color.stroke;
+    ctx.shadowBlur  = 10;
+    ctx.strokeStyle = '#ffffff';
+    ctx.lineWidth   = 3;
+    ctx.strokeRect(scaled.x - 1, scaled.y - 1, scaled.w + 2, scaled.h + 2);
+    ctx.restore();
+  });
+}
+
+// Какое поле сейчас подсвечено (наведение на строку в списке справа ИЛИ на
+// сам блок слева) — общая логика для обоих канвасов, чтобы состояние
+// подсветки всегда было одинаковым и слева, и справа.
+function getActiveFieldName() {
+  if (state.activeField) return state.activeField.fieldName;
+  if (state.activeBlock) return state.activeBlock.fieldName;
+  return null;
+}
+
+function redrawCanvas() {
+  const canvas = document.getElementById('highlightCanvas');
+  const ctx    = canvas.getContext('2d');
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // Подсветка слева выключена пользователем — оставляем канвас пустым,
+  // независимо от того, что там есть в маппинге
+  if (!_leftHighlightVisible) return;
+
+  // Только маппинг ОТКРЫТОГО СЛЕВА файла/страницы (см. getPreviewMapping) —
+  // иначе на новом, ещё не обработанном документе оставались блоки от
+  // предыдущего.
+  const mapping = getPreviewMapping();
+  const pageData = getPreviewPageData();
+  drawTableLink(ctx, pageData, getActiveLink(getPreviewLinks()));
+  if (hasSegments(pageData)) {
+    // Поверх скана — рамки; с текстом, только когда оригинал скрыт
+    drawSegmentsLayer(ctx, pageData, getPreviewLinks(), !_leftBgVisible);
+    return;
+  }
+  if (!mapping || Object.keys(mapping).length === 0) return;
+
+  // База: все найденные блоки, всегда видны — так же, как на белом листе справа.
+  // Текст внутри рамки рисуем ТОЛЬКО когда оригинал скрыт (_leftBgVisible
+  // === false) — поверх настоящего скана свой текст только мешает читать
+  // документ; в этом случае остаются просто цветные рамки без подписи.
+  const parsed = getPreviewParsed();
+  drawBaseBlocks(ctx, mapping, parsed, !_leftBgVisible);
+
+  // Акцент при наведении на конкретное поле
+  const fieldName = getActiveFieldName();
+  if (fieldName) drawEmphasis(ctx, mapping, fieldName, parsed);
+}
+
+function clearHighlights() {
+  state.activeField = null; state.activeBlock = null;
+  state.activeLink = null; state.activeSegment = null; state.relatedIds = [];
+  // Возвращаемся к базовому состоянию (все блоки), а не к пустому канвасу —
+  // блоки должны быть видны слева всегда, как и справа
+  redrawCanvas();
+  redrawAnnotation();
+}
+
+function getCurrentMapping() {
+  const res = state.results[state.currentResFileIdx];
+  if (!res || !res.field_mappings) return null;
+  return res.field_mappings[state.currentResPageIdx] || null;
+}
+
+// Распарсенная запись (значения полей), соответствующая текущему
+// field_mappings — нужна, чтобы подписать блоки реальными значениями,
+// а не только названиями полей.
+function getCurrentParsed() {
+  const res = state.results[state.currentResFileIdx];
+  if (!res || !res.parsed_list) return null;
+  return res.parsed_list[state.currentResPageIdx] || null;
+}
+
+function getResultForFileIdx(fileIdx) {
+  return state.results[fileIdx] || null;
+}
+
+// Маппинг/значения ИМЕННО ТОГО файла и страницы, которые сейчас открыты в
+// предпросмотре слева. Левый канвас раньше брал их через getCurrentMapping(),
+// то есть по индексу выбранного РЕЗУЛЬТАТА справа — а он может указывать на
+// совсем другой файл. Самый заметный случай: загрузили новый файл (предпросмотр
+// сразу прыгает на него), но ещё не нажали "Запустить анализ" — результата у
+// него нет, и поверх нового документа продолжали рисоваться блоки предыдущего
+// файла, да ещё и в его координатах. Теперь для левой стороны действует
+// простое правило: нет результата именно у этого файла/страницы — нет и
+// подсветки.
+function getPreviewMapping() {
+  const res = getResultForFileIdx(state.currentFileIdx);
+  if (!res || !res.field_mappings) return null;
+  return res.field_mappings[state.currentPageIdx] || null;
+}
+
+function getPreviewParsed() {
+  const res = getResultForFileIdx(state.currentFileIdx);
+  if (!res || !res.parsed_list) return null;
+  return res.parsed_list[state.currentPageIdx] || null;
+}
+
+// Перерисовать правый (белый лист) canvas с текущим mapping — используется
+// вместе с redrawCanvas() при наведении, чтобы акцент вспыхивал СРАЗУ на
+// обеих сторонах одинаково, а не только слева.
+function redrawAnnotation() {
+  const mapping = getCurrentMapping();
+  if (mapping) drawAnnotationCanvas(mapping);
+}
+
+// ── Hover from OCR hit zone → highlight result field ───────────
+function onOcrBlockEnter(fieldName) {
+  state.activeBlock = { fieldName };
+  state.activeField = null;
+  redrawCanvas();
+  redrawAnnotation();
+}
+
+function onOcrBlockLeave() {
+  state.activeBlock = null;
+  redrawCanvas();
+  redrawAnnotation();
+}
+
+// Строит невидимые hit-зоны поверх каждого найденного блока — и слева
+// (#ocrHitLayer, поверх скана), и справа (#annoHitLayer, поверх белого
+// листа) одной и той же функцией по тем же координатам, чтобы навести
+// можно было на любую сторону и получить одинаковый эффект подсветки.
+function rebuildOcrHitLayer() {
+  const leftLayer  = document.getElementById('ocrHitLayer');
+  const rightLayer = document.getElementById('annoHitLayer');
+  leftLayer.innerHTML = '';
+  rightLayer.innerHTML = '';
+
+  // Recompute display size (image may have just loaded)
+  const img = document.getElementById('previewImg');
+  if (!img.complete || !img.naturalWidth) return;
+  state.imgNaturalW = img.naturalWidth;
+  state.imgNaturalH = img.naturalHeight;
+  state.imgDisplayW = img.offsetWidth;
+  state.imgDisplayH = img.offsetHeight;
+
+  // Каждая сторона получает зоны от СВОЕГО источника: слева — маппинг
+  // открытого в предпросмотре файла (его может не быть вовсе, если файл
+  // ещё не обрабатывали — тогда слева просто нет зон), справа — маппинг
+  // выбранного результата. Обычно это одно и то же (панели синхронны), но
+  // если они разойдутся, зоны наведения не должны оказаться от чужого
+  // документа — как это было с самими блоками.
+  const sides = [
+    { layer: leftLayer,  mapping: getPreviewMapping(), parsed: getPreviewParsed(), pd: getPreviewPageData(), side: 'left' },
+    { layer: rightLayer, mapping: getCurrentMapping(), parsed: getCurrentParsed(), pd: getCurrentPageData(), side: 'right' },
+  ];
+
+  // Есть блоки всего текста — зоны наведения по ним: каждый блок откликается
+  sides.forEach(side => {
+    if (!hasSegments(side.pd)) return;
+    visibleSegments(side.pd).forEach(seg => {
+      const s = scaleBlock(bboxToBlock(seg.bbox));
+      const div = document.createElement('div');
+      div.className = 'ocr-hit';
+      div.style.left   = (s.x - 1) + 'px';
+      div.style.top    = (s.y - 1) + 'px';
+      div.style.width  = (s.w + 2) + 'px';
+      div.style.height = (s.h + 2) + 'px';
+      div.dataset.seg = seg.id;
+      div.addEventListener('mouseenter', () => onSegmentEnter(side.side, seg.id));
+      div.addEventListener('mouseleave', () => onSegmentLeave());
+      side.layer.appendChild(div);
+    });
+    side.mapping = null;          // по полям зоны уже не нужны
+  });
+
+  // Зоны наведения строим по тем же (уже расширенным под текст) прямоуголь-
+  // никам, что и сама отрисовка (getFieldDisplayBoxes) — иначе hit-зона
+  // могла бы не покрывать весь видимый цветной блок (напр. промежуток между
+  // "ООО" и "Ромашка", слитыми в один чип, или чип, расширенный под текст
+  // значения шире исходного OCR-блока), и наведение в этом месте не
+  // сработало бы.
+  sides.forEach(({ layer, mapping, parsed }) => {
+    if (!mapping) return;
+    Object.keys(mapping).forEach(fieldName => {
+      const fc = getFieldColor(fieldName);
+      const title = fc.label || (fieldName.startsWith('extra::') ? fieldName.replace('extra::', '') : fieldName);
+      getFieldDisplayBoxes(mapping, fieldName, parsed).forEach(scaled => {
+        const div = document.createElement('div');
+        div.className = 'ocr-hit';
+        div.style.left   = scaled.x + 'px';
+        div.style.top    = scaled.y + 'px';
+        div.style.width  = scaled.w + 'px';
+        div.style.height = scaled.h + 'px';
+        div.title = title;
+        div.addEventListener('mouseenter', () => onOcrBlockEnter(fieldName));
+        div.addEventListener('mouseleave', () => onOcrBlockLeave());
+        layer.appendChild(div);
+      });
+    });
+  });
+}
+
+// ════════════════════════════════════════════════
+// ОТКРЫТИЕ РАЗБОРА ПО ID
+// Просмотр сам ничего не распознаёт: по ID из адреса забирает у сервиса
+// разбора готовый результат (common.js: waitForParse) и показывает его.
+// ════════════════════════════════════════════════
+
+// Откуда брать разбор.
+//   false — у сервиса разбора по API (обычная работа, /view?id=<ID>);
+//   true  — из файлов в той же папке, что и страница: <ID>.json — результат,
+//           pages/<ID>/page-<n>.png — картинки страниц, raw/<ID>.json — сырой
+//           JSON. Так просмотр работает без сервиса, например на GitHub Pages.
+//           Флаг включает tools/export_static.py, когда собирает такую папку.
+const STATIC_DATA = true;
+
+async function fetchJsonFile(path) {
+  const r = await fetch(path, { cache: 'no-cache' });
+  if (!r.ok) {
+    const e = new Error(r.status === 404 ? 'файл ' + path + ' не найден' : 'HTTP ' + r.status);
+    e.httpStatus = r.status;
+    throw e;
+  }
+  return r.json();
+}
+
+// Разбор по ID: у сервиса (дожидаясь конца разбора) или из файла рядом
+async function loadParse(id, onProgress) {
+  if (!STATIC_DATA) return waitForParse(id, onProgress);
+  const result = await fetchJsonFile(id + '.json');
+  // В результате адреса картинок — адреса сервиса; в папке они лежат рядом
+  (result.pages || []).forEach(p => { p.image_url = `pages/${id}/page-${p.number}.png`; });
+  return { status: 'done', result, raw_ready: true };
+}
+
+if (STATIC_DATA) {
+  // Ссылка на разбор и сырой JSON — тоже из этой папки, не с сервиса
+  viewLink = id => new URL('view.html?id=' + encodeURIComponent(id), location.href).href;
+  downloadRawJson = async (id, filename) => {
+    try {
+      saveJsonFile(await fetchJsonFile('raw/' + id + '.json'), `raw_${filename || id}.json`);
+      showToast('Сырой JSON сохранён', 'success');
+    } catch (e) {
+      showToast('Сырой JSON: ' + e.message, 'error');
+    }
+  };
+}
+
+// Результат сервиса -> то представление, с которым работает подсветка:
+// parsed_list[i] — значения полей записи, field_mappings[i] — их рамки.
+// Координаты берутся из результата как есть: рамка = прямоугольник поля.
+function resultToView(result) {
+  // Интерфейс листает результат постранично: parsed_list[i] — запись
+  // страницы i+1. Поэтому раскладываем записи по номеру страницы, а не по
+  // порядку в списке: у страницы без записи — пустая запись, и записи
+  // соседних страниц не съезжают на чужой лист.
+  const pageCount = Math.max((result.pages || []).length, 1);
+  const parsed_list = [], field_mappings = [], field_links = [], pages_data = [];
+  for (let n = 1; n <= pageCount; n++) {
+    parsed_list.push({ _page: n, _empty: true, extra_fields: {}, validation_valid: true, validation_errors: [] });
+    field_mappings.push({});
+    field_links.push({});
+    // Весь текст страницы и её таблица (строки, графы, ячейки) — из результата
+    const page = (result.pages || []).find(p => p.number === n) || {};
+    pages_data.push({
+      words: page.words || [],
+      lines: page.lines || [],
+      segments: page.segments || [],          // весь текст страницы блоками (формат 1.2)
+      table: (result.tables || []).find(t => t.page === n) || null,
+    });
+  }
+  const placed = new Set();
+  (result.documents || []).forEach(doc => {
+    const slot = Math.min(Math.max((doc.page || 1) - 1, 0), pageCount - 1);
+    if (placed.has(slot)) return;          // одна запись на страницу
+    placed.add(slot);
+    const parsed = {
+      _page: doc.page,
+      document_type: doc.document_type,
+      category: doc.category,
+      extracted_by: doc.extracted_by,
+      validation_valid: doc.validation ? doc.validation.valid : true,
+      validation_errors: doc.validation ? doc.validation.errors : [],
+      extra_fields: {},
+    };
+    const mapping = {}, links = {};
+    (doc.fields || []).forEach(f => {
+      const key = f.kind === 'standard' ? f.name : 'extra::' + f.name;
+      if (f.table_cell) links[key] = f.table_cell;     // строка и графа таблицы, где стоит значение
+      if (f.kind === 'standard') parsed[f.name] = f.value;
+      else parsed.extra_fields[f.name] = f.value;
+      if (f.boxes && f.boxes.length) {
+        mapping[key] = f.boxes.map(b => ({
+          text: b.text, left: b.x, top: b.y, width: b.w, height: b.h, confidence: b.confidence,
+        }));
+      }
+    });
+    parsed_list[slot] = parsed;
+    field_mappings[slot] = mapping;
+    field_links[slot] = links;
+  });
+  return {
+    parse_id: result.id,
+    filename: result.source ? result.source.filename : '',
+    parsed_list,
+    field_mappings,
+    field_links,
+    pages_data,
+    png_urls: (result.pages || []).map(p => p.image_url || null),
+    logs: result.logs || [],
+    warnings: result.warnings || [],
+    raw: result,
+  };
+}
+
+function applyServerPages(fileObj, view) {
+  view.png_urls.forEach((url, pageIdx) => {
+    if (!url) return;
+    if (fileObj.pages[pageIdx]) fileObj.pages[pageIdx].blob = url;
+    else fileObj.pages[pageIdx] = { blob: url, rotation: 0 };
+  });
+}
+
+function logParseMessages(view) {
+  (view.logs || []).forEach(l =>
+    addLog(l, l.includes('ОШИБКА')||l.includes('✗') ? 'error' : l.includes('ШАГ') ? 'step' : l.includes('ЗАВЕРШЕНА') ? 'success' : 'info')
+  );
+  (view.warnings || []).forEach(w => addLog('⚠ ' + w, 'error'));
+}
+
+function showResultPanels() {
+  document.getElementById('resultEmpty').style.display = 'none';
+  document.getElementById('resultNav').style.display = 'flex';
+  document.getElementById('actionsRow').style.display = 'flex';
+  document.getElementById('annotatedOverlayBar').style.display = 'flex';
+  renderResult();
+  rebuildOcrHitLayer();
+}
+
+// Открыть готовый разбор по его ID: из ссылки ?id=..., из истории.
+// Это и есть «компонента, которая получает ID и забирает результат».
+async function openParseById(id) {
+  setStatus('processing', 'Загрузка результата...');
+  const overlay = document.getElementById('processingOverlay');
+  overlay.classList.add('active');
+  document.getElementById('processingStep').textContent = 'ID ' + id;
+  try {
+    // Разбор ещё идёт — ждём его здесь же и открываем, когда будет готов
+    document.getElementById('previewImgWrap').classList.add('visible');
+    document.getElementById('previewEmpty').style.display = 'none';
+    const view = await loadParse(id, v => {
+      document.getElementById('processingStep').textContent = `ID ${id} — ${parseStatusText(v)}`;
+      setStatus('processing', parseStatusText(v));
+    });
+    const res = resultToView(view.result);
+    const fileObj = { file: null, name: res.filename || id, pages: [], status: 'done', result: res, parseId: id,
+                      rawReady: !!view.raw_ready };
+    applyServerPages(fileObj, res);
+    state.files = [fileObj];
+    state.results = [res];
+    clearLog();
+    logParseMessages(res);
+    showParse();
+    document.title = `${res.filename || id} — ДокАнализ`;
+    setStatus('done', 'Открыт разбор ' + id.slice(0, 8));
+  } catch (e) {
+    setStatus('error', 'Ошибка');
+    (e.logs || []).forEach(l => addLog(l, 'info'));
+    addLog(`✗ Разбор ${id}: ${e.message}`, 'error');
+    document.getElementById('previewImgWrap').classList.remove('visible');
+    document.getElementById('previewEmpty').style.display = '';
+    document.getElementById('previewEmptyText').textContent = e.httpStatus === 404
+      ? `Разбор ${id} не найден` : `Разбор ${id} не открылся: ${e.message}`;
+    showToast(e.httpStatus === 404 ? 'Разбор с таким ID не найден' : 'Ошибка: ' + e.message, 'error');
+  } finally {
+    overlay.classList.remove('active');
+  }
+}
+
+// Поле «Открыть результат по ID»: принимает сам ID или ссылку с ?id=...
+// Открывает его как отдельную страницу просмотра — у каждого разбора свой адрес.
+function openFromInput() {
+  const id = extractParseId(document.getElementById('openIdInput').value);
+  if (!id) {
+    showToast('Не похоже на ID разбора: нужно 32 символа из цифр и букв a–f', 'error');
+    return;
+  }
+  location.href = viewLink(id);
+}
+
+function showParse() {
+  state.currentFileIdx = 0; state.currentPageIdx = 0;
+  state.currentResFileIdx = 0; state.currentResPageIdx = 0;
+  document.getElementById('btnToggleLeft').disabled = false;
+  document.getElementById('btnToggleLeftHighlight').disabled = false;
+  showPreview(); updateNavButtons();
+  showResultPanels();
+}
+
+// Плашка над документом: ID разбора текущего результата и ссылка на него.
+// Нет ID (файл ещё не обработан или разбор не удался) — плашки нет.
+function renderParseBar(res) {
+  const bar = document.getElementById('parseBar');
+  if (!res || !res.parse_id) { bar.classList.remove('visible'); return; }
+  document.getElementById('parseBarId').textContent = res.parse_id;
+  document.getElementById('parseBarFile').textContent = res.filename || '';
+  document.getElementById('parseBarFile').title = res.filename || '';
+  bar.classList.add('visible');
+  setFocus('', '');
+}
+
+function copyParseLink() {
+  const res = state.results[state.currentResFileIdx];
+  if (!res || !res.parse_id) return;
+  copyText(viewLink(res.parse_id), 'Ссылка на результат скопирована');
+}
+
+// ════════════════════════════════════════════════
+// RESULTS
+// ════════════════════════════════════════════════
+function navigateResultPage(dir) {
+  const res = state.results[state.currentResFileIdx];
+  if (!res) return;
+  const newIdx = state.currentResPageIdx + dir;
+  if (newIdx < 0 || newIdx >= res.parsed_list.length) return;
+  state.currentResPageIdx = newIdx; clearHighlights(); clearResultSearch(); resetHlAll();
+  const f = state.files[state.currentFileIdx];
+  if (f && newIdx < f.pages.length) { state.currentPageIdx = newIdx; showPreview(); updateNavButtons(); }
+  renderResult(); rebuildOcrHitLayer();
+}
+
+function renderResult() {
+  const res   = state.results[state.currentResFileIdx];
+  renderParseBar(res);
+  const empty = document.getElementById('resultEmpty');
+
+  const hideAnnotation = () => {
+    document.getElementById('annotationWrap').classList.remove('visible');
+    document.getElementById('annotatedOverlayBar').style.display = 'none';
+  };
+
+  if (!res) {
+    // Результата для этого файла ещё нет (не запускали анализ) — показываем
+    // пустое состояние и ОБНУЛЯЕМ счётчики с именем файла: иначе панель
+    // продолжала подписываться именем предыдущего документа.
+    empty.style.display=''; hideAnnotation();
+    empty.innerHTML=`<div class="result-empty-icon">🔍</div><div style="font-size:13px;color:var(--muted)">Файл ещё не обработан</div>`;
+    document.getElementById('resultCounter').textContent = '—';
+    document.getElementById('resultPageCounter').textContent = '—';
+    document.getElementById('resultFileName').textContent = 'Нет результата';
+    return;
+  }
+
+  if (res.error && res.parsed_list.length === 0) {
+    empty.style.display=''; hideAnnotation();
+    empty.innerHTML=`<div class="result-empty-icon" style="opacity:1">⚠</div><div style="font-size:13px;color:var(--red)">${escHtml(res.error)}</div>`;
+    document.getElementById('resultCounter').textContent='—'; return;
+  }
+  if (res.parsed_list.length === 0) {
+    empty.style.display=''; hideAnnotation();
+    empty.innerHTML=`<div class="result-empty-icon">🔍</div><div style="font-size:13px;color:var(--muted)">Данные не найдены</div>`; return;
+  }
+
+  // Страниц в файле может оказаться больше, чем записей в результате (LLM
+  // вернул меньше записей, чем страниц) — не даём индексу страницы уехать за
+  // границу массива, иначе parsed стал бы undefined и отрисовка упала бы на
+  // первом же обращении к его полям.
+  if (state.currentResPageIdx >= res.parsed_list.length) state.currentResPageIdx = res.parsed_list.length - 1;
+  if (state.currentResPageIdx < 0) state.currentResPageIdx = 0;
+
+  empty.style.display='none';
+  document.getElementById('annotationWrap').classList.add('visible');
+  document.getElementById('annotatedOverlayBar').style.display = 'flex';
+
+  const parsed = res.parsed_list[state.currentResPageIdx];
+  const fi = state.currentResFileIdx+1, ft = state.results.length;
+  const pi = state.currentResPageIdx+1, pt = res.parsed_list.length;
+  const mapping = getCurrentMapping() || {};
+
+  // Рисуем аннотационный canvas справа и точно те же блоки слева поверх оригинала —
+  // значения теперь пишутся ПРЯМО ВНУТРИ цветных рамок на обоих белых листах (drawFieldChip)
+  drawAnnotationCanvas(mapping);
+  redrawCanvas();
+
+  document.getElementById('resultCounter').textContent = `стр.${pi}/${pt}`;
+  document.getElementById('resultPageCounter').textContent = `стр.${pi}/${pt}`;
+  document.getElementById('resultFileName').textContent = res.filename || '—';
+  document.getElementById('prevResPageBtn').disabled = state.currentResPageIdx <= 0;
+  document.getElementById('nextResPageBtn').disabled = state.currentResPageIdx >= pt-1;
+
+  const isValid = parsed.validation_valid;
+  const errors  = parsed.validation_errors || [];
+  const category = parsed.category || 'прочее';
+  const docType  = parsed.document_type || null;
+
+  const statusBar = document.getElementById('resultStatusBar');
+  statusBar.innerHTML = `
+    <span class="category-tag">🏷 ${escHtml(category)}${docType ? ' · ' + escHtml(docType) : ''}</span>
+    <span class="validation-pill ${isValid ? 'valid' : 'invalid'}" title="${errors.map(escHtml).join('; ')}">
+      ${isValid ? '✓ Валидно' : `✗ ${errors.length} ошиб.`}
+    </span>
+  `;
+}
+
+// ════════════════════════════════════════════════
+// ANNOTATION CANVAS (правая панель — белый лист + блоки)
+// ════════════════════════════════════════════════
+
+let _leftBgVisible  = true;
+let _rightBgVisible = true;
+
+// Рисует белый холст той же ширины/высоты что левое изображение
+// и накладывает поверх те же блоки (+ подписи со значениями) на тех же координатах
+// ════════════════════════════════════════════════
+// ВЕСЬ ТЕКСТ И ТАБЛИЦА: данные страницы, связь значения со строкой и графой
+// ════════════════════════════════════════════════
+let _rightTextVisible = true;
+
+function pageDataOf(res, idx) {
+  return res && res.pages_data ? res.pages_data[idx] || null : null;
+}
+function linksOf(res, idx) {
+  return res && res.field_links ? res.field_links[idx] || {} : {};
+}
+function getCurrentPageData() { return pageDataOf(state.results[state.currentResFileIdx], state.currentResPageIdx); }
+function getPreviewPageData() { return pageDataOf(getResultForFileIdx(state.currentFileIdx), state.currentPageIdx); }
+function getCurrentLinks()    { return linksOf(state.results[state.currentResFileIdx], state.currentResPageIdx); }
+function getPreviewLinks()    { return linksOf(getResultForFileIdx(state.currentFileIdx), state.currentPageIdx); }
+
+function bboxToBlock(b) { return { left: b.x, top: b.y, width: b.w, height: b.h }; }
+
+// Весь распознанный текст страницы серым — на своих местах, как в документе.
+// Найденные значения рисуются поверх цветными плашками.
+function drawAllWords(ctx, words) {
+  if (!words || !words.length) return;
+  ctx.save();
+  ctx.textBaseline = 'middle';
+  words.forEach(w => {
+    const text = String(w.text || '').trim();
+    if (!text) return;
+    // Неуверенно прочитанное (печать, подписи, обрывки линеек) — бледнее:
+    // оно тоже выводится, но не спорит с настоящим текстом документа
+    ctx.fillStyle = (w.confidence != null && w.confidence < 50) ? '#b4b8c2' : '#3f4452';
+    const s = scaleBlock(bboxToBlock(w));
+    if (s.h < 3 || s.w < 2) return;
+    ctx.font = `${Math.max(6, s.h * 0.85)}px Inter, sans-serif`;
+    const k = Math.min(1.3, s.w / (ctx.measureText(text).width || 1));
+    ctx.save();
+    ctx.translate(s.x, s.y + s.h / 2);
+    ctx.scale(k, 1);
+    ctx.fillText(text, 0, 0);
+    ctx.restore();
+  });
+  ctx.restore();
+}
+
+// Какая ячейка таблицы сейчас в фокусе: наведение на ячейку таблицы справа
+// или на поле, у которого есть место в таблице.
+function getActiveLink(links) {
+  if (state.activeLink) return state.activeLink;
+  if (state.activeSegment != null) {
+    const pd = getCurrentPageData();
+    const seg = pd && pd.segments && pd.segments[state.activeSegment];
+    if (seg && seg.table_cell) return seg.table_cell;
+  }
+  const field = getActiveFieldName();
+  return field && links ? links[field] || null : null;
+}
+
+// Подсветка связи: строка целиком — лёгкой заливкой, её название и код,
+// сама ячейка и заголовок графы — пунктирной рамкой.
+function drawTableLink(ctx, pageData, link) {
+  const t = pageData && pageData.table;
+  if (!t || !link) return;
+  const row = t.rows.find(r => r.index === link.row);
+  const col = t.columns.find(c => c.index === link.column);
+  // Связь рисуем только у строк показателей и итогов: у шапки, разделов и
+  // текста вокруг таблицы (реквизиты, подписи) ни кода, ни графы нет
+  if (!row || (row.kind !== 'item' && row.kind !== 'total')) return;
+  const boxes = [];
+  if (row) {
+    row.cells.forEach(c => {
+      if ((c.column === t.label_column || c.column === t.code_column || c.column === link.column) && c.bbox)
+        boxes.push(c.bbox);
+    });
+  }
+  if (col && col.role === 'value' && col.header_bbox) boxes.push(col.header_bbox);
+  ctx.save();
+  if (row) {
+    const s = scaleBlock(bboxToBlock(row.bbox));
+    ctx.fillStyle = 'rgba(250,204,21,0.12)';
+    ctx.fillRect(s.x, s.y, s.w, s.h);
+  }
+  ctx.setLineDash([5, 3]);
+  ctx.lineWidth = 2;
+  ctx.strokeStyle = 'rgba(234,179,8,0.95)';
+  boxes.forEach(b => {
+    const s = scaleBlock(bboxToBlock(b));
+    ctx.strokeRect(s.x - 3, s.y - 3, s.w + 6, s.h + 6);
+  });
+  ctx.restore();
+}
+
+// ── Блоки всего текста ─────────────────────────────────────────
+function hasSegments(pd) { return !!(pd && pd.segments && pd.segments.length); }
+
+function visibleSegments(pd) {
+  if (!hasSegments(pd)) return [];
+  return _rightTextVisible ? pd.segments : pd.segments.filter(s => s.kind === 'field');
+}
+
+// Какие блоки сейчас выделены: под курсором (и все куски того же поля),
+// выбранное поле из списка, ячейка таблицы, совпадения поиска.
+function activeSegmentIds(pd, links) {
+  const ids = new Set();
+  if (!hasSegments(pd)) return ids;
+  const segs = pd.segments;
+  if (state.activeSegment != null) {
+    const seg = segs[state.activeSegment];
+    if (seg) {
+      ids.add(seg.id);
+      if (seg.field) segs.forEach(s => { if (s.field === seg.field) ids.add(s.id); });
+    }
+  }
+  const field = getActiveFieldName();
+  if (field) segs.forEach(s => { if (s.field === field) ids.add(s.id); });
+  if (state.activeLink) {
+    segs.forEach(s => {
+      if (s.table_cell && s.table_cell.row === state.activeLink.row && s.table_cell.column === state.activeLink.column)
+        ids.add(s.id);
+    });
+  }
+  (state.searchIds || []).forEach(id => ids.add(id));
+  (state.relatedIds || []).forEach(id => ids.add(id));     // значения наведённой подписи
+  return ids;
+}
+
+// Текст в блоке: крупно, насколько позволяет высота, и сжат по ширине,
+// чтобы поместиться целиком — так видно весь текст, а не «Уставн…».
+function drawSegmentText(ctx, seg, x, y, w, h, active) {
+  const text = String(seg.text || '');
+  if (!text || w < 4 || h < 4) return;
+  const size = Math.max(5, Math.min(h * 0.8, 18));
+  ctx.font = `${seg.kind === 'field' ? 700 : 500} ${size}px Inter, sans-serif`;
+  const width = ctx.measureText(text).width || 1;
+  const k = Math.min(1, (w - 4) / width);
+  ctx.save();
+  roundedRectPath(ctx, x, y, w, h, 3);
+  ctx.clip();
+  ctx.fillStyle = active ? BLOCK.activeText : BLOCK.text;
+  ctx.textBaseline = 'middle';
+  ctx.translate(x + 2, y + h / 2 + 0.5);
+  ctx.scale(k, 1);
+  ctx.fillText(text, 0, 0);
+  ctx.restore();
+}
+
+// solid — блок с заливкой и текстом (белый лист справа или скрытый оригинал
+// слева); иначе только рамка поверх скана, чтобы не закрывать документ.
+function drawSegmentBlock(ctx, seg, solid, active) {
+  const s = scaleBlock(bboxToBlock(seg.bbox));
+  const x = s.x - 1, y = s.y - 1, w = s.w + 2, h = s.h + 2;
+  ctx.save();
+  roundedRectPath(ctx, x, y, w, h, 3);
+  if (solid) {
+    ctx.fillStyle = active ? BLOCK.activeFill : BLOCK.fill;
+    ctx.fill();
+  } else if (active) {
+    ctx.fillStyle = BLOCK.leftActive;
+    ctx.fill();
+  }
+  if (active) {
+    ctx.shadowColor = 'rgba(29,78,216,0.9)';
+    ctx.shadowBlur = 10;
+  }
+  ctx.lineWidth = active ? 2.5 : 1.2;
+  ctx.strokeStyle = active ? BLOCK.activeStroke : (solid ? BLOCK.stroke : BLOCK.leftStroke);
+  ctx.stroke();
+  ctx.restore();
+  if (solid) drawSegmentText(ctx, seg, x, y, w, h, active);
+}
+
+function drawSegmentsLayer(ctx, pd, links, solid) {
+  const segs = visibleSegments(pd);
+  const active = activeSegmentIds(pd, links);
+  segs.forEach(seg => { if (!active.has(seg.id)) drawSegmentBlock(ctx, seg, solid, false); });
+  // выделенные — поверх остальных, чтобы свечение не перекрывали соседи
+  pd.segments.forEach(seg => { if (active.has(seg.id)) drawSegmentBlock(ctx, seg, solid, true); });
+}
+
+// ── Строка текста над документом ───────────────────────────────
+function isNumberText(t) { return /^[\s\d.,()\-—]+$/.test(String(t || '')) && /\d/.test(String(t || '')); }
+
+// Кнопка «Связанные значения». Выбор запоминается в браузере; если
+// хранилище недоступно, кнопка просто включена.
+state.showLinks = (() => {
+  try { return localStorage.getItem('dokanaliz.showLinks') !== '0'; } catch (e) { return true; }
+})();
+
+function syncLinksToggle() {
+  const btn = document.getElementById('linksToggle');
+  if (!btn) return;
+  btn.classList.toggle('active', state.showLinks);
+  btn.setAttribute('aria-pressed', state.showLinks ? 'true' : 'false');
+}
+
+syncLinksToggle();
+
+function toggleLinkedValues() {
+  state.showLinks = !state.showLinks;
+  try { localStorage.setItem('dokanaliz.showLinks', state.showLinks ? '1' : '0'); } catch (e) { /* не сохранилось — не страшно */ }
+  syncLinksToggle();
+  // сразу перерисовать строку для блока, на который уже наведён курсор
+  if (state.lastFocus) setFocus(...state.lastFocus);
+}
+
+// Строка над документом. Когда «Связанные значения» выключены, выводится
+// только текст блока: без серой подписи (показатель, код, графа) и без
+// значений. Подсветка на листах от кнопки не зависит.
+function setFocus(context, text, values) {
+  state.lastFocus = [context, text, values];
+  if (!state.showLinks) { context = ''; values = []; }
+  const ctxEl = document.getElementById('focusContext');
+  const txtEl = document.getElementById('focusText');
+  const valEl = document.getElementById('focusValues');
+  if (valEl) {
+    valEl.innerHTML = (text && values && values.length)
+      ? values.map(v => `<span class="focus-chip">${v.label ? escHtml(v.label) + ':' : 'Значение:'}<b>${escHtml(v.value)}</b></span>`).join('')
+      : '';
+  }
+  if (!ctxEl || !txtEl) return;
+  if (!text) {
+    ctxEl.textContent = '';
+    txtEl.className = 'focus-text';
+    txtEl.innerHTML = '<span class="focus-hint">Наведите на любой блок документа — здесь появится его текст</span>';
+    return;
+  }
+  ctxEl.textContent = context || '';
+  txtEl.className = 'focus-text' + (isNumberText(text) ? ' number' : '');
+  txtEl.textContent = text;
+}
+
+// Подпись к ячейке таблицы: строка (название, код) и графа (заголовок)
+function tableCellContext(pd, cell) {
+  const t = pd && pd.table;
+  if (!t || !cell) return '';
+  const row = t.rows.find(r => r.index === cell.row);
+  const col = t.columns.find(c => c.index === cell.column);
+  if (!row || !col) return '';
+  if (row.kind === 'header' || row.kind === 'numbering') return 'Заголовок графы таблицы';
+  if (row.kind === 'section') return 'Раздел таблицы';
+  if (row.kind === 'other') return '';
+  const parts = [];
+  if (col.role === 'label') parts.push('Показатель');
+  else if (col.role === 'code') parts.push('Код строки');
+  if (col.role !== 'label' && row.label) parts.push(row.label);
+  if (row.code && col.role !== 'code') parts.push('код ' + row.code);
+  if (col.role === 'value' && col.header) parts.push(col.header);
+  return parts.join(' · ');
+}
+
+function focusForField(fieldName) {
+  const parsed = getCurrentParsed();
+  const link = getCurrentLinks()[fieldName];
+  const label = getFieldColor(fieldName).label || fieldName.replace('extra::', '');
+  const context = link
+    ? [link.row_label, link.row_code ? 'код ' + link.row_code : '', link.column_header].filter(Boolean).join(' · ')
+    : label;
+  const value = getFieldValue(fieldName, parsed);
+  setFocus(context, link ? tidyNumber(value) : value);    // в таблице — число без обрывков линейки
+}
+
+function focusForSegment(pd, seg) {
+  state.relatedIds = [];
+  if (!seg) { setFocus('', ''); return; }
+  if (seg.field) { focusForField(seg.field); return; }
+  const rel = relatedForSegment(pd, seg);
+  state.relatedIds = rel.ids;
+  if (seg.kind === 'cell') {
+    setFocus(rel.context || tableCellContext(pd, seg.table_cell) || 'Текст документа', seg.text, rel.values);
+    return;
+  }
+  const unsure = seg.confidence != null && seg.confidence < 50 ? ' · распознано неуверенно' : '';
+  setFocus(rel.context || ('Текст документа' + unsure), seg.text, rel.values);
+}
+
+// Что связано с блоком-подписью: у названия показателя — его значения по
+// графам, у реквизита («Организация») — его значение. Возвращает блоки,
+// которые надо подсветить вместе с подписью, и значения для строки сверху.
+function normLabel(t) {
+  return String(t || '').toLowerCase().replace(/[:\s.]+$/, '').replace(/\s+/g, ' ').trim();
+}
+
+// Число из графы значений без обрывков линейки, которые OCR дописывает
+// к краю: «(1 066)!», «(594):», «2489]», «|176». Цифры не трогаем; скобку
+// отрицательного числа, потерянную с одного края, возвращаем: «250)» →
+// «(250)». Текст без цифр (прочерк, слова) выводится как есть.
+function tidyNumber(text) {
+  const src = String(text || '').trim();
+  if (/^[\-—–_\s]+$/.test(src)) return '—';            // прочерк: «——», «—_-»
+  if (!/\d/.test(src)) return src;
+  let t = src.replace(/^[^\d(\-—–]+/, '').replace(/[^\d)]+$/, '');
+  // Обрезаем только мусор вокруг числа: «лизинг (код ОКЭД 64910)» — не число
+  if (!/^[\d\s.,()\-—–]+$/.test(t) || src.length - t.length > 3) return src;
+  const open = t.startsWith('('), close = t.endsWith(')');
+  if (open && !close) t += ')';
+  else if (close && !open) t = '(' + t;
+  return t;
+}
+
+function relatedForSegment(pd, seg) {
+  const out = { ids: [], values: [], context: null };
+  if (!pd || !seg || seg.kind === 'field') return out;
+  const t = pd.table;
+
+  // 1. Название показателя — значения его строки по всем графам
+  if (t && seg.table_cell && seg.table_cell.column === t.label_column) {
+    const row = t.rows.find(r => r.index === seg.table_cell.row);
+    if (row && (row.kind === 'item' || row.kind === 'total')) {
+      t.columns.filter(c => c.role === 'value').forEach(c => {
+        const segs = pd.segments.filter(s => s.table_cell && s.table_cell.row === row.index && s.table_cell.column === c.index);
+        segs.forEach(s => out.ids.push(s.id));
+        const cell = row.cells.find(x => x.column === c.index);
+        const text = tidyNumber(segs.length ? segs.map(s => s.text).join(' ') : (cell ? cell.text : ''));
+        out.values.push({
+          label: c.header || c.period || ('Графа ' + (c.number || c.index + 1)),
+          value: text || '—',
+        });
+      });
+      return out;
+    }
+  }
+
+  // 2. Подпись, для которой найдено поле с таким же названием
+  //    («Организация» → «ОАО "Витмил"», «Сумма:» → «258.00 BYN»)
+  const key = normLabel(seg.text);
+  const fieldKeys = [...new Set(pd.segments.filter(s => s.field).map(s => s.field))];
+  const match = key && fieldKeys.find(k => normLabel(getFieldColor(k).label || k.replace('extra::', '')) === key);
+  if (match) {
+    pd.segments.filter(s => s.field === match).forEach(s => out.ids.push(s.id));
+    out.values.push({ label: '', value: getFieldValue(match, getCurrentParsed()) || '—' });
+    return out;
+  }
+
+  // 3. Строка реквизитов в разлиновке над таблицей: слева подпись, правее значение
+  if (t && seg.table_cell) {
+    const row = t.rows.find(r => r.index === seg.table_cell.row);
+    if (row && row.kind === 'other') {
+      const y0 = row.bbox.y, y1 = row.bbox.y + row.bbox.h;
+      const inRow = pd.segments
+        .filter(s => { const cy = s.bbox.y + s.bbox.h / 2; return cy >= y0 && cy < y1; })
+        .sort((a, b) => a.bbox.x - b.bbox.x);
+      if (inRow.length && inRow[0].id === seg.id) {
+        const rest = inRow.slice(1);
+        rest.forEach(s => out.ids.push(s.id));
+        out.values.push({ label: '', value: rest.length ? rest.map(s => s.text).join(' ') : 'значение не указано' });
+      } else if (inRow.length) {
+        out.context = inRow[0].text;           // значение реквизита: сверху — его подпись
+        out.ids.push(inRow[0].id);
+      }
+    }
+  }
+  return out;
+}
+
+// Наведение на блок — на любом из листов
+function onSegmentEnter(side, id) {
+  const pd = side === 'left' ? getPreviewPageData() : getCurrentPageData();
+  const seg = pd && pd.segments[id];
+  state.activeSegment = id;
+  state.activeField = null; state.activeBlock = null; state.activeLink = null;
+  focusForSegment(pd, seg);                 // заодно находит связанные блоки
+  redrawCanvas(); redrawAnnotation();
+}
+
+function onSegmentLeave() {
+  state.activeSegment = null;
+  state.relatedIds = [];
+  redrawCanvas(); redrawAnnotation();
+  setFocus('', '');
+}
+
+function toggleRightText() {
+  _rightTextVisible = !_rightTextVisible;
+  document.getElementById('btnToggleText').classList.toggle('active', _rightTextVisible);
+  redrawCanvas();
+  redrawAnnotation();
+  rebuildOcrHitLayer();
+}
+
+function drawAnnotationCanvas(mapping, parsed) {
+  const img    = document.getElementById('previewImg');
+  const wrap   = document.getElementById('annotationWrap');
+  const sheet  = document.getElementById('annotationSheet');
+  const canvas = document.getElementById('annotationCanvas');
+
+  if (!img || !img.naturalWidth) {
+    // Изображение ещё не загружено — подождём
+    img.addEventListener('load', () => drawAnnotationCanvas(mapping, parsed), { once: true });
+    return;
+  }
+
+  // Синхронизируем размеры с левым изображением точно
+  const dispW = img.offsetWidth;
+  const dispH = img.offsetHeight;
+
+  sheet.style.width  = dispW + 'px';
+  sheet.style.height = dispH + 'px';
+  wrap.style.width   = dispW + 'px';
+  wrap.style.height  = dispH + 'px';
+
+  const dpr = window.devicePixelRatio || 1;
+  canvas.width  = dispW * dpr;
+  canvas.height = dispH * dpr;
+  canvas.style.width  = dispW + 'px';
+  canvas.style.height = dispH + 'px';
+
+  const ctx = canvas.getContext('2d');
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  ctx.clearRect(0, 0, dispW, dispH);
+
+  const pageData = getCurrentPageData();
+  drawTableLink(ctx, pageData, getActiveLink(getCurrentLinks()));
+
+  // Весь текст страницы блоками одного цвета (формат 1.2). У старых
+  // разборов блоков нет — для них рисуем, как раньше, только найденные поля.
+  if (hasSegments(pageData)) {
+    drawSegmentsLayer(ctx, pageData, getCurrentLinks(), true);
+    return;
+  }
+  if (_rightTextVisible && pageData) drawAllWords(ctx, pageData.words);
+
+  if (!mapping || Object.keys(mapping).length === 0) return;
+
+  // Используем те же scaleBlock/drawBaseBlocks что и левый canvas —
+  // state.imgDisplayW/H уже выставлены правильно для левого изображения.
+  // Справа оригинала документа никогда нет (это всегда синтетический белый
+  // лист), поэтому тексту внутри рамок мешать нечему — показываем его всегда.
+  const resolvedParsed = parsed || getCurrentParsed();
+  drawBaseBlocks(ctx, mapping, resolvedParsed, true);
+
+  // То же наведение, что и слева (getActiveFieldName) — чтобы при hover на
+  // блок или на строку в списке справа подсветка "вспыхивала" ОДИНАКОВО
+  // на обеих сторонах, а не только на левой.
+  const fieldName = getActiveFieldName();
+  if (fieldName) drawEmphasis(ctx, mapping, fieldName, resolvedParsed);
+}
+
+// Переключить видимость оригинального изображения слева
+function toggleLeftBg() {
+  _leftBgVisible = !_leftBgVisible;
+  const img = document.getElementById('previewImg');
+  const btn = document.getElementById('btnToggleLeft');
+  if (img) img.style.opacity = _leftBgVisible ? '1' : '0';
+  btn.classList.toggle('active', _leftBgVisible);
+  // От видимости оригинала зависит, пишем ли текст внутри рамок слева
+  // (см. drawBaseBlocks/redrawCanvas) — перерисовываем сразу же.
+  redrawCanvas();
+}
+
+// Переключить видимость подсветки (найденных блоков+подписей) слева —
+// независимо от оригинала: иногда нужно увидеть ЧИСТЫЙ документ, когда
+// подписи наезжают на текст и мешают читать.
+let _leftHighlightVisible = true;
+function toggleLeftHighlight() {
+  _leftHighlightVisible = !_leftHighlightVisible;
+  document.getElementById('btnToggleLeftHighlight').classList.toggle('active', _leftHighlightVisible);
+  redrawCanvas();
+}
+
+// Переключить видимость белого фона справа
+function toggleRightBg() {
+  _rightBgVisible = !_rightBgVisible;
+  const sheet = document.getElementById('annotationSheet');
+  const btn   = document.getElementById('btnToggleRight');
+  if (sheet) sheet.classList.toggle('hidden', !_rightBgVisible);
+  btn.classList.toggle('active', _rightBgVisible);
+}
+
+// Перерисовываем правый canvas при ресайзе
+window.addEventListener('resize', () => {
+  const mapping = getCurrentMapping();
+  if (mapping) drawAnnotationCanvas(mapping);
+});
+
+// ════════════════════════════════════════════════
+// RESULTS SEARCH
+// (примечание: раньше здесь был отдельный переключатель "подсветить всё" —
+// теперь все блоки и так всегда видны и слева, и справа, поэтому он не нужен;
+// resetHlAll() оставлен как пустая заглушка, чтобы не трогать вызовы ниже)
+// ════════════════════════════════════════════════
+function resetHlAll() {}
+function searchResultFields(query) {
+  // Раньше искало по элементам #bricksGrid .brick — таких элементов нет
+  // и не было в разметке (незавершённая фича), поэтому поиск всегда молча
+  // находил 0 совпадений. Теперь ищет напрямую по маппингу полей —
+  // по названию поля, подписи и распознанному значению.
+  const q = query.trim().toLowerCase();
+  const clearBtn = document.getElementById('resultsSearchClear');
+  clearBtn.style.display = q ? 'block' : 'none';
+
+  const mapping = getCurrentMapping() || {};
+  const parsed  = getCurrentParsed();
+  const fieldNames = Object.keys(mapping);
+  const total = fieldNames.length;
+  const matchedFields = [];
+
+  fieldNames.forEach(fieldName => {
+    const color = getFieldColor(fieldName);
+    const label = (color.label || (fieldName.startsWith('extra::') ? fieldName.replace('extra::', '') : fieldName)).toLowerCase();
+    const value = getFieldValue(fieldName, parsed).toLowerCase();
+    const hits = q === '' || fieldName.toLowerCase().includes(q) || label.includes(q) || value.includes(q);
+    if (hits && q !== '') matchedFields.push(fieldName);
+  });
+
+  // База (все блоки) всегда на месте и слева, и справа — поверх акцент на
+  // найденных по поиску, одинаково с обеих сторон. Текст внутри рамки —
+  // как и везде — слева только если оригинал скрыт, справа всегда.
+  // Есть блоки всего текста — ищем по ним: по тексту блока и по названию поля
+  const pdSearch = getCurrentPageData();
+  if (hasSegments(pdSearch)) {
+    state.searchIds = q === '' ? [] : visibleSegments(pdSearch).filter(sg => {
+      const label = sg.field ? (getFieldColor(sg.field).label || sg.field.replace('extra::', '')).toLowerCase() : '';
+      return String(sg.text || '').toLowerCase().includes(q) || label.includes(q);
+    }).map(sg => sg.id);
+    redrawCanvas(); redrawAnnotation();
+    document.getElementById('resultsSearchCount').textContent =
+      q === '' ? '' : `${state.searchIds.length}/${visibleSegments(pdSearch).length}`;
+    return;
+  }
+  state.searchIds = [];
+
+  const leftCanvas  = document.getElementById('highlightCanvas');
+  const rightCanvas = document.getElementById('annotationCanvas');
+  [[leftCanvas, !_leftBgVisible], [rightCanvas, true]].forEach(([canvas, drawText]) => {
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    if (canvas === rightCanvas && _rightTextVisible) {
+      const pd = getCurrentPageData();                 // весь текст — и во время поиска
+      if (pd) drawAllWords(ctx, pd.words);
+    }
+    if (total > 0) {
+      drawBaseBlocks(ctx, mapping, parsed, drawText);
+      if (q !== '') matchedFields.forEach(fn => drawEmphasis(ctx, mapping, fn, parsed));
+    }
+  });
+
+  const countEl = document.getElementById('resultsSearchCount');
+  countEl.textContent = q === '' ? '' : `${matchedFields.length}/${total}`;
+}
+
+function clearResultSearch() {
+  const input = document.getElementById('resultsSearchInput');
+  input.value = '';
+  searchResultFields('');
+}
+
+// ════════════════════════════════════════════════
+// LOG
+// ════════════════════════════════════════════════
+let logLines = 0;
+function addLog(msg, type='info') {
+  const body = document.getElementById('logBody');
+  const ts   = new Date().toLocaleTimeString('ru',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+  const div  = document.createElement('div');
+  div.className = 'log-line ' + type;
+  div.innerHTML = `<span class="ts">${ts}</span><span class="msg">${escHtml(msg)}</span>`;
+  body.appendChild(div); body.scrollTop = body.scrollHeight;
+  logLines++;
+  document.getElementById('logCount').textContent = logLines + ' записей';
+}
+function clearLog() {
+  logLines = 0; document.getElementById('logBody').innerHTML = '';
+  document.getElementById('logCount').textContent = '0 записей';
+}
+function toggleLog() {
+  state.logCollapsed = !state.logCollapsed;
+  document.getElementById('logBody').classList.toggle('hidden', state.logCollapsed);
+  document.getElementById('logToggle').classList.toggle('collapsed', state.logCollapsed);
+}
+
+// ════════════════════════════════════════════════
+// ВЫГРУЗКА
+// ════════════════════════════════════════════════
+function exportJSON() {
+  const res = state.results[state.currentResFileIdx];
+  if (!res) return;
+  // Выгружаем результат ровно в том виде, в каком его отдаёт сервис разбора
+  saveJsonFile(res.raw || res, `result_${res.filename || 'document'}.json`);
+  showToast('JSON сохранён', 'success');
+}
+
+function exportRawJSON() {
+  const res = state.results[state.currentResFileIdx];
+  const file = state.files[state.currentResFileIdx];
+  const id = (file && file.parseId) || (res && res.raw && res.raw.id);
+  if (!id) { showToast('У этого результата нет ID разбора', 'info'); return; }
+  downloadRawJson(id, (res && res.filename) || (file && file.name));
+}
+
+function copyResult() {
+  const res = state.results[state.currentResFileIdx];
+  if (!res) return;
+  navigator.clipboard.writeText(JSON.stringify(res.parsed_list[state.currentResPageIdx], null, 2))
+    .then(()=>showToast('Скопировано', 'success'))
+    .catch(()=>showToast('Ошибка копирования', 'error'));
+}
+
+// Встроен во фрейм: Esc внутри просмотра сообщаем странице снаружи — пусть
+// решает сама (страница разбора закрывает окно). О самой этой странице
+// просмотр ничего не знает: только отправляет событие. Встроить просмотр
+// может и чужая страница с другого адреса (или открытая с диска), поэтому
+// сообщение уходит любому родителю: в нём нет данных, только «нажали Esc».
+if (window.parent !== window) {
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') window.parent.postMessage({ source: 'dokanaliz-view', event: 'escape' }, '*');
+  });
+}
+
+// ════════════════════════════════════════════════
+// ЗАПУСК: /view?id=<ID разбора>
+// ════════════════════════════════════════════════
+
+{
+  const raw = new URLSearchParams(location.search).get('id');
+  const id = extractParseId(raw);
+  if (id) openParseById(id);
+  else if (raw) document.getElementById('previewEmptyText').textContent =
+    `«${raw}» не похоже на ID разбора: нужно 32 символа из цифр и букв a–f`;
+}
+</script>
+</body>
+</html>
+<!-- -->
