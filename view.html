@@ -1347,10 +1347,13 @@ function rebuildOcrHitLayer() {
 // Откуда брать разбор.
 //   false — у сервиса разбора по API (обычная работа, /view?id=<ID>);
 //   true  — из файлов в той же папке, что и страница: <ID>.json — результат,
-//           pages/<ID>/page-<n>.png — картинки страниц, raw/<ID>.json — сырой
+//           pages/<ID>/page-<n>.jpg — картинки страниц, raw/<ID>.json — сырой
 //           JSON. Так просмотр работает без сервиса, например на GitHub Pages.
 //           Флаг включает tools/export_static.py, когда собирает такую папку.
 const STATIC_DATA = true;
+// Формат картинок страниц в выгрузке: export_static.py сохраняет их в JPEG —
+// PNG со скана 300 dpi слишком тяжёлый для GitHub. Пиксели те же, координаты тоже.
+const STATIC_IMAGE_EXT = 'jpg';
 
 async function fetchJsonFile(path) {
   const r = await fetch(path, { cache: 'no-cache' });
@@ -1367,7 +1370,7 @@ async function loadParse(id, onProgress) {
   if (!STATIC_DATA) return waitForParse(id, onProgress);
   const result = await fetchJsonFile(id + '.json');
   // В результате адреса картинок — адреса сервиса; в папке они лежат рядом
-  (result.pages || []).forEach(p => { p.image_url = `pages/${id}/page-${p.number}.png`; });
+  (result.pages || []).forEach(p => { p.image_url = `pages/${id}/page-${p.number}.${STATIC_IMAGE_EXT}`; });
   return { status: 'done', result, raw_ready: true };
 }
 
