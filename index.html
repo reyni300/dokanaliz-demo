@@ -108,6 +108,9 @@
 
   // ID разбора — 32 символа из цифр и букв a–f
   var ID_RE = /[0-9a-f]{32}/i;
+  // ID блока: p1-b42 (итоговый JSON) или p1-r3, p1-r3-l2, p1-r3-l2-w5 (сырой)
+  var BLOCK_RE = /^p\d+-(?:b\d+|r\d+(?:-l\d+(?:-w\d+)?)?)$/i;
+  var params = new URLSearchParams(location.search);
 
   var serviceInput = document.getElementById('service');
   var refInput     = document.getElementById('ref');
@@ -126,7 +129,12 @@
       var url = new URL(text.trim());
       if (url.protocol === 'http:' || url.protocol === 'https:') service = url.origin;
     } catch (e) { /* не ссылка — значит, просто ID */ }
-    return { id: match[0].toLowerCase(), service: service };
+    // Ссылка на блок (…&block=p1-b42) — просмотр откроется сразу на нём
+    var block = null;
+    try { block = new URL(text.trim()).searchParams.get('block'); } catch (e) { /* просто ID */ }
+    if (!block && params.get('block') && refInput.value === params.get('id')) block = params.get('block');
+    if (block && !BLOCK_RE.test(block)) block = null;
+    return { id: match[0].toLowerCase(), service: service, block: block };
   }
 
   function openViewer() {
@@ -139,6 +147,7 @@
     var src;
     if (STATIC_DATA) {
       src = 'view.html?id=' + encodeURIComponent(ref.id);       // разбор из этой папки
+      if (ref.block) src += '&block=' + encodeURIComponent(ref.block);
       document.getElementById('frameTitle').textContent = 'ID ' + ref.id;
     } else {
       if (!/^https?:\/\//.test(ref.service)) {
@@ -146,6 +155,7 @@
         return;
       }
       src = ref.service + '/view?id=' + encodeURIComponent(ref.id);
+      if (ref.block) src += '&block=' + encodeURIComponent(ref.block);
       document.getElementById('frameTitle').textContent = ref.service + '  ·  ID ' + ref.id;
     }
     document.getElementById('newTab').href = src;
@@ -180,8 +190,7 @@
     refInput.placeholder = 'ID разбора или ссылка с ним';
   }
 
-  // index.html?id=<ID или ссылка>&service=<адрес сервиса> — сразу открыть
-  var params = new URLSearchParams(location.search);
+  // index.html?id=<ID или ссылка>&service=<адрес сервиса>&block=<ID блока> — сразу открыть
   if (params.get('service')) serviceInput.value = params.get('service');
   if (params.get('id')) { refInput.value = params.get('id'); openViewer(); }
 </script>

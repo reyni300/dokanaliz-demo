@@ -58,6 +58,22 @@ function extractParseId(text) {
   return m ? m[0].toLowerCase() : null;
 }
 
+// ID блока (p1-b42, p1-r3-l2-w5) из ссылки на блок: …/view?id=…&block=…
+const BLOCK_ID_RE = /^p\d+-(?:b\d+|r\d+(?:-l\d+(?:-w\d+)?)?)$/i;
+function extractBlockId(text) {
+  const raw = String(text || '').trim();
+  if (BLOCK_ID_RE.test(raw)) return raw.toLowerCase();
+  try {
+    const b = new URL(raw, location.origin).searchParams.get('block');
+    return b && BLOCK_ID_RE.test(b) ? b.toLowerCase() : null;
+  } catch (e) { return null; }
+}
+
+// Ссылка на просмотр разбора, а с block — сразу на этот блок
+function viewLinkWithBlock(parseId, block) {
+  return viewLink(parseId) + (block ? '&block=' + encodeURIComponent(block) : '');
+}
+
 function saveJsonFile(data, filename) {
   const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
   const a = document.createElement('a');

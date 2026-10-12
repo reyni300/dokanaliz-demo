@@ -264,6 +264,47 @@
   }
   .hl-all-btn:hover { border-color: var(--accent); color: var(--accent); }
   .hl-all-btn.active { border-color: var(--accent); color: var(--accent); background: rgba(79,142,247,.12); }
+
+  /* Панели кнопок над листами («Оригинал», «Подсветка», «Фон справа»,
+     «Весь текст») закреплены под строкой над документом, как и она сама:
+     документ длинный, и при прокрутке кнопки остаются под рукой.
+     overflow: clip вместо hidden — hidden делает панель отдельной областью
+     прокрутки, и закрепление внутри неё не работает. */
+  .panel { overflow: clip; }
+  .preview-nav { position: sticky; top: 112px; z-index: 50; }
+
+  /* Переключатели: по виду сразу понятно, включено или нет — ползунок
+     слева или справа, цвет и надпись «вкл» / «выкл» */
+  .vis-btn.switch {
+    display: inline-flex; align-items: center; gap: 7px;
+    color: var(--muted); background: var(--card); font-family: var(--sans); font-weight: 500;
+  }
+  .vis-btn.switch::before {
+    content: ''; flex: 0 0 auto; width: 28px; height: 16px; border-radius: 8px;
+    background: #2a3045 radial-gradient(circle at 8px 8px, #8a93ad 5.5px, transparent 6px);
+    box-shadow: inset 0 0 0 1px #3d465f;
+  }
+  .vis-btn.switch::after {
+    content: 'выкл'; font-family: var(--mono); font-size: 9px; letter-spacing: .5px;
+    text-transform: uppercase; color: #6b7590;
+  }
+  .vis-btn.switch:hover { color: var(--text); border-color: #4a5570; }
+  .vis-btn.switch.active { background: rgba(79,142,247,.16); border-color: var(--accent); color: #fff; box-shadow: none; }
+  .vis-btn.switch.active::before {
+    background: var(--accent) radial-gradient(circle at 20px 8px, #fff 5.5px, transparent 6px);
+    box-shadow: none;
+  }
+  .vis-btn.switch.active::after { content: 'вкл'; color: #9cc0ff; }
+  .vis-btn.links-toggle.switch { padding: 9px 12px; font-size: 12px; font-weight: 600; }
+
+  /* Закреплённый блок (щелчок по блоку или ссылка на блок) */
+  .block-pin { display: none; align-items: center; gap: 6px; }
+  .block-pin.visible { display: inline-flex; }
+  .block-pin-id {
+    font-family: var(--mono); font-size: 11px; color: #ffd27a;
+    background: var(--bg); border: 1px solid #8a6a2a; border-radius: 6px; padding: 4px 8px; white-space: nowrap;
+  }
+  .block-pin .btn { width: auto; padding: 5px 10px; font-size: 11px; }
 </style>
 </head>
 <body>
@@ -278,9 +319,9 @@
       <!-- Над документами: крупно текст блока под курсором (если на скане его
            не разглядеть) и ID разбора со ссылкой на результат -->
       <div class="parse-bar" id="parseBar">
-        <button class="vis-btn links-toggle active" id="linksToggle" type="button"
-                onclick="toggleLinkedValues()" aria-pressed="true"
-                title="Включено: над документом текст вместе со связанными значениями. Выключено: только текст блока под курсором">🔗 Связанные значения</button>
+        <button class="vis-btn links-toggle switch" id="linksToggle" type="button"
+                onclick="toggleLinkedValues()" aria-pressed="false"
+                title="Включено: над документом текст вместе со связанными значениями. Выключено: только текст блока под курсором">Связанные значения</button>
         <div class="focus-box" id="focusBox">
           <div class="focus-context" id="focusContext"></div>
           <div class="focus-text" id="focusText"><span class="focus-hint">Наведите на любой блок документа — здесь появится его текст</span></div>
@@ -290,6 +331,11 @@
           <div id="globalStatus" class="status-chip idle"><div class="status-dot"></div><span>Нет разбора</span></div>
           <span class="parse-bar-id" id="parseBarId" title="ID разбора — выделите, чтобы скопировать"></span>
           <div class="parse-bar-actions">
+            <span class="block-pin" id="blockPin">
+              <span class="block-pin-id" id="blockPinId" title="ID закреплённого блока"></span>
+              <button class="btn btn-secondary" onclick="copyBlockLink()" title="Ссылка, по которой откроется этот разбор с выделенным блоком">🔗 Ссылка на блок</button>
+              <button class="btn btn-secondary" onclick="unpinBlock()" title="Снять выделение (Esc)">✕</button>
+            </span>
             <button class="btn btn-primary" onclick="copyParseLink()">⎘ Ссылка на результат</button>
           </div>
           <span id="parseBarFile" style="display:none"></span>
@@ -308,12 +354,12 @@
             <span class="nav-counter" id="previewPageCounter">—</span>
             <button class="nav-btn" id="nextPageBtn" onclick="navigatePage(1)" disabled>›</button>
             <button class="nav-btn" id="downloadPageBtn" onclick="downloadCurrentPage()" disabled title="Скачать изображение">⬇</button>
-            <button class="vis-btn active" id="btnToggleLeft" disabled
+            <button class="vis-btn switch active" id="btnToggleLeft" disabled aria-pressed="true"
                     onclick="toggleLeftBg()" title="Показать/скрыть оригинал слева"
-                    style="flex:0 0 auto;width:auto;padding:5px 10px;">👁 Оригинал</button>
-            <button class="vis-btn active" id="btnToggleLeftHighlight" disabled
-                    onclick="toggleLeftHighlight()" title="Показать/скрыть подсветку найденных полей слева"
-                    style="flex:0 0 auto;width:auto;padding:5px 10px;">🔲 Подсветка</button>
+                    style="flex:0 0 auto;width:auto;padding:5px 10px;">Оригинал</button>
+            <button class="vis-btn switch active" id="btnToggleLeftHighlight" disabled aria-pressed="true"
+                    onclick="toggleLeftHighlight()" title="Показать/скрыть подсветку блоков слева"
+                    style="flex:0 0 auto;width:auto;padding:5px 10px;">Подсветка</button>
           </div>
         </div>
         <div class="preview-body" id="previewBody">
@@ -359,12 +405,12 @@
             <button class="nav-btn" id="prevResPageBtn" onclick="navigateResultPage(-1)" disabled>‹</button>
             <span class="nav-counter" id="resultPageCounter">—</span>
             <button class="nav-btn" id="nextResPageBtn" onclick="navigateResultPage(1)" disabled>›</button>
-            <button class="vis-btn active" id="btnToggleRight"
+            <button class="vis-btn switch active" id="btnToggleRight" aria-pressed="true"
                     onclick="toggleRightBg()" title="Показать/скрыть белый фон справа"
-                    style="flex:0 0 auto;width:auto;padding:5px 10px;">👁 Фон справа</button>
-            <button class="vis-btn active" id="btnToggleText"
-                    onclick="toggleRightText()" title="Показать/скрыть весь распознанный текст на листе справа"
-                    style="flex:0 0 auto;width:auto;padding:5px 10px;">¶ Весь текст</button>
+                    style="flex:0 0 auto;width:auto;padding:5px 10px;">Фон справа</button>
+            <button class="vis-btn switch active" id="btnToggleText" aria-pressed="true"
+                    onclick="toggleRightText()" title="Показать/скрыть весь текст на листе справа"
+                    style="flex:0 0 auto;width:auto;padding:5px 10px;">Весь текст</button>
           </div>
         </div>
 
@@ -1175,7 +1221,7 @@ function redrawCanvas() {
   drawTableLink(ctx, pageData, getActiveLink(getPreviewLinks()));
   if (hasSegments(pageData)) {
     // Поверх скана — рамки; с текстом, только когда оригинал скрыт
-    drawSegmentsLayer(ctx, pageData, getPreviewLinks(), !_leftBgVisible);
+    drawSegmentsLayer(ctx, pageData, getPreviewLinks(), !_leftBgVisible, 'left');
     return;
   }
   if (!mapping || Object.keys(mapping).length === 0) return;
@@ -1295,7 +1341,7 @@ function rebuildOcrHitLayer() {
   // Есть блоки всего текста — зоны наведения по ним: каждый блок откликается
   sides.forEach(side => {
     if (!hasSegments(side.pd)) return;
-    visibleSegments(side.pd).forEach(seg => {
+    visibleSegments(side.pd, side.side).forEach(seg => {
       const s = scaleBlock(bboxToBlock(seg.bbox));
       const div = document.createElement('div');
       div.className = 'ocr-hit';
@@ -1306,6 +1352,7 @@ function rebuildOcrHitLayer() {
       div.dataset.seg = seg.id;
       div.addEventListener('mouseenter', () => onSegmentEnter(side.side, seg.id));
       div.addEventListener('mouseleave', () => onSegmentLeave());
+      div.addEventListener('click', () => togglePinSegment(side.pd, seg.id));
       side.layer.appendChild(div);
     });
     side.mapping = null;          // по полям зоны уже не нужны
@@ -1404,6 +1451,7 @@ function resultToView(result) {
     // Весь текст страницы и её таблица (строки, графы, ячейки) — из результата
     const page = (result.pages || []).find(p => p.number === n) || {};
     pages_data.push({
+      number: n,
       words: page.words || [],
       lines: page.lines || [],
       segments: page.segments || [],          // весь текст страницы блоками (формат 1.2)
@@ -1503,6 +1551,8 @@ async function openParseById(id) {
     logParseMessages(res);
     showParse();
     document.title = `${res.filename || id} — ДокАнализ`;
+    const blockParam = new URLSearchParams(location.search).get('block');
+    if (blockParam) openBlock(id, blockParam);
     setStatus('done', 'Открыт разбор ' + id.slice(0, 8));
   } catch (e) {
     setStatus('error', 'Ошибка');
@@ -1745,9 +1795,13 @@ function drawTableLink(ctx, pageData, link) {
 // ── Блоки всего текста ─────────────────────────────────────────
 function hasSegments(pd) { return !!(pd && pd.segments && pd.segments.length); }
 
-function visibleSegments(pd) {
+// «Весь текст» выключен — на листе справа не остаётся ничего (раньше
+// оставались найденные значения, и казалось, что кнопка скрывает не всё).
+// Слева блоки от этой кнопки не зависят: там свой переключатель «Подсветка».
+function visibleSegments(pd, side) {
   if (!hasSegments(pd)) return [];
-  return _rightTextVisible ? pd.segments : pd.segments.filter(s => s.kind === 'field');
+  if (side === 'right' && !_rightTextVisible) return [];
+  return pd.segments;
 }
 
 // Какие блоки сейчас выделены: под курсором (и все куски того же поля),
@@ -1773,6 +1827,7 @@ function activeSegmentIds(pd, links) {
   }
   (state.searchIds || []).forEach(id => ids.add(id));
   (state.relatedIds || []).forEach(id => ids.add(id));     // значения наведённой подписи
+  if (pinnedOn(pd)) state.pinned.segIds.forEach(id => ids.add(id));   // закреплённый блок
   return ids;
 }
 
@@ -1821,35 +1876,45 @@ function drawSegmentBlock(ctx, seg, solid, active) {
   if (solid) drawSegmentText(ctx, seg, x, y, w, h, active);
 }
 
-function drawSegmentsLayer(ctx, pd, links, solid) {
-  const segs = visibleSegments(pd);
+function drawSegmentsLayer(ctx, pd, links, solid, side) {
+  const segs = visibleSegments(pd, side);
+  if (!segs.length && !pinnedOn(pd)) return;       // справа текст скрыт и закреплённого блока нет
   const active = activeSegmentIds(pd, links);
+  // Блок закреплён (щелчком или по ссылке) — остальное приглушаем, чтобы он
+  // сразу бросался в глаза, но было видно, где он стоит на листе
+  const dim = pinnedOn(pd);
+  ctx.save();
+  if (dim) ctx.globalAlpha = 0.3;
   segs.forEach(seg => { if (!active.has(seg.id)) drawSegmentBlock(ctx, seg, solid, false); });
-  // выделенные — поверх остальных, чтобы свечение не перекрывали соседи
-  pd.segments.forEach(seg => { if (active.has(seg.id)) drawSegmentBlock(ctx, seg, solid, true); });
+  ctx.restore();
+  // выделенные — поверх остальных, чтобы свечение не перекрывали соседи;
+  // при скрытом тексте справа — только закреплённый блок
+  const shown = segs.length ? pd.segments : pd.segments.filter(seg => isPinnedSeg(pd, seg));
+  shown.forEach(seg => { if (active.has(seg.id)) drawSegmentBlock(ctx, seg, solid, true); });
+  if (dim && state.pinned.raw) drawPinnedRaw(ctx, state.pinned.raw);
 }
 
 // ── Строка текста над документом ───────────────────────────────
 function isNumberText(t) { return /^[\s\d.,()\-—]+$/.test(String(t || '')) && /\d/.test(String(t || '')); }
 
-// Кнопка «Связанные значения». Выбор запоминается в браузере; если
-// хранилище недоступно, кнопка просто включена.
-state.showLinks = (() => {
-  try { return localStorage.getItem('dokanaliz.showLinks') !== '0'; } catch (e) { return true; }
-})();
-
-function syncLinksToggle() {
-  const btn = document.getElementById('linksToggle');
+// Переключатель: вид (ползунок, цвет, «вкл/выкл») и aria-pressed — по состоянию
+function setSwitch(id, on) {
+  const btn = document.getElementById(id);
   if (!btn) return;
-  btn.classList.toggle('active', state.showLinks);
-  btn.setAttribute('aria-pressed', state.showLinks ? 'true' : 'false');
+  btn.classList.toggle('active', !!on);
+  btn.setAttribute('aria-pressed', on ? 'true' : 'false');
 }
+
+// «Связанные значения» при каждом открытии выключены — включают их сами,
+// когда нужно. Выбор не запоминается.
+state.showLinks = false;
+
+function syncLinksToggle() { setSwitch('linksToggle', state.showLinks); }
 
 syncLinksToggle();
 
 function toggleLinkedValues() {
   state.showLinks = !state.showLinks;
-  try { localStorage.setItem('dokanaliz.showLinks', state.showLinks ? '1' : '0'); } catch (e) { /* не сохранилось — не страшно */ }
   syncLinksToggle();
   // сразу перерисовать строку для блока, на который уже наведён курсор
   if (state.lastFocus) setFocus(...state.lastFocus);
@@ -2004,6 +2069,189 @@ function relatedForSegment(pd, seg) {
   return out;
 }
 
+// ════════════════════════════════════════════════
+// ССЫЛКА НА БЛОК: /view?id=<ID разбора>&block=<ID блока>
+// У каждого блока итогового JSON есть block_id (p1-b42), у блоков, строк и
+// слов сырого JSON — id (p1-r3, p1-r3-l2, p1-r3-l2-w5). По ссылке просмотр
+// открывает нужную страницу, выделяет блок, приглушает остальное и
+// прокручивает к нему. Щелчок по блоку на листе закрепляет его так же —
+// тогда над документом появляется кнопка «Ссылка на блок».
+// ════════════════════════════════════════════════
+
+// state.pinned: null | { page, blockId, segId, segIds, raw: null | { id, bbox, text } }
+state.pinned = null;
+
+const BLOCK_RE = /^p(\d+)-b(\d+)$/;
+const RAW_BLOCK_RE = /^p(\d+)-r\d+(?:-l\d+(?:-w\d+)?)?$/;
+
+// ID блока; у разбора, выгруженного до появления ID, — тот же по номеру
+function segBlockId(pd, seg) { return seg.block_id || `p${pd.number}-b${seg.id}`; }
+function pinnedOn(pd) { return !!(state.pinned && pd && pd.number === state.pinned.page); }
+function isPinnedSeg(pd, seg) { return pinnedOn(pd) && state.pinned.segIds.includes(seg.id); }
+
+function togglePinSegment(pd, segId) {
+  const seg = pd && pd.segments[segId];
+  if (!seg) return;
+  if (pinnedOn(pd) && !state.pinned.raw && state.pinned.segId === segId) { unpinBlock(); return; }
+  pinSegment(pd, seg);
+}
+
+function pinSegment(pd, seg) {
+  state.pinned = { page: pd.number, blockId: segBlockId(pd, seg), segId: seg.id, segIds: [seg.id], raw: null };
+  renderBlockPin(); focusPinned(); redrawCanvas(); redrawAnnotation();
+}
+
+function unpinBlock() {
+  state.pinned = null;
+  state.relatedIds = [];
+  renderBlockPin(); setFocus('', ''); redrawCanvas(); redrawAnnotation();
+}
+
+function renderBlockPin() {
+  const box = document.getElementById('blockPin');
+  if (!box) return;
+  box.classList.toggle('visible', !!state.pinned);
+  document.getElementById('blockPinId').textContent = state.pinned ? state.pinned.blockId : '';
+}
+
+// Над документом — закреплённый блок: его текст (и связанные значения)
+function focusPinned() {
+  const p = state.pinned;
+  if (!p) return;
+  if (p.raw) {
+    state.relatedIds = [];
+    setFocus('Сырой JSON · ' + p.raw.id, p.raw.text, []);
+    return;
+  }
+  const pd = pageDataOf(state.results[state.currentResFileIdx], p.page - 1);
+  const seg = pd && pd.segments[p.segId];
+  if (seg) focusForSegment(pd, seg);
+}
+
+function copyBlockLink() {
+  const res = state.results[state.currentResFileIdx];
+  if (!state.pinned || !res) return;
+  const url = viewLink(res.parse_id) + '&block=' + encodeURIComponent(state.pinned.blockId);
+  copyText(url, 'Ссылка на блок ' + state.pinned.blockId + ' скопирована');
+}
+
+function goToPage(idx) {
+  if (idx === state.currentPageIdx) return;
+  state.currentPageIdx = idx;
+  showPreview(); updateNavButtons(); syncResultToPreview();
+}
+
+// Прокрутить так, чтобы блок оказался посередине видимой части листа
+// (под закреплённой строкой и панелью кнопок)
+function scrollToBox(bbox) {
+  const img = document.getElementById('previewImg');
+  const go = () => requestAnimationFrame(() => requestAnimationFrame(() => {
+    const s = scaleBlock(bboxToBlock(bbox));
+    const y = img.getBoundingClientRect().top + window.scrollY + s.y + s.h / 2;
+    const covered = 112 + 46;                       // строка над документом + панель кнопок
+    window.scrollTo({ top: Math.max(0, y - (covered + window.innerHeight) / 2), behavior: 'smooth' });
+    redrawCanvas(); redrawAnnotation();
+  }));
+  if (img.complete && img.naturalWidth) go();
+  else img.addEventListener('load', go, { once: true });
+}
+
+// Сырой JSON разбора — у сервиса или из папки рядом (GitHub)
+async function loadRaw(parseId) {
+  const raw = STATIC_DATA ? await fetchJsonFile('raw/' + parseId + '.json')
+                          : await apiJson('/api/v1/parses/' + encodeURIComponent(parseId) + '/raw');
+  // ID по порядку блоков, строк и слов — те же, что ставит сервис; нужны
+  // для сырого JSON, выгруженного до их появления
+  (raw.pages || []).forEach(page => (page.blocks || []).forEach((b, bi) => {
+    b.id = b.id || `p${page.number}-r${bi + 1}`;
+    (b.lines || []).forEach((l, li) => {
+      l.id = l.id || `${b.id}-l${li + 1}`;
+      (l.words || []).forEach((w, wi) => { w.id = w.id || `${l.id}-w${wi + 1}`; });
+    });
+  }));
+  return raw;
+}
+
+// Блок, строка или слово сырого JSON -> { id, bbox, words }
+function findRawNode(page, id) {
+  for (const b of page.blocks || []) {
+    const lines = b.lines || [];
+    if (b.id === id) return { id, bbox: b.bbox, words: lines.flatMap(l => l.words || []) };
+    for (const l of lines) {
+      if (l.id === id) return { id, bbox: l.bbox, words: l.words || [] };
+      for (const w of l.words || []) {
+        if (w.id === id) return { id, bbox: { x: w.x, y: w.y, w: w.w, h: w.h }, words: [w] };
+      }
+    }
+  }
+  return null;
+}
+
+function centerInside(a, b) {
+  const cx = a.x + a.w / 2, cy = a.y + a.h / 2;
+  return cx >= b.x && cx <= b.x + b.w && cy >= b.y && cy <= b.y + b.h;
+}
+
+function blockNotFound(ref) {
+  showToast(`Блок «${ref}» в этом разборе не найден`, 'error');
+}
+
+// Открыть блок из ссылки: блок итогового JSON (p1-b42) или сырого (p1-r3…)
+async function openBlock(parseId, ref) {
+  ref = String(ref || '').trim().toLowerCase();
+  const res = state.results[state.currentResFileIdx];
+  let m = ref.match(BLOCK_RE);
+  if (m) {
+    const pd = pageDataOf(res, +m[1] - 1);
+    const seg = pd && (pd.segments.find(s => s.block_id === ref) || pd.segments[+m[2]]);
+    if (!seg) return blockNotFound(ref);
+    goToPage(pd.number - 1);
+    pinSegment(pd, seg);
+    scrollToBox(seg.bbox);
+    return;
+  }
+  m = ref.match(RAW_BLOCK_RE);
+  if (!m) return blockNotFound(ref);
+  let raw;
+  try { raw = await loadRaw(parseId); }
+  catch (e) { showToast('Сырой JSON не загрузился: ' + e.message, 'error'); return; }
+  const page = (raw.pages || []).find(p => p.number === +m[1]);
+  const node = page && findRawNode(page, ref);
+  const pd = pageDataOf(res, +m[1] - 1);
+  if (!node || !pd) return blockNotFound(ref);
+  // Блоки итогового JSON, собранные из этих слов: по raw_words, а у разбора
+  // без них — по положению на листе
+  const wordIds = node.words.map(w => w.id);
+  const linked = pd.segments.some(s => Array.isArray(s.raw_words));
+  const segIds = pd.segments.filter(s => linked
+      ? (s.raw_words || []).some(id => wordIds.includes(id))
+      : node.words.some(w => centerInside({ x: w.x, y: w.y, w: w.w, h: w.h }, s.bbox)))
+    .map(s => s.id);
+  goToPage(pd.number - 1);
+  state.pinned = { page: pd.number, blockId: node.id, segId: null, segIds,
+                   raw: { id: node.id, bbox: node.bbox, text: node.words.map(w => w.text).join(' ') } };
+  renderBlockPin(); focusPinned(); redrawCanvas(); redrawAnnotation();
+  scrollToBox(node.bbox);
+}
+
+// Рамка блока сырого JSON — пунктиром поверх листа
+function drawPinnedRaw(ctx, raw) {
+  const s = scaleBlock(bboxToBlock(raw.bbox));
+  ctx.save();
+  ctx.fillStyle = 'rgba(245,158,11,0.12)';
+  ctx.fillRect(s.x - 4, s.y - 4, s.w + 8, s.h + 8);
+  ctx.setLineDash([6, 4]);
+  ctx.lineWidth = 2.5;
+  ctx.strokeStyle = 'rgba(245,158,11,1)';
+  ctx.strokeRect(s.x - 4, s.y - 4, s.w + 8, s.h + 8);
+  ctx.restore();
+}
+
+// Esc снимает закреплённый блок (во фрейме — раньше, чем закрыть фрейм)
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && state.pinned) { e.preventDefault(); unpinBlock(); }
+});
+
 // Наведение на блок — на любом из листов
 function onSegmentEnter(side, id) {
   const pd = side === 'left' ? getPreviewPageData() : getCurrentPageData();
@@ -2018,12 +2266,13 @@ function onSegmentLeave() {
   state.activeSegment = null;
   state.relatedIds = [];
   redrawCanvas(); redrawAnnotation();
-  setFocus('', '');
+  // Ушли с блока — над документом снова закреплённый блок, если он есть
+  if (state.pinned) focusPinned(); else setFocus('', '');
 }
 
 function toggleRightText() {
   _rightTextVisible = !_rightTextVisible;
-  document.getElementById('btnToggleText').classList.toggle('active', _rightTextVisible);
+  setSwitch('btnToggleText', _rightTextVisible);
   redrawCanvas();
   redrawAnnotation();
   rebuildOcrHitLayer();
@@ -2066,10 +2315,11 @@ function drawAnnotationCanvas(mapping, parsed) {
   // Весь текст страницы блоками одного цвета (формат 1.2). У старых
   // разборов блоков нет — для них рисуем, как раньше, только найденные поля.
   if (hasSegments(pageData)) {
-    drawSegmentsLayer(ctx, pageData, getCurrentLinks(), true);
+    drawSegmentsLayer(ctx, pageData, getCurrentLinks(), true, 'right');
     return;
   }
-  if (_rightTextVisible && pageData) drawAllWords(ctx, pageData.words);
+  if (!_rightTextVisible) return;                 // «Весь текст» выключен — лист пустой
+  if (pageData) drawAllWords(ctx, pageData.words);
 
   if (!mapping || Object.keys(mapping).length === 0) return;
 
@@ -2093,7 +2343,7 @@ function toggleLeftBg() {
   const img = document.getElementById('previewImg');
   const btn = document.getElementById('btnToggleLeft');
   if (img) img.style.opacity = _leftBgVisible ? '1' : '0';
-  btn.classList.toggle('active', _leftBgVisible);
+  setSwitch(btn.id, _leftBgVisible);
   // От видимости оригинала зависит, пишем ли текст внутри рамок слева
   // (см. drawBaseBlocks/redrawCanvas) — перерисовываем сразу же.
   redrawCanvas();
@@ -2105,7 +2355,7 @@ function toggleLeftBg() {
 let _leftHighlightVisible = true;
 function toggleLeftHighlight() {
   _leftHighlightVisible = !_leftHighlightVisible;
-  document.getElementById('btnToggleLeftHighlight').classList.toggle('active', _leftHighlightVisible);
+  setSwitch('btnToggleLeftHighlight', _leftHighlightVisible);
   redrawCanvas();
 }
 
@@ -2115,7 +2365,7 @@ function toggleRightBg() {
   const sheet = document.getElementById('annotationSheet');
   const btn   = document.getElementById('btnToggleRight');
   if (sheet) sheet.classList.toggle('hidden', !_rightBgVisible);
-  btn.classList.toggle('active', _rightBgVisible);
+  setSwitch(btn.id, _rightBgVisible);
 }
 
 // Перерисовываем правый canvas при ресайзе
@@ -2254,7 +2504,7 @@ function copyResult() {
 // сообщение уходит любому родителю: в нём нет данных, только «нажали Esc».
 if (window.parent !== window) {
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') window.parent.postMessage({ source: 'dokanaliz-view', event: 'escape' }, '*');
+    if (e.key === 'Escape' && !e.defaultPrevented) window.parent.postMessage({ source: 'dokanaliz-view', event: 'escape' }, '*');
   });
 }
 
