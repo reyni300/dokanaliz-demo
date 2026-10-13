@@ -46,7 +46,9 @@
                   "y": 90,
                   "w": 237,
                   "h": 40,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b131-w1",
+                  "raw_id": "p1-r1-l1-w1"
                 },
                 {
                   "text": "2",
@@ -54,7 +56,9 @@
                   "y": 89,
                   "w": 19,
                   "h": 31,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b131-w2",
+                  "raw_id": "p1-r1-l1-w2"
                 }
               ],
               "block_id": "p1-b131",
@@ -90,7 +94,9 @@
                   "y": 156,
                   "w": 18,
                   "h": 21,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b132-w1",
+                  "raw_id": "p1-r2-l1-w1"
                 },
                 {
                   "text": "Национальному",
@@ -98,7 +104,9 @@
                   "y": 147,
                   "w": 300,
                   "h": 39,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b132-w2",
+                  "raw_id": "p1-r2-l1-w2"
                 },
                 {
                   "text": "стандарту",
@@ -106,7 +114,9 @@
                   "y": 155,
                   "w": 183,
                   "h": 31,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b132-w3",
+                  "raw_id": "p1-r2-l1-w3"
                 },
                 {
                   "text": "бухгалтерского",
@@ -114,7 +124,9 @@
                   "y": 146,
                   "w": 285,
                   "h": 40,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b132-w4",
+                  "raw_id": "p1-r2-l1-w4"
                 }
               ],
               "block_id": "p1-b132",
@@ -152,7 +164,9 @@
                   "y": 211,
                   "w": 102,
                   "h": 31,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b133-w1",
+                  "raw_id": "p1-r3-l1-w1"
                 },
                 {
                   "text": "и",
@@ -160,7 +174,9 @@
                   "y": 212,
                   "w": 19,
                   "h": 20,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b133-w2",
+                  "raw_id": "p1-r3-l1-w2"
                 },
                 {
                   "text": "отчетности",
@@ -168,7 +184,9 @@
                   "y": 211,
                   "w": 206,
                   "h": 22,
-                  "confidence": 94
+                  "confidence": 94,
+                  "id": "p1-b133-w3",
+                  "raw_id": "p1-r3-l1-w3"
                 },
                 {
                   "text": "«Индивидуальная",
@@ -176,7 +194,9 @@
                   "y": 199,
                   "w": 330,
                   "h": 46,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b133-w4",
+                  "raw_id": "p1-r3-l1-w4"
                 }
               ],
               "block_id": "p1-b133",
@@ -214,7 +234,9 @@
                   "y": 258,
                   "w": 264,
                   "h": 40,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b134-w1",
+                  "raw_id": "p1-r4-l1-w1"
                 },
                 {
                   "text": "отчетность»",
@@ -222,7 +244,9 @@
                   "y": 267,
                   "w": 224,
                   "h": 22,
-                  "confidence": 95
+                  "confidence": 95,
+                  "id": "p1-b134-w2",
+                  "raw_id": "p1-r4-l1-w2"
                 }
               ],
               "block_id": "p1-b134",
@@ -258,7 +282,9 @@
                   "y": 314,
                   "w": 191,
                   "h": 32,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b135-w1",
+                  "raw_id": "p1-r5-l1-w1"
                 },
                 {
                   "text": "№",
@@ -266,7 +292,9 @@
                   "y": 314,
                   "w": 41,
                   "h": 31,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b135-w2",
+                  "raw_id": "p1-r5-l1-w2"
                 },
                 {
                   "text": "104",
@@ -274,7 +302,9 @@
                   "y": 314,
                   "w": 59,
                   "h": 31,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b135-w3",
+                  "raw_id": "p1-r5-l1-w3"
                 }
               ],
               "block_id": "p1-b135",
@@ -311,7 +341,9 @@
                   "y": 378,
                   "w": 131,
                   "h": 42,
-                  "confidence": 95
+                  "confidence": 95,
+                  "id": "p1-b136-w1",
+                  "raw_id": "p1-r6-l1-w1"
                 }
               ],
               "block_id": "p1-b136",
@@ -346,7 +378,9 @@
                   "y": 437,
                   "w": 157,
                   "h": 30,
-                  "confidence": 94
+                  "confidence": 94,
+                  "id": "p1-b137-w1",
+                  "raw_id": "p1-r7-l1-w1"
                 }
               ],
               "block_id": "p1-b137",
@@ -381,7 +415,9 @@
                   "y": 503,
                   "w": 19,
                   "h": 23,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b138-w1",
+                  "raw_id": "p1-r8-l1-w1"
                 },
                 {
                   "text": "прибылях",
@@ -389,7 +425,9 @@
                   "y": 494,
                   "w": 208,
                   "h": 42,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b138-w2",
+                  "raw_id": "p1-r8-l1-w2"
                 },
                 {
                   "text": "и",
@@ -397,7 +435,9 @@
                   "y": 504,
                   "w": 22,
                   "h": 22,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b138-w3",
+                  "raw_id": "p1-r8-l1-w3"
                 },
                 {
                   "text": "убытках",
@@ -405,7 +445,9 @@
                   "y": 494,
                   "w": 175,
                   "h": 42,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b138-w4",
+                  "raw_id": "p1-r8-l1-w4"
                 }
               ],
               "block_id": "p1-b138",
@@ -443,7 +485,9 @@
                   "y": 565,
                   "w": 37,
                   "h": 22,
-                  "confidence": 95
+                  "confidence": 95,
+                  "id": "p1-b139-w1",
+                  "raw_id": "p1-r9-l1-w1"
                 }
               ],
               "block_id": "p1-b139",
@@ -467,7 +511,9 @@
                   "y": 566,
                   "w": 124,
                   "h": 29,
-                  "confidence": 93
+                  "confidence": 93,
+                  "id": "p1-b140-w1",
+                  "raw_id": "p1-r10-l1-w1"
                 },
                 {
                   "text": "-",
@@ -475,7 +521,9 @@
                   "y": 574,
                   "w": 11,
                   "h": 4,
-                  "confidence": 92
+                  "confidence": 92,
+                  "id": "p1-b140-w2",
+                  "raw_id": "p1-r10-l1-w2"
                 },
                 {
                   "text": "декабрь",
@@ -483,7 +531,9 @@
                   "y": 555,
                   "w": 146,
                   "h": 40,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b140-w3",
+                  "raw_id": "p1-r10-l1-w3"
                 }
               ],
               "block_id": "p1-b140",
@@ -509,7 +559,9 @@
                   "y": 556,
                   "w": 83,
                   "h": 30,
-                  "confidence": 95
+                  "confidence": 95,
+                  "id": "p1-b141-w1",
+                  "raw_id": "p1-r11-l1-w1"
                 },
                 {
                   "text": "г.",
@@ -517,7 +569,9 @@
                   "y": 565,
                   "w": 23,
                   "h": 21,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b141-w2",
+                  "raw_id": "p1-r11-l1-w2"
                 }
               ],
               "block_id": "p1-b141",
@@ -557,7 +611,9 @@
                   "y": 649,
                   "w": 249,
                   "h": 54,
-                  "confidence": 47
+                  "confidence": 47,
+                  "id": "p1-b50-w1",
+                  "raw_id": "p1-r12-l1-w1"
                 }
               ],
               "block_id": "p1-b50",
@@ -589,7 +645,9 @@
                   "y": 664,
                   "w": 186,
                   "h": 36,
-                  "confidence": 94
+                  "confidence": 94,
+                  "id": "p1-b1-w1",
+                  "raw_id": "p1-r13-l1-w1"
                 },
                 {
                   "text": "с",
@@ -597,7 +655,9 @@
                   "y": 674,
                   "w": 16,
                   "h": 21,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b1-w2",
+                  "raw_id": "p1-r13-l1-w2"
                 },
                 {
                   "text": "ограниченной",
@@ -605,7 +665,9 @@
                   "y": 666,
                   "w": 259,
                   "h": 39,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b1-w3",
+                  "raw_id": "p1-r13-l1-w3"
                 },
                 {
                   "text": "ответственностью",
@@ -613,7 +675,9 @@
                   "y": 673,
                   "w": 338,
                   "h": 32,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b1-w4",
+                  "raw_id": "p1-r13-l1-w4"
                 },
                 {
                   "text": "\"СМАРТ",
@@ -621,7 +685,9 @@
                   "y": 664,
                   "w": 167,
                   "h": 31,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b1-w5",
+                  "raw_id": "p1-r13-l1-w5"
                 },
                 {
                   "text": "Партнер\"",
@@ -629,7 +695,9 @@
                   "y": 663,
                   "w": 170,
                   "h": 41,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b1-w6",
+                  "raw_id": "p1-r13-l1-w6"
                 }
               ],
               "block_id": "p1-b1",
@@ -672,7 +740,9 @@
                   "y": 722,
                   "w": 214,
                   "h": 41,
-                  "confidence": 64
+                  "confidence": 64,
+                  "id": "p1-b2-w1",
+                  "raw_id": "p1-r15-l1-w1"
                 },
                 {
                   "text": "_",
@@ -680,7 +750,9 @@
                   "y": 702,
                   "w": 17,
                   "h": 66,
-                  "confidence": 64
+                  "confidence": 64,
+                  "id": "p1-b2-w2",
+                  "raw_id": "p1-r15-l1-w2"
                 }
               ],
               "block_id": "p1-b2",
@@ -720,7 +792,9 @@
                   "y": 721,
                   "w": 164,
                   "h": 29,
-                  "confidence": 92
+                  "confidence": 92,
+                  "id": "p1-b51-w1",
+                  "raw_id": "p1-r14-l1-w1"
                 },
                 {
                   "text": "номер",
@@ -728,7 +802,9 @@
                   "y": 729,
                   "w": 110,
                   "h": 32,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b51-w2",
+                  "raw_id": "p1-r14-l1-w2"
                 },
                 {
                   "text": "плательщика",
@@ -736,7 +812,9 @@
                   "y": 730,
                   "w": 241,
                   "h": 32,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b51-w3",
+                  "raw_id": "p1-r14-l1-w3"
                 }
               ],
               "block_id": "p1-b51",
@@ -776,7 +854,9 @@
                   "y": 779,
                   "w": 230,
                   "h": 41,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b3-w1",
+                  "raw_id": "p1-r17-l1-w1"
                 },
                 {
                   "text": "лизинг",
@@ -784,7 +864,9 @@
                   "y": 758,
                   "w": 117,
                   "h": 66,
-                  "confidence": 89
+                  "confidence": 89,
+                  "id": "p1-b3-w2",
+                  "raw_id": "p1-r17-l1-w2"
                 },
                 {
                   "text": "(код",
@@ -792,7 +874,9 @@
                   "y": 762,
                   "w": 85,
                   "h": 56,
-                  "confidence": 92
+                  "confidence": 92,
+                  "id": "p1-b3-w3",
+                  "raw_id": "p1-r17-l1-w3"
                 },
                 {
                   "text": "ОКЭД",
@@ -800,7 +884,9 @@
                   "y": 775,
                   "w": 103,
                   "h": 49,
-                  "confidence": 89
+                  "confidence": 89,
+                  "id": "p1-b3-w4",
+                  "raw_id": "p1-r17-l1-w4"
                 },
                 {
                   "text": "64910)",
@@ -808,7 +894,9 @@
                   "y": 779,
                   "w": 133,
                   "h": 41,
-                  "confidence": 92
+                  "confidence": 92,
+                  "id": "p1-b3-w5",
+                  "raw_id": "p1-r17-l1-w5"
                 },
                 {
                   "text": "_",
@@ -816,7 +904,9 @@
                   "y": 819,
                   "w": 22,
                   "h": 1,
-                  "confidence": 89
+                  "confidence": 89,
+                  "id": "p1-b3-w6",
+                  "raw_id": "p1-r17-l1-w6"
                 }
               ],
               "block_id": "p1-b3",
@@ -860,7 +950,9 @@
                   "y": 778,
                   "w": 77,
                   "h": 40,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b52-w1",
+                  "raw_id": "p1-r16-l1-w1"
                 },
                 {
                   "text": "экономической",
@@ -868,7 +960,9 @@
                   "y": 780,
                   "w": 282,
                   "h": 39,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b52-w2",
+                  "raw_id": "p1-r16-l1-w2"
                 },
                 {
                   "text": "деятельности",
@@ -876,7 +970,9 @@
                   "y": 788,
                   "w": 266,
                   "h": 32,
-                  "confidence": 59
+                  "confidence": 59,
+                  "id": "p1-b52-w3",
+                  "raw_id": "p1-r16-l1-w3"
                 }
               ],
               "block_id": "p1-b52",
@@ -916,7 +1012,9 @@
                   "y": 839,
                   "w": 1,
                   "h": 31,
-                  "confidence": 90
+                  "confidence": 90,
+                  "id": "p1-b7-w1",
+                  "raw_id": "p1-r19-l1-w1"
                 },
                 {
                   "text": "общество",
@@ -924,7 +1022,9 @@
                   "y": 838,
                   "w": 177,
                   "h": 41,
-                  "confidence": 95
+                  "confidence": 95,
+                  "id": "p1-b7-w2",
+                  "raw_id": "p1-r19-l1-w2"
                 },
                 {
                   "text": "с",
@@ -932,7 +1032,9 @@
                   "y": 849,
                   "w": 17,
                   "h": 20,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b7-w3",
+                  "raw_id": "p1-r19-l1-w3"
                 },
                 {
                   "text": "ограниченной",
@@ -940,7 +1042,9 @@
                   "y": 839,
                   "w": 259,
                   "h": 40,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b7-w4",
+                  "raw_id": "p1-r19-l1-w4"
                 },
                 {
                   "text": "ответственностью",
@@ -948,7 +1052,9 @@
                   "y": 847,
                   "w": 355,
                   "h": 32,
-                  "confidence": 63
+                  "confidence": 63,
+                  "id": "p1-b7-w5",
+                  "raw_id": "p1-r19-l1-w5"
                 },
                 {
                   "text": "_",
@@ -956,7 +1062,9 @@
                   "y": 834,
                   "w": 18,
                   "h": 50,
-                  "confidence": 63
+                  "confidence": 63,
+                  "id": "p1-b7-w6",
+                  "raw_id": "p1-r19-l1-w6"
                 }
               ],
               "block_id": "p1-b7",
@@ -1000,7 +1108,9 @@
                   "y": 837,
                   "w": 497,
                   "h": 41,
-                  "confidence": 86
+                  "confidence": 86,
+                  "id": "p1-b53-w1",
+                  "raw_id": "p1-r18-l1-w1"
                 },
                 {
                   "text": "форма",
@@ -1008,7 +1118,9 @@
                   "y": 838,
                   "w": 119,
                   "h": 40,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b53-w2",
+                  "raw_id": "p1-r18-l1-w2"
                 }
               ],
               "block_id": "p1-b53",
@@ -1048,7 +1160,9 @@
                   "y": 894,
                   "w": 111,
                   "h": 40,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b54-w1",
+                  "raw_id": "p1-r20-l1-w1"
                 },
                 {
                   "text": "управления",
@@ -1056,7 +1170,9 @@
                   "y": 903,
                   "w": 212,
                   "h": 32,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b54-w2",
+                  "raw_id": "p1-r20-l1-w2"
                 }
               ],
               "block_id": "p1-b54",
@@ -1095,7 +1211,9 @@
                   "y": 905,
                   "w": 246,
                   "h": 32,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b8-w1",
+                  "raw_id": "p1-r21-l1-w1"
                 },
                 {
                   "text": "лицо",
@@ -1103,7 +1221,9 @@
                   "y": 906,
                   "w": 88,
                   "h": 26,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b8-w2",
+                  "raw_id": "p1-r21-l1-w2"
                 },
                 {
                   "text": "без",
@@ -1111,7 +1231,9 @@
                   "y": 896,
                   "w": 57,
                   "h": 31,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b8-w3",
+                  "raw_id": "p1-r21-l1-w3"
                 },
                 {
                   "text": "ведомственной",
@@ -1119,7 +1241,9 @@
                   "y": 897,
                   "w": 280,
                   "h": 35,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b8-w4",
+                  "raw_id": "p1-r21-l1-w4"
                 },
                 {
                   "text": "подчиненности",
@@ -1127,7 +1251,9 @@
                   "y": 905,
                   "w": 284,
                   "h": 32,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b8-w5",
+                  "raw_id": "p1-r21-l1-w5"
                 }
               ],
               "block_id": "p1-b8",
@@ -1170,7 +1296,9 @@
                   "y": 953,
                   "w": 173,
                   "h": 41,
-                  "confidence": 93
+                  "confidence": 93,
+                  "id": "p1-b55-w1",
+                  "raw_id": "p1-r22-l1-w1"
                 },
                 {
                   "text": "измерения",
@@ -1178,7 +1306,9 @@
                   "y": 962,
                   "w": 191,
                   "h": 32,
-                  "confidence": 95
+                  "confidence": 95,
+                  "id": "p1-b55-w2",
+                  "raw_id": "p1-r22-l1-w2"
                 }
               ],
               "block_id": "p1-b55",
@@ -1218,7 +1348,9 @@
                   "y": 954,
                   "w": 207,
                   "h": 41,
-                  "confidence": 95
+                  "confidence": 95,
+                  "id": "p1-b4-w1",
+                  "raw_id": "p1-r23-l1-w1"
                 }
               ],
               "block_id": "p1-b4",
@@ -1256,7 +1388,9 @@
                   "y": 1007,
                   "w": 139,
                   "h": 37,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b5-w1",
+                  "raw_id": "p1-r25-l1-w1"
                 },
                 {
                   "text": "г.",
@@ -1264,7 +1398,9 @@
                   "y": 1016,
                   "w": 23,
                   "h": 21,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b5-w2",
+                  "raw_id": "p1-r25-l1-w2"
                 },
                 {
                   "text": "Минск,",
@@ -1272,7 +1408,9 @@
                   "y": 1007,
                   "w": 133,
                   "h": 41,
-                  "confidence": 93
+                  "confidence": 93,
+                  "id": "p1-b5-w3",
+                  "raw_id": "p1-r25-l1-w3"
                 },
                 {
                   "text": "ул.",
@@ -1280,7 +1418,9 @@
                   "y": 1016,
                   "w": 50,
                   "h": 32,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b5-w4",
+                  "raw_id": "p1-r25-l1-w4"
                 },
                 {
                   "text": "Некрасова,",
@@ -1288,7 +1428,9 @@
                   "y": 1007,
                   "w": 207,
                   "h": 41,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b5-w5",
+                  "raw_id": "p1-r25-l1-w5"
                 },
                 {
                   "text": "д.7,",
@@ -1296,7 +1438,9 @@
                   "y": 1007,
                   "w": 65,
                   "h": 36,
-                  "confidence": 81
+                  "confidence": 81,
+                  "id": "p1-b5-w6",
+                  "raw_id": "p1-r25-l1-w6"
                 },
                 {
                   "text": "пом.219",
@@ -1304,7 +1448,9 @@
                   "y": 994,
                   "w": 146,
                   "h": 43,
-                  "confidence": 92
+                  "confidence": 92,
+                  "id": "p1-b5-w7",
+                  "raw_id": "p1-r25-l1-w7"
                 }
               ],
               "block_id": "p1-b5",
@@ -1349,7 +1495,9 @@
                   "y": 998,
                   "w": 124,
                   "h": 48,
-                  "confidence": 47
+                  "confidence": 47,
+                  "id": "p1-b56-w1",
+                  "raw_id": "p1-r24-l1-w1"
                 }
               ],
               "block_id": "p1-b56",
@@ -1388,7 +1536,9 @@
                   "y": 1104,
                   "w": 272,
                   "h": 47,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b57-w1",
+                  "raw_id": "p1-r26-l1-w1"
                 },
                 {
                   "text": "показателей",
@@ -1396,7 +1546,9 @@
                   "y": 1117,
                   "w": 224,
                   "h": 44,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b57-w2",
+                  "raw_id": "p1-r26-l1-w2"
                 }
               ],
               "block_id": "p1-b57",
@@ -1425,7 +1577,9 @@
                   "y": 1121,
                   "w": 71,
                   "h": 35,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b58-w1",
+                  "raw_id": "p1-r27-l1-w1"
                 },
                 {
                   "text": "строки",
@@ -1433,7 +1587,9 @@
                   "y": 1185,
                   "w": 123,
                   "h": 24,
-                  "confidence": 94
+                  "confidence": 94,
+                  "id": "p1-b58-w2",
+                  "raw_id": "p1-r33-l1-w1"
                 }
               ],
               "block_id": "p1-b58",
@@ -1462,7 +1618,9 @@
                   "y": 1120,
                   "w": 148,
                   "h": 37,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b59-w1",
+                  "raw_id": "p1-r29-l1-w3"
                 },
                 {
                   "text": "За",
@@ -1470,7 +1628,9 @@
                   "y": 1121,
                   "w": 40,
                   "h": 30,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b59-w2",
+                  "raw_id": "p1-r28-l1-w1"
                 },
                 {
                   "text": "январь",
@@ -1478,7 +1638,9 @@
                   "y": 1129,
                   "w": 125,
                   "h": 30,
-                  "confidence": 93
+                  "confidence": 93,
+                  "id": "p1-b59-w3",
+                  "raw_id": "p1-r29-l1-w1"
                 },
                 {
                   "text": "2025",
@@ -1486,7 +1648,9 @@
                   "y": 1172,
                   "w": 83,
                   "h": 31,
-                  "confidence": 95
+                  "confidence": 95,
+                  "id": "p1-b59-w4",
+                  "raw_id": "p1-r34-l1-w1"
                 },
                 {
                   "text": "г.",
@@ -1494,7 +1658,9 @@
                   "y": 1182,
                   "w": 24,
                   "h": 20,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b59-w5",
+                  "raw_id": "p1-r34-l1-w2"
                 }
               ],
               "block_id": "p1-b59",
@@ -1526,7 +1692,9 @@
                   "y": 1104,
                   "w": 51,
                   "h": 47,
-                  "confidence": 69
+                  "confidence": 69,
+                  "id": "p1-b60-w1",
+                  "raw_id": "p1-r30-l1-w2"
                 },
                 {
                   "text": "январь",
@@ -1534,7 +1702,9 @@
                   "y": 1104,
                   "w": 125,
                   "h": 55,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b60-w2",
+                  "raw_id": "p1-r31-l1-w2"
                 },
                 {
                   "text": "декабрь",
@@ -1542,7 +1712,9 @@
                   "y": 1119,
                   "w": 147,
                   "h": 38,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b60-w3",
+                  "raw_id": "p1-r31-l1-w4"
                 },
                 {
                   "text": "2024",
@@ -1550,7 +1722,9 @@
                   "y": 1172,
                   "w": 84,
                   "h": 30,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b60-w4",
+                  "raw_id": "p1-r36-l1-w1"
                 },
                 {
                   "text": "г.",
@@ -1558,7 +1732,9 @@
                   "y": 1181,
                   "w": 24,
                   "h": 21,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b60-w5",
+                  "raw_id": "p1-r36-l1-w2"
                 }
               ],
               "block_id": "p1-b60",
@@ -1601,7 +1777,9 @@
                   "y": 1220,
                   "w": 9,
                   "h": 29,
-                  "confidence": 90
+                  "confidence": 90,
+                  "id": "p1-b61-w1",
+                  "raw_id": "p1-r37-l1-w1"
                 }
               ],
               "block_id": "p1-b61",
@@ -1629,7 +1807,9 @@
                   "y": 1222,
                   "w": 18,
                   "h": 29,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b62-w1",
+                  "raw_id": "p1-r38-l1-w1"
                 }
               ],
               "block_id": "p1-b62",
@@ -1657,7 +1837,9 @@
                   "y": 1220,
                   "w": 16,
                   "h": 30,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b63-w1",
+                  "raw_id": "p1-r39-l1-w1"
                 }
               ],
               "block_id": "p1-b63",
@@ -1685,7 +1867,9 @@
                   "y": 1219,
                   "w": 19,
                   "h": 30,
-                  "confidence": 95
+                  "confidence": 95,
+                  "id": "p1-b64-w1",
+                  "raw_id": "p1-r40-l1-w1"
                 }
               ],
               "block_id": "p1-b64",
@@ -1724,7 +1908,9 @@
                   "y": 1258,
                   "w": 44,
                   "h": 53,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b65-w1",
+                  "raw_id": "p1-r42-l1-w2"
                 },
                 {
                   "text": "‚Выручка",
@@ -1732,7 +1918,9 @@
                   "y": 1270,
                   "w": 174,
                   "h": 41,
-                  "confidence": 85
+                  "confidence": 85,
+                  "id": "p1-b65-w2",
+                  "raw_id": "p1-r42-l1-w1"
                 },
                 {
                   "text": "работ,",
@@ -1740,7 +1928,9 @@
                   "y": 1271,
                   "w": 112,
                   "h": 41,
-                  "confidence": 95
+                  "confidence": 95,
+                  "id": "p1-b65-w3",
+                  "raw_id": "p1-r42-l1-w6"
                 },
                 {
                   "text": "реализации",
@@ -1748,7 +1938,9 @@
                   "y": 1279,
                   "w": 208,
                   "h": 32,
-                  "confidence": 95
+                  "confidence": 95,
+                  "id": "p1-b65-w4",
+                  "raw_id": "p1-r42-l1-w3"
                 },
                 {
                   "text": "услуг",
@@ -1756,7 +1948,9 @@
                   "y": 1281,
                   "w": 101,
                   "h": 31,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b65-w5",
+                  "raw_id": "p1-r42-l1-w7"
                 }
               ],
               "block_id": "p1-b65",
@@ -1788,7 +1982,9 @@
                   "y": 1273,
                   "w": 63,
                   "h": 31,
-                  "confidence": 94
+                  "confidence": 94,
+                  "id": "p1-b66-w1",
+                  "raw_id": "p1-r43-l1-w1"
                 }
               ],
               "block_id": "p1-b66",
@@ -1819,7 +2015,8 @@
                   "y": 1262,
                   "w": 139,
                   "h": 46,
-                  "confidence": 62
+                  "confidence": 62,
+                  "id": "p1-b10-w1"
                 }
               ],
               "block_id": "p1-b10",
@@ -1848,7 +2045,8 @@
                   "y": 1264,
                   "w": 111,
                   "h": 47,
-                  "confidence": 89
+                  "confidence": 89,
+                  "id": "p1-b11-w1"
                 }
               ],
               "block_id": "p1-b11",
@@ -1885,7 +2083,9 @@
                   "y": 1314,
                   "w": 279,
                   "h": 35,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b67-w1",
+                  "raw_id": "p1-r45-l1-w2"
                 },
                 {
                   "text": "реализованной",
@@ -1893,7 +2093,9 @@
                   "y": 1320,
                   "w": 274,
                   "h": 38,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b67-w2",
+                  "raw_id": "p1-r45-l1-w3"
                 },
                 {
                   "text": "продукции,",
@@ -1901,7 +2103,9 @@
                   "y": 1328,
                   "w": 210,
                   "h": 31,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b67-w3",
+                  "raw_id": "p1-r45-l1-w4"
                 },
                 {
                   "text": "товаров,",
@@ -1909,7 +2113,9 @@
                   "y": 1328,
                   "w": 155,
                   "h": 31,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b67-w4",
+                  "raw_id": "p1-r45-l1-w5"
                 },
                 {
                   "text": "‚работ,",
@@ -1917,7 +2123,9 @@
                   "y": 1374,
                   "w": 123,
                   "h": 41,
-                  "confidence": 93
+                  "confidence": 93,
+                  "id": "p1-b67-w5",
+                  "raw_id": "p1-r47-l1-w1"
                 },
                 {
                   "text": "услуг",
@@ -1925,7 +2133,9 @@
                   "y": 1383,
                   "w": 101,
                   "h": 32,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b67-w6",
+                  "raw_id": "p1-r47-l1-w2"
                 }
               ],
               "block_id": "p1-b67",
@@ -1958,7 +2168,9 @@
                   "y": 1377,
                   "w": 62,
                   "h": 31,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b68-w1",
+                  "raw_id": "p1-r48-l1-w1"
                 }
               ],
               "block_id": "p1-b68",
@@ -1989,7 +2201,8 @@
                   "y": 1369,
                   "w": 108,
                   "h": 47,
-                  "confidence": 95
+                  "confidence": 95,
+                  "id": "p1-b12-w1"
                 }
               ],
               "block_id": "p1-b12",
@@ -2018,7 +2231,8 @@
                   "y": 1368,
                   "w": 103,
                   "h": 48,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b13-w1"
                 }
               ],
               "block_id": "p1-b13",
@@ -2051,7 +2265,9 @@
                   "y": 1314,
                   "w": 1,
                   "h": 32,
-                  "confidence": 84
+                  "confidence": 84,
+                  "id": "p1-b142-w1",
+                  "raw_id": "p1-r45-l1-w1"
                 }
               ],
               "block_id": "p1-b142",
@@ -2090,7 +2306,9 @@
                   "y": 1426,
                   "w": 158,
                   "h": 41,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b69-w1",
+                  "raw_id": "p1-r51-l1-w2"
                 },
                 {
                   "text": "Валовая",
@@ -2098,7 +2316,9 @@
                   "y": 1427,
                   "w": 149,
                   "h": 40,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b69-w2",
+                  "raw_id": "p1-r51-l1-w1"
                 }
               ],
               "block_id": "p1-b69",
@@ -2127,7 +2347,9 @@
                   "y": 1429,
                   "w": 62,
                   "h": 31,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b70-w1",
+                  "raw_id": "p1-r52-l1-w1"
                 }
               ],
               "block_id": "p1-b70",
@@ -2158,7 +2380,8 @@
                   "y": 1421,
                   "w": 106,
                   "h": 43,
-                  "confidence": 88
+                  "confidence": 88,
+                  "id": "p1-b14-w1"
                 }
               ],
               "block_id": "p1-b14",
@@ -2187,7 +2410,8 @@
                   "y": 1420,
                   "w": 28,
                   "h": 43,
-                  "confidence": 89
+                  "confidence": 89,
+                  "id": "p1-b15-w1"
                 },
                 {
                   "text": "616",
@@ -2195,7 +2419,8 @@
                   "y": 1420,
                   "w": 74,
                   "h": 43,
-                  "confidence": 89
+                  "confidence": 89,
+                  "id": "p1-b15-w2"
                 }
               ],
               "block_id": "p1-b15",
@@ -2232,7 +2457,9 @@
                   "y": 1478,
                   "w": 304,
                   "h": 41,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b71-w1",
+                  "raw_id": "p1-r56-l1-w1"
                 },
                 {
                   "text": "расходы",
@@ -2240,7 +2467,9 @@
                   "y": 1487,
                   "w": 153,
                   "h": 32,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b71-w2",
+                  "raw_id": "p1-r56-l1-w2"
                 }
               ],
               "block_id": "p1-b71",
@@ -2269,7 +2498,9 @@
                   "y": 1481,
                   "w": 62,
                   "h": 31,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b72-w1",
+                  "raw_id": "p1-r57-l1-w1"
                 }
               ],
               "block_id": "p1-b72",
@@ -2300,7 +2531,8 @@
                   "y": 1470,
                   "w": 93,
                   "h": 49,
-                  "confidence": 63
+                  "confidence": 63,
+                  "id": "p1-b16-w1"
                 }
               ],
               "block_id": "p1-b16",
@@ -2329,7 +2561,8 @@
                   "y": 1472,
                   "w": 103,
                   "h": 47,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b17-w1"
                 }
               ],
               "block_id": "p1-b17",
@@ -2366,7 +2599,9 @@
                   "y": 1531,
                   "w": 156,
                   "h": 40,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b73-w1",
+                  "raw_id": "p1-r60-l1-w1"
                 },
                 {
                   "text": "на",
@@ -2374,7 +2609,9 @@
                   "y": 1539,
                   "w": 40,
                   "h": 22,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b73-w2",
+                  "raw_id": "p1-r60-l1-w2"
                 },
                 {
                   "text": "реализацию",
@@ -2382,7 +2619,9 @@
                   "y": 1540,
                   "w": 240,
                   "h": 32,
-                  "confidence": 93
+                  "confidence": 93,
+                  "id": "p1-b73-w3",
+                  "raw_id": "p1-r60-l1-w3"
                 }
               ],
               "block_id": "p1-b73",
@@ -2412,7 +2651,9 @@
                   "y": 1533,
                   "w": 62,
                   "h": 31,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b74-w1",
+                  "raw_id": "p1-r61-l1-w1"
                 }
               ],
               "block_id": "p1-b74",
@@ -2441,7 +2682,9 @@
                   "y": 1548,
                   "w": 10,
                   "h": 4,
-                  "confidence": 79
+                  "confidence": 79,
+                  "id": "p1-b75-w1",
+                  "raw_id": "p1-r62-l1-w1"
                 }
               ],
               "block_id": "p1-b75",
@@ -2480,7 +2723,9 @@
                   "y": 1577,
                   "w": 169,
                   "h": 41,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b76-w1",
+                  "raw_id": "p1-r63-l1-w1"
                 },
                 {
                   "text": "(убыток)",
@@ -2488,7 +2733,9 @@
                   "y": 1578,
                   "w": 159,
                   "h": 40,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b76-w2",
+                  "raw_id": "p1-r63-l1-w2"
                 },
                 {
                   "text": "работ,",
@@ -2496,7 +2743,9 @@
                   "y": 1579,
                   "w": 112,
                   "h": 40,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b76-w3",
+                  "raw_id": "p1-r63-l1-w7"
                 },
                 {
                   "text": "от",
@@ -2504,7 +2753,9 @@
                   "y": 1588,
                   "w": 40,
                   "h": 21,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b76-w4",
+                  "raw_id": "p1-r63-l1-w3"
                 },
                 {
                   "text": "реализации",
@@ -2512,7 +2763,9 @@
                   "y": 1588,
                   "w": 210,
                   "h": 30,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b76-w5",
+                  "raw_id": "p1-r63-l1-w4"
                 },
                 {
                   "text": "продукции,",
@@ -2520,7 +2773,9 @@
                   "y": 1588,
                   "w": 210,
                   "h": 31,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b76-w6",
+                  "raw_id": "p1-r63-l1-w5"
                 },
                 {
                   "text": "товаров,",
@@ -2528,7 +2783,9 @@
                   "y": 1588,
                   "w": 155,
                   "h": 31,
-                  "confidence": 95
+                  "confidence": 95,
+                  "id": "p1-b76-w7",
+                  "raw_id": "p1-r63-l1-w6"
                 },
                 {
                   "text": "услуг",
@@ -2536,7 +2793,9 @@
                   "y": 1637,
                   "w": 111,
                   "h": 38,
-                  "confidence": 83
+                  "confidence": 83,
+                  "id": "p1-b76-w8",
+                  "raw_id": "p1-r64-l1-w1"
                 }
               ],
               "block_id": "p1-b76",
@@ -2571,7 +2830,9 @@
                   "y": 1637,
                   "w": 62,
                   "h": 31,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b77-w1",
+                  "raw_id": "p1-r65-l1-w1"
                 }
               ],
               "block_id": "p1-b77",
@@ -2602,7 +2863,8 @@
                   "y": 1628,
                   "w": 108,
                   "h": 44,
-                  "confidence": 78
+                  "confidence": 78,
+                  "id": "p1-b18-w1"
                 }
               ],
               "block_id": "p1-b18",
@@ -2631,7 +2893,8 @@
                   "y": 1628,
                   "w": 30,
                   "h": 42,
-                  "confidence": 78
+                  "confidence": 78,
+                  "id": "p1-b19-w1"
                 },
                 {
                   "text": "943",
@@ -2639,7 +2902,8 @@
                   "y": 1628,
                   "w": 72,
                   "h": 43,
-                  "confidence": 78
+                  "confidence": 78,
+                  "id": "p1-b19-w2"
                 }
               ],
               "block_id": "p1-b19",
@@ -2676,7 +2940,9 @@
                   "y": 1675,
                   "w": 257,
                   "h": 53,
-                  "confidence": 94
+                  "confidence": 94,
+                  "id": "p1-b78-w1",
+                  "raw_id": "p1-r68-l1-w5"
                 },
                 {
                   "text": "Прочие",
@@ -2684,7 +2950,9 @@
                   "y": 1686,
                   "w": 137,
                   "h": 40,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b78-w2",
+                  "raw_id": "p1-r68-l1-w1"
                 },
                 {
                   "text": "текущей",
@@ -2692,7 +2960,9 @@
                   "y": 1688,
                   "w": 154,
                   "h": 39,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b78-w3",
+                  "raw_id": "p1-r68-l1-w4"
                 },
                 {
                   "text": "доходы",
@@ -2700,7 +2970,9 @@
                   "y": 1695,
                   "w": 137,
                   "h": 32,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b78-w4",
+                  "raw_id": "p1-r68-l1-w2"
                 },
                 {
                   "text": "по",
@@ -2708,7 +2980,9 @@
                   "y": 1695,
                   "w": 41,
                   "h": 22,
-                  "confidence": 97
+                  "confidence": 97,
+                  "id": "p1-b78-w5",
+                  "raw_id": "p1-r68-l1-w3"
                 }
               ],
               "block_id": "p1-b78",
@@ -2740,7 +3014,9 @@
                   "y": 1689,
                   "w": 62,
                   "h": 31,
-                  "confidence": 95
+                  "confidence": 95,
+                  "id": "p1-b79-w1",
+                  "raw_id": "p1-r69-l1-w1"
                 }
               ],
               "block_id": "p1-b79",
@@ -2771,7 +3047,8 @@
                   "y": 1681,
                   "w": 28,
                   "h": 42,
-                  "confidence": 95
+                  "confidence": 95,
+                  "id": "p1-b20-w1"
                 },
                 {
                   "text": "055",
@@ -2779,7 +3056,8 @@
                   "y": 1681,
                   "w": 73,
                   "h": 42,
-                  "confidence": 95
+                  "confidence": 95,
+                  "id": "p1-b20-w2"
                 }
               ],
               "block_id": "p1-b20",
@@ -2808,7 +3086,8 @@
                   "y": 1680,
                   "w": 106,
                   "h": 42,
-                  "confidence": 71
+                  "confidence": 71,
+                  "id": "p1-b21-w1"
                 }
               ],
               "block_id": "p1-b21",
@@ -2845,7 +3124,9 @@
                   "y": 1738,
                   "w": 137,
                   "h": 41,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b80-w1",
+                  "raw_id": "p1-r73-l1-w1"
                 },
                 {
                   "text": "текущей",
@@ -2853,7 +3134,9 @@
                   "y": 1740,
                   "w": 155,
                   "h": 40,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b80-w2",
+                  "raw_id": "p1-r73-l1-w4"
                 },
                 {
                   "text": "расходы",
@@ -2861,7 +3144,9 @@
                   "y": 1747,
                   "w": 160,
                   "h": 33,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b80-w3",
+                  "raw_id": "p1-r73-l1-w2"
                 },
                 {
                   "text": "по",
@@ -2869,7 +3154,9 @@
                   "y": 1748,
                   "w": 47,
                   "h": 32,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b80-w4",
+                  "raw_id": "p1-r73-l1-w3"
                 },
                 {
                   "text": "деятельности",
@@ -2877,7 +3164,9 @@
                   "y": 1748,
                   "w": 249,
                   "h": 26,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b80-w5",
+                  "raw_id": "p1-r73-l1-w5"
                 }
               ],
               "block_id": "p1-b80",
@@ -2909,7 +3198,9 @@
                   "y": 1741,
                   "w": 62,
                   "h": 31,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b81-w1",
+                  "raw_id": "p1-r74-l1-w1"
                 }
               ],
               "block_id": "p1-b81",
@@ -2940,7 +3231,8 @@
                   "y": 1732,
                   "w": 42,
                   "h": 48,
-                  "confidence": 90
+                  "confidence": 90,
+                  "id": "p1-b22-w1"
                 },
                 {
                   "text": "392)",
@@ -2948,7 +3240,8 @@
                   "y": 1732,
                   "w": 102,
                   "h": 48,
-                  "confidence": 90
+                  "confidence": 90,
+                  "id": "p1-b22-w2"
                 }
               ],
               "block_id": "p1-b22",
@@ -2977,7 +3270,8 @@
                   "y": 1732,
                   "w": 45,
                   "h": 48,
-                  "confidence": 95
+                  "confidence": 95,
+                  "id": "p1-b23-w1"
                 },
                 {
                   "text": "096)",
@@ -2985,7 +3279,8 @@
                   "y": 1729,
                   "w": 91,
                   "h": 51,
-                  "confidence": 89
+                  "confidence": 89,
+                  "id": "p1-b23-w2"
                 }
               ],
               "block_id": "p1-b23",
@@ -3022,7 +3317,9 @@
                   "y": 1785,
                   "w": 36,
                   "h": 52,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b82-w1",
+                  "raw_id": "p1-r77-l1-w3"
                 },
                 {
                   "text": "Прибыль",
@@ -3030,7 +3327,9 @@
                   "y": 1789,
                   "w": 173,
                   "h": 42,
-                  "confidence": 95
+                  "confidence": 95,
+                  "id": "p1-b82-w2",
+                  "raw_id": "p1-r77-l1-w1"
                 },
                 {
                   "text": "(убыток)",
@@ -3038,7 +3337,9 @@
                   "y": 1790,
                   "w": 214,
                   "h": 42,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b82-w3",
+                  "raw_id": "p1-r77-l1-w2"
                 },
                 {
                   "text": "текущей",
@@ -3046,7 +3347,9 @@
                   "y": 1792,
                   "w": 157,
                   "h": 40,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b82-w4",
+                  "raw_id": "p1-r77-l1-w4"
                 },
                 {
                   "text": "деятельности",
@@ -3054,7 +3357,9 @@
                   "y": 1800,
                   "w": 250,
                   "h": 27,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b82-w5",
+                  "raw_id": "p1-r77-l1-w5"
                 }
               ],
               "block_id": "p1-b82",
@@ -3086,7 +3391,9 @@
                   "y": 1793,
                   "w": 62,
                   "h": 31,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b83-w1",
+                  "raw_id": "p1-r78-l1-w1"
                 }
               ],
               "block_id": "p1-b83",
@@ -3118,7 +3425,8 @@
                   "y": 1785,
                   "w": 106,
                   "h": 43,
-                  "confidence": 57
+                  "confidence": 57,
+                  "id": "p1-b24-w1"
                 }
               ],
               "block_id": "p1-b24",
@@ -3147,7 +3455,8 @@
                   "y": 1785,
                   "w": 28,
                   "h": 42,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b25-w1"
                 },
                 {
                   "text": "672",
@@ -3155,7 +3464,8 @@
                   "y": 1784,
                   "w": 75,
                   "h": 43,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b25-w2"
                 }
               ],
               "block_id": "p1-b25",
@@ -3192,7 +3502,9 @@
                   "y": 1842,
                   "w": 145,
                   "h": 38,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b84-w1",
+                  "raw_id": "p1-r83-l1-w1"
                 },
                 {
                   "text": "инвестиционной",
@@ -3200,7 +3512,9 @@
                   "y": 1844,
                   "w": 305,
                   "h": 40,
-                  "confidence": 94
+                  "confidence": 94,
+                  "id": "p1-b84-w2",
+                  "raw_id": "p1-r83-l1-w3"
                 },
                 {
                   "text": "по",
@@ -3208,7 +3522,9 @@
                   "y": 1852,
                   "w": 41,
                   "h": 21,
-                  "confidence": 82
+                  "confidence": 82,
+                  "id": "p1-b84-w3",
+                  "raw_id": "p1-r83-l1-w2"
                 },
                 {
                   "text": "деятельности",
@@ -3216,7 +3532,9 @@
                   "y": 1852,
                   "w": 255,
                   "h": 32,
-                  "confidence": 78
+                  "confidence": 78,
+                  "id": "p1-b84-w4",
+                  "raw_id": "p1-r83-l1-w4"
                 }
               ],
               "block_id": "p1-b84",
@@ -3247,7 +3565,9 @@
                   "y": 1845,
                   "w": 57,
                   "h": 31,
-                  "confidence": 95
+                  "confidence": 95,
+                  "id": "p1-b85-w1",
+                  "raw_id": "p1-r81-l1-w1"
                 }
               ],
               "block_id": "p1-b85",
@@ -3278,7 +3598,8 @@
                   "y": 1837,
                   "w": 61,
                   "h": 47,
-                  "confidence": 71
+                  "confidence": 71,
+                  "id": "p1-b26-w1"
                 },
                 {
                   "text": "907",
@@ -3286,7 +3607,8 @@
                   "y": 1837,
                   "w": 74,
                   "h": 47,
-                  "confidence": 71
+                  "confidence": 71,
+                  "id": "p1-b26-w2"
                 }
               ],
               "block_id": "p1-b26",
@@ -3315,7 +3637,8 @@
                   "y": 1837,
                   "w": 48,
                   "h": 42,
-                  "confidence": 86
+                  "confidence": 86,
+                  "id": "p1-b27-w1"
                 },
                 {
                   "text": "744",
@@ -3323,7 +3646,8 @@
                   "y": 1837,
                   "w": 74,
                   "h": 42,
-                  "confidence": 86
+                  "confidence": 86,
+                  "id": "p1-b27-w2"
                 }
               ],
               "block_id": "p1-b27",
@@ -3360,7 +3684,9 @@
                   "y": 1903,
                   "w": 65,
                   "h": 22,
-                  "confidence": 95
+                  "confidence": 95,
+                  "id": "p1-b86-w1",
+                  "raw_id": "p1-r85-l1-w2"
                 },
                 {
                   "text": "числе:",
@@ -3368,7 +3694,9 @@
                   "y": 1903,
                   "w": 112,
                   "h": 22,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b86-w2",
+                  "raw_id": "p1-r85-l1-w3"
                 },
                 {
                   "text": "в",
@@ -3376,7 +3704,9 @@
                   "y": 1904,
                   "w": 17,
                   "h": 20,
-                  "confidence": 95
+                  "confidence": 95,
+                  "id": "p1-b86-w3",
+                  "raw_id": "p1-r85-l1-w1"
                 },
                 {
                   "text": "выбытия",
@@ -3384,7 +3714,9 @@
                   "y": 1942,
                   "w": 159,
                   "h": 31,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b86-w4",
+                  "raw_id": "p1-r86-l1-w3"
                 },
                 {
                   "text": "доходы",
@@ -3392,7 +3724,9 @@
                   "y": 1951,
                   "w": 137,
                   "h": 26,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b86-w5",
+                  "raw_id": "p1-r86-l1-w1"
                 },
                 {
                   "text": "от",
@@ -3400,7 +3734,9 @@
                   "y": 1951,
                   "w": 39,
                   "h": 22,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b86-w6",
+                  "raw_id": "p1-r86-l1-w2"
                 },
                 {
                   "text": "основных",
@@ -3408,7 +3744,9 @@
                   "y": 1952,
                   "w": 182,
                   "h": 22,
-                  "confidence": 95
+                  "confidence": 95,
+                  "id": "p1-b86-w7",
+                  "raw_id": "p1-r86-l1-w4"
                 },
                 {
                   "text": "средств,",
@@ -3416,7 +3754,9 @@
                   "y": 1952,
                   "w": 151,
                   "h": 31,
-                  "confidence": 91
+                  "confidence": 91,
+                  "id": "p1-b86-w8",
+                  "raw_id": "p1-r86-l1-w5"
                 },
                 {
                   "text": "нематериальных",
@@ -3424,7 +3764,9 @@
                   "y": 1953,
                   "w": 308,
                   "h": 30,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b86-w9",
+                  "raw_id": "p1-r86-l1-w6"
                 },
                 {
                   "text": "активов",
@@ -3432,7 +3774,9 @@
                   "y": 2007,
                   "w": 144,
                   "h": 32,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b86-w10",
+                  "raw_id": "p1-r87-l1-w1"
                 },
                 {
                   "text": "и",
@@ -3440,7 +3784,9 @@
                   "y": 2008,
                   "w": 17,
                   "h": 20,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b86-w11",
+                  "raw_id": "p1-r87-l1-w2"
                 },
                 {
                   "text": "других",
@@ -3448,7 +3794,9 @@
                   "y": 2008,
                   "w": 126,
                   "h": 31,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b86-w12",
+                  "raw_id": "p1-r87-l1-w3"
                 },
                 {
                   "text": "долгосрочных",
@@ -3456,7 +3804,9 @@
                   "y": 2008,
                   "w": 268,
                   "h": 32,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b86-w13",
+                  "raw_id": "p1-r87-l1-w4"
                 },
                 {
                   "text": "активов",
@@ -3464,7 +3814,9 @@
                   "y": 2008,
                   "w": 145,
                   "h": 22,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b86-w14",
+                  "raw_id": "p1-r87-l1-w5"
                 }
               ],
               "block_id": "p1-b86",
@@ -3505,7 +3857,9 @@
                   "y": 2001,
                   "w": 52,
                   "h": 31,
-                  "confidence": 95
+                  "confidence": 95,
+                  "id": "p1-b87-w1",
+                  "raw_id": "p1-r88-l1-w1"
                 }
               ],
               "block_id": "p1-b87",
@@ -3534,7 +3888,9 @@
                   "y": 1999,
                   "w": 38,
                   "h": 41,
-                  "confidence": 94
+                  "confidence": 94,
+                  "id": "p1-b88-w1",
+                  "raw_id": "p1-r89-l1-w1"
                 },
                 {
                   "text": "731",
@@ -3542,7 +3898,9 @@
                   "y": 1999,
                   "w": 72,
                   "h": 41,
-                  "confidence": 62
+                  "confidence": 62,
+                  "id": "p1-b88-w2",
+                  "raw_id": "p1-r89-l1-w2"
                 }
               ],
               "block_id": "p1-b88",
@@ -3572,7 +3930,8 @@
                   "y": 1998,
                   "w": 107,
                   "h": 31,
-                  "confidence": 38
+                  "confidence": 38,
+                  "id": "p1-b89-w1"
                 }
               ],
               "block_id": "p1-b89",
@@ -3609,7 +3968,9 @@
                   "y": 2055,
                   "w": 137,
                   "h": 26,
-                  "confidence": 95
+                  "confidence": 95,
+                  "id": "p1-b90-w1",
+                  "raw_id": "p1-r91-l1-w1"
                 },
                 {
                   "text": "от",
@@ -3617,7 +3978,9 @@
                   "y": 2055,
                   "w": 39,
                   "h": 21,
-                  "confidence": 95
+                  "confidence": 95,
+                  "id": "p1-b90-w2",
+                  "raw_id": "p1-r91-l1-w2"
                 },
                 {
                   "text": "участия",
@@ -3625,7 +3988,9 @@
                   "y": 2055,
                   "w": 139,
                   "h": 31,
-                  "confidence": 95
+                  "confidence": 95,
+                  "id": "p1-b90-w3",
+                  "raw_id": "p1-r91-l1-w3"
                 },
                 {
                   "text": "в",
@@ -3633,7 +3998,9 @@
                   "y": 2056,
                   "w": 17,
                   "h": 21,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b90-w4",
+                  "raw_id": "p1-r91-l1-w4"
                 },
                 {
                   "text": "уставных",
@@ -3641,7 +4008,9 @@
                   "y": 2056,
                   "w": 174,
                   "h": 30,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b90-w5",
+                  "raw_id": "p1-r91-l1-w5"
                 },
                 {
                   "text": "капиталах",
@@ -3649,7 +4018,9 @@
                   "y": 2056,
                   "w": 188,
                   "h": 22,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b90-w6",
+                  "raw_id": "p1-r91-l1-w6"
                 },
                 {
                   "text": "других",
@@ -3657,7 +4028,9 @@
                   "y": 2056,
                   "w": 129,
                   "h": 31,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b90-w7",
+                  "raw_id": "p1-r91-l1-w7"
                 },
                 {
                   "text": "организаций.",
@@ -3665,7 +4038,9 @@
                   "y": 2104,
                   "w": 246,
                   "h": 40,
-                  "confidence": 59
+                  "confidence": 59,
+                  "id": "p1-b90-w8",
+                  "raw_id": "p1-r93-l1-w1"
                 }
               ],
               "block_id": "p1-b90",
@@ -3700,7 +4075,9 @@
                   "y": 2105,
                   "w": 58,
                   "h": 31,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b91-w1",
+                  "raw_id": "p1-r92-l1-w1"
                 }
               ],
               "block_id": "p1-b91",
@@ -3729,7 +4106,9 @@
                   "y": 2120,
                   "w": 18,
                   "h": 20,
-                  "confidence": 87
+                  "confidence": 87,
+                  "id": "p1-b92-w1",
+                  "raw_id": "p1-r94-l1-w1"
                 }
               ],
               "block_id": "p1-b92",
@@ -3768,7 +4147,9 @@
                   "y": 2164,
                   "w": 176,
                   "h": 32,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b93-w1",
+                  "raw_id": "p1-r95-l1-w1"
                 },
                 {
                   "text": "получению",
@@ -3776,7 +4157,9 @@
                   "y": 2164,
                   "w": 205,
                   "h": 33,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b93-w2",
+                  "raw_id": "p1-r95-l1-w3"
                 },
                 {
                   "text": "к",
@@ -3784,7 +4167,9 @@
                   "y": 2165,
                   "w": 18,
                   "h": 21,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b93-w3",
+                  "raw_id": "p1-r95-l1-w2"
                 }
               ],
               "block_id": "p1-b93",
@@ -3814,7 +4199,9 @@
                   "y": 2158,
                   "w": 55,
                   "h": 31,
-                  "confidence": 95
+                  "confidence": 95,
+                  "id": "p1-b94-w1",
+                  "raw_id": "p1-r96-l1-w1"
                 }
               ],
               "block_id": "p1-b94",
@@ -3845,7 +4232,8 @@
                   "y": 2149,
                   "w": 70,
                   "h": 43,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b28-w1"
                 }
               ],
               "block_id": "p1-b28",
@@ -3874,7 +4262,8 @@
                   "y": 2149,
                   "w": 50,
                   "h": 43,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b29-w1"
                 }
               ],
               "block_id": "p1-b29",
@@ -3911,7 +4300,9 @@
                   "y": 2196,
                   "w": 308,
                   "h": 53,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b95-w1",
+                  "raw_id": "p1-r99-l1-w4"
                 },
                 {
                   "text": "прочие",
@@ -3919,7 +4310,9 @@
                   "y": 2216,
                   "w": 127,
                   "h": 32,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b95-w2",
+                  "raw_id": "p1-r99-l1-w1"
                 },
                 {
                   "text": "доходы",
@@ -3927,7 +4320,9 @@
                   "y": 2216,
                   "w": 137,
                   "h": 27,
-                  "confidence": 97
+                  "confidence": 97,
+                  "id": "p1-b95-w3",
+                  "raw_id": "p1-r99-l1-w2"
                 },
                 {
                   "text": "по",
@@ -3935,7 +4330,9 @@
                   "y": 2217,
                   "w": 41,
                   "h": 21,
-                  "confidence": 97
+                  "confidence": 97,
+                  "id": "p1-b95-w4",
+                  "raw_id": "p1-r99-l1-w3"
                 },
                 {
                   "text": "деятельности",
@@ -3943,7 +4340,9 @@
                   "y": 2218,
                   "w": 248,
                   "h": 26,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b95-w5",
+                  "raw_id": "p1-r99-l1-w5"
                 }
               ],
               "block_id": "p1-b95",
@@ -3975,7 +4374,9 @@
                   "y": 2210,
                   "w": 58,
                   "h": 31,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b96-w1",
+                  "raw_id": "p1-r100-l1-w1"
                 }
               ],
               "block_id": "p1-b96",
@@ -4014,7 +4415,9 @@
                   "y": 2259,
                   "w": 167,
                   "h": 55,
-                  "confidence": 11
+                  "confidence": 11,
+                  "id": "p1-b97-w1",
+                  "raw_id": "p1-r101-l1-w1"
                 },
                 {
                   "text": "инвестиционной",
@@ -4022,7 +4425,9 @@
                   "y": 2261,
                   "w": 305,
                   "h": 39,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b97-w2",
+                  "raw_id": "p1-r101-l1-w3"
                 },
                 {
                   "text": "по",
@@ -4030,7 +4435,9 @@
                   "y": 2268,
                   "w": 41,
                   "h": 22,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b97-w3",
+                  "raw_id": "p1-r101-l1-w2"
                 },
                 {
                   "text": "деятельности",
@@ -4038,7 +4445,9 @@
                   "y": 2269,
                   "w": 249,
                   "h": 32,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b97-w4",
+                  "raw_id": "p1-r101-l1-w4"
                 }
               ],
               "block_id": "p1-b97",
@@ -4069,7 +4478,9 @@
                   "y": 2262,
                   "w": 58,
                   "h": 30,
-                  "confidence": 95
+                  "confidence": 95,
+                  "id": "p1-b98-w1",
+                  "raw_id": "p1-r102-l1-w1"
                 }
               ],
               "block_id": "p1-b98",
@@ -4100,7 +4511,8 @@
                   "y": 2253,
                   "w": 67,
                   "h": 47,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b30-w1"
                 },
                 {
                   "text": "735)",
@@ -4108,7 +4520,8 @@
                   "y": 2254,
                   "w": 90,
                   "h": 46,
-                  "confidence": 74
+                  "confidence": 74,
+                  "id": "p1-b30-w2"
                 }
               ],
               "block_id": "p1-b30",
@@ -4137,7 +4550,8 @@
                   "y": 2253,
                   "w": 67,
                   "h": 47,
-                  "confidence": 88
+                  "confidence": 88,
+                  "id": "p1-b31-w1"
                 },
                 {
                   "text": "712)",
@@ -4145,7 +4559,8 @@
                   "y": 2253,
                   "w": 89,
                   "h": 47,
-                  "confidence": 88
+                  "confidence": 88,
+                  "id": "p1-b31-w2"
                 }
               ],
               "block_id": "p1-b31",
@@ -4182,7 +4597,9 @@
                   "y": 2320,
                   "w": 16,
                   "h": 21,
-                  "confidence": 95
+                  "confidence": 95,
+                  "id": "p1-b99-w1",
+                  "raw_id": "p1-r105-l1-w1"
                 },
                 {
                   "text": "том",
@@ -4190,7 +4607,9 @@
                   "y": 2320,
                   "w": 64,
                   "h": 21,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b99-w2",
+                  "raw_id": "p1-r105-l1-w2"
                 },
                 {
                   "text": "числе:",
@@ -4198,7 +4617,9 @@
                   "y": 2320,
                   "w": 112,
                   "h": 22,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b99-w3",
+                  "raw_id": "p1-r105-l1-w3"
                 },
                 {
                   "text": "выбытия",
@@ -4206,7 +4627,9 @@
                   "y": 2359,
                   "w": 159,
                   "h": 31,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b99-w4",
+                  "raw_id": "p1-r108-l1-w3"
                 },
                 {
                   "text": "расходы",
@@ -4214,7 +4637,9 @@
                   "y": 2368,
                   "w": 152,
                   "h": 30,
-                  "confidence": 95
+                  "confidence": 95,
+                  "id": "p1-b99-w5",
+                  "raw_id": "p1-r108-l1-w1"
                 },
                 {
                   "text": "от",
@@ -4222,7 +4647,9 @@
                   "y": 2368,
                   "w": 39,
                   "h": 22,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b99-w6",
+                  "raw_id": "p1-r108-l1-w2"
                 },
                 {
                   "text": "основных",
@@ -4230,7 +4657,9 @@
                   "y": 2369,
                   "w": 182,
                   "h": 22,
-                  "confidence": 94
+                  "confidence": 94,
+                  "id": "p1-b99-w7",
+                  "raw_id": "p1-r108-l1-w4"
                 },
                 {
                   "text": "средств,",
@@ -4238,7 +4667,9 @@
                   "y": 2369,
                   "w": 151,
                   "h": 31,
-                  "confidence": 92
+                  "confidence": 92,
+                  "id": "p1-b99-w8",
+                  "raw_id": "p1-r108-l1-w5"
                 },
                 {
                   "text": "нематериальных",
@@ -4246,7 +4677,9 @@
                   "y": 2369,
                   "w": 309,
                   "h": 31,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b99-w9",
+                  "raw_id": "p1-r108-l1-w6"
                 },
                 {
                   "text": "и",
@@ -4254,7 +4687,9 @@
                   "y": 2410,
                   "w": 23,
                   "h": 52,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b99-w10",
+                  "raw_id": "p1-r109-l1-w2"
                 },
                 {
                   "text": "активов",
@@ -4262,7 +4697,9 @@
                   "y": 2424,
                   "w": 178,
                   "h": 32,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b99-w11",
+                  "raw_id": "p1-r109-l1-w1"
                 },
                 {
                   "text": "других",
@@ -4270,7 +4707,9 @@
                   "y": 2424,
                   "w": 127,
                   "h": 32,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b99-w12",
+                  "raw_id": "p1-r109-l1-w3"
                 },
                 {
                   "text": "долгосрочных",
@@ -4278,7 +4717,9 @@
                   "y": 2424,
                   "w": 270,
                   "h": 33,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b99-w13",
+                  "raw_id": "p1-r109-l1-w4"
                 },
                 {
                   "text": "активов",
@@ -4286,7 +4727,9 @@
                   "y": 2425,
                   "w": 150,
                   "h": 32,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b99-w14",
+                  "raw_id": "p1-r109-l1-w5"
                 }
               ],
               "block_id": "p1-b99",
@@ -4327,7 +4770,9 @@
                   "y": 2418,
                   "w": 54,
                   "h": 30,
-                  "confidence": 89
+                  "confidence": 89,
+                  "id": "p1-b100-w1",
+                  "raw_id": "p1-r111-l1-w1"
                 }
               ],
               "block_id": "p1-b100",
@@ -4356,7 +4801,9 @@
                   "y": 2399,
                   "w": 84,
                   "h": 57,
-                  "confidence": 93
+                  "confidence": 93,
+                  "id": "p1-b101-w1",
+                  "raw_id": "p1-r112-l1-w2"
                 },
                 {
                   "text": "(16",
@@ -4364,7 +4811,9 @@
                   "y": 2415,
                   "w": 55,
                   "h": 39,
-                  "confidence": 94
+                  "confidence": 94,
+                  "id": "p1-b101-w2",
+                  "raw_id": "p1-r112-l1-w1"
                 }
               ],
               "block_id": "p1-b101",
@@ -4394,7 +4843,9 @@
                   "y": 2414,
                   "w": 55,
                   "h": 39,
-                  "confidence": 95
+                  "confidence": 95,
+                  "id": "p1-b102-w1",
+                  "raw_id": "p1-r113-l1-w1"
                 },
                 {
                   "text": "712)",
@@ -4402,7 +4853,9 @@
                   "y": 2414,
                   "w": 78,
                   "h": 39,
-                  "confidence": 95
+                  "confidence": 95,
+                  "id": "p1-b102-w2",
+                  "raw_id": "p1-r113-l1-w2"
                 }
               ],
               "block_id": "p1-b102",
@@ -4442,7 +4895,9 @@
                   "y": 2456,
                   "w": 256,
                   "h": 52,
-                  "confidence": 68
+                  "confidence": 68,
+                  "id": "p1-b103-w1",
+                  "raw_id": "p1-r114-l1-w5"
                 },
                 {
                   "text": "инвестиционной",
@@ -4450,7 +4905,9 @@
                   "y": 2469,
                   "w": 311,
                   "h": 38,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b103-w2",
+                  "raw_id": "p1-r114-l1-w4"
                 },
                 {
                   "text": "прочие",
@@ -4458,7 +4915,9 @@
                   "y": 2476,
                   "w": 129,
                   "h": 30,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b103-w3",
+                  "raw_id": "p1-r114-l1-w1"
                 },
                 {
                   "text": "расходы",
@@ -4466,7 +4925,9 @@
                   "y": 2476,
                   "w": 151,
                   "h": 30,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b103-w4",
+                  "raw_id": "p1-r114-l1-w2"
                 },
                 {
                   "text": "по",
@@ -4474,7 +4935,9 @@
                   "y": 2476,
                   "w": 45,
                   "h": 31,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b103-w5",
+                  "raw_id": "p1-r114-l1-w3"
                 }
               ],
               "block_id": "p1-b103",
@@ -4506,7 +4969,9 @@
                   "y": 2470,
                   "w": 58,
                   "h": 39,
-                  "confidence": 93
+                  "confidence": 93,
+                  "id": "p1-b104-w1",
+                  "raw_id": "p1-r115-l1-w1"
                 }
               ],
               "block_id": "p1-b104",
@@ -4545,7 +5010,9 @@
                   "y": 2517,
                   "w": 144,
                   "h": 37,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b105-w1",
+                  "raw_id": "p1-r116-l1-w1"
                 },
                 {
                   "text": "финансовой",
@@ -4553,7 +5020,9 @@
                   "y": 2517,
                   "w": 221,
                   "h": 41,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b105-w2",
+                  "raw_id": "p1-r116-l1-w3"
                 },
                 {
                   "text": "по",
@@ -4561,7 +5030,9 @@
                   "y": 2526,
                   "w": 41,
                   "h": 21,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b105-w3",
+                  "raw_id": "p1-r116-l1-w2"
                 },
                 {
                   "text": "деятельности",
@@ -4569,7 +5040,9 @@
                   "y": 2527,
                   "w": 249,
                   "h": 26,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b105-w4",
+                  "raw_id": "p1-r116-l1-w4"
                 }
               ],
               "block_id": "p1-b105",
@@ -4600,7 +5073,8 @@
                   "y": 2520,
                   "w": 58,
                   "h": 30,
-                  "confidence": 95
+                  "confidence": 95,
+                  "id": "p1-b106-w1"
                 }
               ],
               "block_id": "p1-b106",
@@ -4629,7 +5103,8 @@
                   "y": 2512,
                   "w": 21,
                   "h": 42,
-                  "confidence": 87
+                  "confidence": 87,
+                  "id": "p1-b46-w1"
                 },
                 {
                   "text": "783",
@@ -4637,7 +5112,8 @@
                   "y": 2509,
                   "w": 75,
                   "h": 49,
-                  "confidence": 88
+                  "confidence": 88,
+                  "id": "p1-b46-w2"
                 }
               ],
               "block_id": "p1-b46",
@@ -4666,7 +5142,8 @@
                   "y": 2513,
                   "w": 21,
                   "h": 40,
-                  "confidence": 92
+                  "confidence": 92,
+                  "id": "p1-b47-w1"
                 },
                 {
                   "text": "270",
@@ -4674,7 +5151,8 @@
                   "y": 2509,
                   "w": 75,
                   "h": 44,
-                  "confidence": 92
+                  "confidence": 92,
+                  "id": "p1-b47-w2"
                 }
               ],
               "block_id": "p1-b47",
@@ -4711,7 +5189,9 @@
                   "y": 2577,
                   "w": 65,
                   "h": 21,
-                  "confidence": 95
+                  "confidence": 95,
+                  "id": "p1-b107-w1",
+                  "raw_id": "p1-r120-l1-w2"
                 },
                 {
                   "text": "числе:",
@@ -4719,7 +5199,9 @@
                   "y": 2577,
                   "w": 112,
                   "h": 22,
-                  "confidence": 95
+                  "confidence": 95,
+                  "id": "p1-b107-w2",
+                  "raw_id": "p1-r120-l1-w3"
                 },
                 {
                   "text": "в",
@@ -4727,7 +5209,9 @@
                   "y": 2578,
                   "w": 16,
                   "h": 19,
-                  "confidence": 95
+                  "confidence": 95,
+                  "id": "p1-b107-w3",
+                  "raw_id": "p1-r120-l1-w1"
                 },
                 {
                   "text": "обязательств",
@@ -4735,7 +5219,9 @@
                   "y": 2620,
                   "w": 248,
                   "h": 41,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b107-w4",
+                  "raw_id": "p1-r123-l1-w7"
                 },
                 {
                   "text": "курсовые",
@@ -4743,7 +5229,9 @@
                   "y": 2628,
                   "w": 171,
                   "h": 32,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b107-w5",
+                  "raw_id": "p1-r123-l1-w1"
                 },
                 {
                   "text": "разницы",
@@ -4751,7 +5239,9 @@
                   "y": 2629,
                   "w": 154,
                   "h": 31,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b107-w6",
+                  "raw_id": "p1-r123-l1-w2"
                 },
                 {
                   "text": "от",
@@ -4759,7 +5249,9 @@
                   "y": 2629,
                   "w": 40,
                   "h": 21,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b107-w7",
+                  "raw_id": "p1-r123-l1-w3"
                 },
                 {
                   "text": "пересчета",
@@ -4767,7 +5259,9 @@
                   "y": 2629,
                   "w": 187,
                   "h": 32,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b107-w8",
+                  "raw_id": "p1-r123-l1-w4"
                 },
                 {
                   "text": "активов",
@@ -4775,7 +5269,9 @@
                   "y": 2630,
                   "w": 145,
                   "h": 31,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b107-w9",
+                  "raw_id": "p1-r123-l1-w5"
                 },
                 {
                   "text": "и",
@@ -4783,7 +5279,9 @@
                   "y": 2630,
                   "w": 19,
                   "h": 31,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b107-w10",
+                  "raw_id": "p1-r123-l1-w6"
                 }
               ],
               "block_id": "p1-b107",
@@ -4820,7 +5318,9 @@
                   "y": 2622,
                   "w": 53,
                   "h": 30,
-                  "confidence": 95
+                  "confidence": 95,
+                  "id": "p1-b108-w1",
+                  "raw_id": "p1-r121-l1-w1"
                 }
               ],
               "block_id": "p1-b108",
@@ -4851,7 +5351,8 @@
                   "y": 2614,
                   "w": 101,
                   "h": 42,
-                  "confidence": 88
+                  "confidence": 88,
+                  "id": "p1-b48-w1"
                 }
               ],
               "block_id": "p1-b48",
@@ -4880,7 +5381,8 @@
                   "y": 2614,
                   "w": 102,
                   "h": 42,
-                  "confidence": 69
+                  "confidence": 69,
+                  "id": "p1-b49-w1"
                 }
               ],
               "block_id": "p1-b49",
@@ -4917,7 +5419,9 @@
                   "y": 2671,
                   "w": 239,
                   "h": 41,
-                  "confidence": 95
+                  "confidence": 95,
+                  "id": "p1-b109-w1",
+                  "raw_id": "p1-r125-l1-w6"
                 },
                 {
                   "text": "прочие",
@@ -4925,7 +5429,9 @@
                   "y": 2680,
                   "w": 139,
                   "h": 31,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b109-w2",
+                  "raw_id": "p1-r125-l1-w3"
                 },
                 {
                   "text": "доходы",
@@ -4933,7 +5439,9 @@
                   "y": 2680,
                   "w": 138,
                   "h": 26,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b109-w3",
+                  "raw_id": "p1-r125-l1-w4"
                 },
                 {
                   "text": "по",
@@ -4941,7 +5449,9 @@
                   "y": 2681,
                   "w": 42,
                   "h": 21,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b109-w4",
+                  "raw_id": "p1-r125-l1-w5"
                 },
                 {
                   "text": "деятельности",
@@ -4949,7 +5459,9 @@
                   "y": 2681,
                   "w": 250,
                   "h": 26,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b109-w5",
+                  "raw_id": "p1-r125-l1-w7"
                 }
               ],
               "block_id": "p1-b109",
@@ -4981,7 +5493,9 @@
                   "y": 2674,
                   "w": 59,
                   "h": 30,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b110-w1",
+                  "raw_id": "p1-r126-l1-w1"
                 }
               ],
               "block_id": "p1-b110",
@@ -5020,7 +5534,9 @@
                   "y": 2714,
                   "w": 168,
                   "h": 43,
-                  "confidence": 49
+                  "confidence": 49,
+                  "id": "p1-b111-w1",
+                  "raw_id": "p1-r128-l1-w1"
                 },
                 {
                   "text": "финансовой",
@@ -5028,7 +5544,9 @@
                   "y": 2722,
                   "w": 220,
                   "h": 42,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b111-w2",
+                  "raw_id": "p1-r128-l1-w3"
                 },
                 {
                   "text": "по",
@@ -5036,7 +5554,9 @@
                   "y": 2731,
                   "w": 42,
                   "h": 22,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b111-w3",
+                  "raw_id": "p1-r128-l1-w2"
                 },
                 {
                   "text": "деятельности",
@@ -5044,7 +5564,9 @@
                   "y": 2732,
                   "w": 249,
                   "h": 27,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b111-w4",
+                  "raw_id": "p1-r128-l1-w4"
                 }
               ],
               "block_id": "p1-b111",
@@ -5075,7 +5597,9 @@
                   "y": 2725,
                   "w": 58,
                   "h": 31,
-                  "confidence": 88
+                  "confidence": 88,
+                  "id": "p1-b112-w1",
+                  "raw_id": "p1-r129-l1-w1"
                 }
               ],
               "block_id": "p1-b112",
@@ -5106,7 +5630,8 @@
                   "y": 2716,
                   "w": 45,
                   "h": 48,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b32-w1"
                 },
                 {
                   "text": "486)",
@@ -5114,7 +5639,8 @@
                   "y": 2714,
                   "w": 89,
                   "h": 50,
-                  "confidence": 92
+                  "confidence": 92,
+                  "id": "p1-b32-w2"
                 }
               ],
               "block_id": "p1-b32",
@@ -5151,7 +5677,9 @@
                   "y": 2784,
                   "w": 17,
                   "h": 20,
-                  "confidence": 95
+                  "confidence": 95,
+                  "id": "p1-b113-w1",
+                  "raw_id": "p1-r132-l1-w1"
                 },
                 {
                   "text": "том",
@@ -5159,7 +5687,9 @@
                   "y": 2784,
                   "w": 66,
                   "h": 21,
-                  "confidence": 95
+                  "confidence": 95,
+                  "id": "p1-b113-w2",
+                  "raw_id": "p1-r132-l1-w2"
                 },
                 {
                   "text": "числе:",
@@ -5167,7 +5697,9 @@
                   "y": 2784,
                   "w": 112,
                   "h": 22,
-                  "confidence": 95
+                  "confidence": 95,
+                  "id": "p1-b113-w3",
+                  "raw_id": "p1-r132-l1-w3"
                 },
                 {
                   "text": "проценты",
@@ -5175,7 +5707,9 @@
                   "y": 2835,
                   "w": 177,
                   "h": 31,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b113-w4",
+                  "raw_id": "p1-r133-l1-w1"
                 },
                 {
                   "text": "к",
@@ -5183,7 +5717,9 @@
                   "y": 2836,
                   "w": 17,
                   "h": 21,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b113-w5",
+                  "raw_id": "p1-r133-l1-w2"
                 },
                 {
                   "text": "уплате",
@@ -5191,7 +5727,9 @@
                   "y": 2836,
                   "w": 122,
                   "h": 32,
-                  "confidence": 89
+                  "confidence": 89,
+                  "id": "p1-b113-w6",
+                  "raw_id": "p1-r133-l1-w3"
                 }
               ],
               "block_id": "p1-b113",
@@ -5224,7 +5762,9 @@
                   "y": 2829,
                   "w": 54,
                   "h": 31,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b114-w1",
+                  "raw_id": "p1-r134-l1-w1"
                 }
               ],
               "block_id": "p1-b114",
@@ -5255,7 +5795,8 @@
                   "y": 2820,
                   "w": 45,
                   "h": 48,
-                  "confidence": 87
+                  "confidence": 87,
+                  "id": "p1-b33-w1"
                 },
                 {
                   "text": "840)",
@@ -5263,7 +5804,8 @@
                   "y": 2820,
                   "w": 87,
                   "h": 48,
-                  "confidence": 87
+                  "confidence": 87,
+                  "id": "p1-b33-w2"
                 }
               ],
               "block_id": "p1-b33",
@@ -5292,7 +5834,8 @@
                   "y": 2819,
                   "w": 134,
                   "h": 49,
-                  "confidence": 95
+                  "confidence": 95,
+                  "id": "p1-b34-w1"
                 }
               ],
               "block_id": "p1-b34",
@@ -5329,7 +5872,9 @@
                   "y": 2879,
                   "w": 239,
                   "h": 31,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b115-w1",
+                  "raw_id": "p1-r139-l1-w7"
                 },
                 {
                   "text": "курсовые",
@@ -5337,7 +5882,9 @@
                   "y": 2887,
                   "w": 171,
                   "h": 32,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b115-w2",
+                  "raw_id": "p1-r139-l1-w1"
                 },
                 {
                   "text": "разницы",
@@ -5345,7 +5892,9 @@
                   "y": 2888,
                   "w": 154,
                   "h": 30,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b115-w3",
+                  "raw_id": "p1-r139-l1-w2"
                 },
                 {
                   "text": "от",
@@ -5353,7 +5902,9 @@
                   "y": 2888,
                   "w": 39,
                   "h": 22,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b115-w4",
+                  "raw_id": "p1-r139-l1-w3"
                 },
                 {
                   "text": "пересчета",
@@ -5361,7 +5912,9 @@
                   "y": 2888,
                   "w": 182,
                   "h": 32,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b115-w5",
+                  "raw_id": "p1-r139-l1-w4"
                 },
                 {
                   "text": "активов",
@@ -5369,7 +5922,9 @@
                   "y": 2889,
                   "w": 145,
                   "h": 21,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b115-w6",
+                  "raw_id": "p1-r139-l1-w5"
                 },
                 {
                   "text": "и",
@@ -5377,7 +5932,9 @@
                   "y": 2889,
                   "w": 19,
                   "h": 21,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b115-w7",
+                  "raw_id": "p1-r139-l1-w6"
                 }
               ],
               "block_id": "p1-b115",
@@ -5411,7 +5968,9 @@
                   "y": 2881,
                   "w": 58,
                   "h": 30,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b116-w1",
+                  "raw_id": "p1-r137-l1-w1"
                 }
               ],
               "block_id": "p1-b116",
@@ -5442,7 +6001,8 @@
                   "y": 2872,
                   "w": 135,
                   "h": 48,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b35-w1"
                 }
               ],
               "block_id": "p1-b35",
@@ -5471,7 +6031,8 @@
                   "y": 2871,
                   "w": 134,
                   "h": 49,
-                  "confidence": 92
+                  "confidence": 92,
+                  "id": "p1-b36-w1"
                 }
               ],
               "block_id": "p1-b36",
@@ -5508,7 +6069,9 @@
                   "y": 2930,
                   "w": 223,
                   "h": 41,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b117-w1",
+                  "raw_id": "p1-r141-l1-w4"
                 },
                 {
                   "text": "прочие",
@@ -5516,7 +6079,9 @@
                   "y": 2939,
                   "w": 128,
                   "h": 31,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b117-w2",
+                  "raw_id": "p1-r141-l1-w1"
                 },
                 {
                   "text": "расходы",
@@ -5524,7 +6089,9 @@
                   "y": 2939,
                   "w": 151,
                   "h": 32,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b117-w3",
+                  "raw_id": "p1-r141-l1-w2"
                 },
                 {
                   "text": "по",
@@ -5532,7 +6099,9 @@
                   "y": 2940,
                   "w": 41,
                   "h": 21,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b117-w4",
+                  "raw_id": "p1-r141-l1-w3"
                 },
                 {
                   "text": "деятельности",
@@ -5540,7 +6109,9 @@
                   "y": 2940,
                   "w": 250,
                   "h": 26,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b117-w5",
+                  "raw_id": "p1-r141-l1-w5"
                 }
               ],
               "block_id": "p1-b117",
@@ -5572,7 +6143,9 @@
                   "y": 2933,
                   "w": 79,
                   "h": 39,
-                  "confidence": 44
+                  "confidence": 44,
+                  "id": "p1-b118-w1",
+                  "raw_id": "p1-r142-l1-w1"
                 }
               ],
               "block_id": "p1-b118",
@@ -5603,7 +6176,8 @@
                   "y": 2923,
                   "w": 102,
                   "h": 48,
-                  "confidence": 60
+                  "confidence": 60,
+                  "id": "p1-b37-w1"
                 }
               ],
               "block_id": "p1-b37",
@@ -5632,7 +6206,8 @@
                   "y": 2923,
                   "w": 100,
                   "h": 48,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b38-w1"
                 }
               ],
               "block_id": "p1-b38",
@@ -5669,7 +6244,9 @@
                   "y": 2980,
                   "w": 168,
                   "h": 39,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b119-w1",
+                  "raw_id": "p1-r145-l1-w1"
                 },
                 {
                   "text": "(убыток)",
@@ -5677,7 +6254,9 @@
                   "y": 2980,
                   "w": 160,
                   "h": 39,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b119-w2",
+                  "raw_id": "p1-r145-l1-w2"
                 },
                 {
                   "text": "финансовой",
@@ -5685,7 +6264,9 @@
                   "y": 2981,
                   "w": 223,
                   "h": 40,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b119-w3",
+                  "raw_id": "p1-r145-l1-w6"
                 },
                 {
                   "text": "инвестиционной",
@@ -5693,7 +6274,9 @@
                   "y": 2982,
                   "w": 308,
                   "h": 34,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b119-w4",
+                  "raw_id": "p1-r145-l1-w4"
                 },
                 {
                   "text": "от",
@@ -5701,7 +6284,9 @@
                   "y": 2990,
                   "w": 39,
                   "h": 21,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b119-w5",
+                  "raw_id": "p1-r145-l1-w3"
                 },
                 {
                   "text": "и",
@@ -5709,7 +6294,9 @@
                   "y": 2991,
                   "w": 19,
                   "h": 20,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b119-w6",
+                  "raw_id": "p1-r145-l1-w5"
                 },
                 {
                   "text": "деятельности",
@@ -5717,7 +6304,9 @@
                   "y": 3044,
                   "w": 246,
                   "h": 26,
-                  "confidence": 95
+                  "confidence": 95,
+                  "id": "p1-b119-w7",
+                  "raw_id": "p1-r146-l1-w1"
                 }
               ],
               "block_id": "p1-b119",
@@ -5751,7 +6340,9 @@
                   "y": 3038,
                   "w": 58,
                   "h": 30,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b120-w1",
+                  "raw_id": "p1-r147-l1-w1"
                 }
               ],
               "block_id": "p1-b120",
@@ -5782,7 +6373,8 @@
                   "y": 3030,
                   "w": 135,
                   "h": 46,
-                  "confidence": 10
+                  "confidence": 10,
+                  "id": "p1-b39-w1"
                 }
               ],
               "block_id": "p1-b39",
@@ -5811,7 +6403,8 @@
                   "y": 3029,
                   "w": 133,
                   "h": 47,
-                  "confidence": 8
+                  "confidence": 8,
+                  "id": "p1-b40-w1"
                 }
               ],
               "block_id": "p1-b40",
@@ -5848,7 +6441,9 @@
                   "y": 3072,
                   "w": 311,
                   "h": 60,
-                  "confidence": 90
+                  "confidence": 90,
+                  "id": "p1-b121-w1",
+                  "raw_id": "p1-r150-l1-w4"
                 },
                 {
                   "text": "(убыток)",
@@ -5856,7 +6451,9 @@
                   "y": 3075,
                   "w": 154,
                   "h": 53,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b121-w2",
+                  "raw_id": "p1-r150-l1-w2"
                 },
                 {
                   "text": "до",
@@ -5864,7 +6461,9 @@
                   "y": 3075,
                   "w": 42,
                   "h": 47,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b121-w3",
+                  "raw_id": "p1-r150-l1-w3"
                 },
                 {
                   "text": "|Прибыль",
@@ -5872,7 +6471,9 @@
                   "y": 3085,
                   "w": 180,
                   "h": 43,
-                  "confidence": 92
+                  "confidence": 92,
+                  "id": "p1-b121-w4",
+                  "raw_id": "p1-r150-l1-w1"
                 }
               ],
               "block_id": "p1-b121",
@@ -5903,7 +6504,9 @@
                   "y": 3089,
                   "w": 58,
                   "h": 30,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b122-w1",
+                  "raw_id": "p1-r151-l1-w1"
                 }
               ],
               "block_id": "p1-b122",
@@ -5934,7 +6537,8 @@
                   "y": 3081,
                   "w": 103,
                   "h": 42,
-                  "confidence": 60
+                  "confidence": 60,
+                  "id": "p1-b41-w1"
                 }
               ],
               "block_id": "p1-b41",
@@ -5963,7 +6567,8 @@
                   "y": 3080,
                   "w": 99,
                   "h": 42,
-                  "confidence": 95
+                  "confidence": 95,
+                  "id": "p1-b42-w1"
                 }
               ],
               "block_id": "p1-b42",
@@ -6000,7 +6605,9 @@
                   "y": 3132,
                   "w": 123,
                   "h": 48,
-                  "confidence": 0
+                  "confidence": 0,
+                  "id": "p1-b123-w1",
+                  "raw_id": "p1-r155-l1-w1"
                 },
                 {
                   "text": "прибыль",
@@ -6008,7 +6615,9 @@
                   "y": 3138,
                   "w": 157,
                   "h": 42,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b123-w2",
+                  "raw_id": "p1-r155-l1-w3"
                 },
                 {
                   "text": "на",
@@ -6016,7 +6625,9 @@
                   "y": 3149,
                   "w": 40,
                   "h": 21,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b123-w3",
+                  "raw_id": "p1-r155-l1-w2"
                 }
               ],
               "block_id": "p1-b123",
@@ -6046,7 +6657,9 @@
                   "y": 3141,
                   "w": 58,
                   "h": 32,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b124-w1",
+                  "raw_id": "p1-r154-l1-w1"
                 }
               ],
               "block_id": "p1-b124",
@@ -6077,7 +6690,8 @@
                   "y": 3131,
                   "w": 101,
                   "h": 49,
-                  "confidence": 87
+                  "confidence": 87,
+                  "id": "p1-b43-w1"
                 }
               ],
               "block_id": "p1-b43",
@@ -6106,7 +6720,8 @@
                   "y": 3130,
                   "w": 99,
                   "h": 50,
-                  "confidence": 9
+                  "confidence": 9,
+                  "id": "p1-b44-w1"
                 }
               ],
               "block_id": "p1-b44",
@@ -6143,7 +6758,9 @@
                   "y": 3180,
                   "w": 145,
                   "h": 43,
-                  "confidence": 94
+                  "confidence": 94,
+                  "id": "p1-b125-w1",
+                  "raw_id": "p1-r158-l1-w5"
                 },
                 {
                   "text": "Изменение",
@@ -6151,7 +6768,9 @@
                   "y": 3191,
                   "w": 203,
                   "h": 30,
-                  "confidence": 36
+                  "confidence": 36,
+                  "id": "p1-b125-w2",
+                  "raw_id": "p1-r158-l1-w2"
                 },
                 {
                   "text": "отложенных",
@@ -6159,7 +6778,9 @@
                   "y": 3200,
                   "w": 230,
                   "h": 32,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b125-w3",
+                  "raw_id": "p1-r158-l1-w3"
                 },
                 {
                   "text": "налоговых",
@@ -6167,7 +6788,9 @@
                   "y": 3201,
                   "w": 198,
                   "h": 31,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b125-w4",
+                  "raw_id": "p1-r158-l1-w4"
                 }
               ],
               "block_id": "p1-b125",
@@ -6198,7 +6821,9 @@
                   "y": 3194,
                   "w": 58,
                   "h": 31,
-                  "confidence": 91
+                  "confidence": 91,
+                  "id": "p1-b126-w1",
+                  "raw_id": "p1-r159-l1-w1"
                 }
               ],
               "block_id": "p1-b126",
@@ -6229,7 +6854,8 @@
                   "y": 3186,
                   "w": 28,
                   "h": 41,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b45-w1"
                 }
               ],
               "block_id": "p1-b45",
@@ -6266,7 +6892,9 @@
                   "y": 3243,
                   "w": 210,
                   "h": 39,
-                  "confidence": 70
+                  "confidence": 70,
+                  "id": "p1-b127-w1",
+                  "raw_id": "p1-r162-l1-w2"
                 },
                 {
                   "text": "обязательств",
@@ -6274,7 +6902,9 @@
                   "y": 3243,
                   "w": 239,
                   "h": 41,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b127-w2",
+                  "raw_id": "p1-r162-l1-w5"
                 },
                 {
                   "text": "отложенных",
@@ -6282,7 +6912,9 @@
                   "y": 3251,
                   "w": 230,
                   "h": 22,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b127-w3",
+                  "raw_id": "p1-r162-l1-w3"
                 },
                 {
                   "text": "налоговых",
@@ -6290,7 +6922,9 @@
                   "y": 3252,
                   "w": 198,
                   "h": 21,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b127-w4",
+                  "raw_id": "p1-r162-l1-w4"
                 }
               ],
               "block_id": "p1-b127",
@@ -6321,7 +6955,9 @@
                   "y": 3246,
                   "w": 58,
                   "h": 30,
-                  "confidence": 87
+                  "confidence": 87,
+                  "id": "p1-b128-w1",
+                  "raw_id": "p1-r161-l1-w1"
                 }
               ],
               "block_id": "p1-b128",
@@ -6360,7 +6996,9 @@
                   "y": 3287,
                   "w": 40,
                   "h": 53,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b129-w1",
+                  "raw_id": "p1-r163-l1-w6"
                 },
                 {
                   "text": "‚Прочие",
@@ -6368,7 +7006,9 @@
                   "y": 3291,
                   "w": 149,
                   "h": 42,
-                  "confidence": 47
+                  "confidence": 47,
+                  "id": "p1-b129-w2",
+                  "raw_id": "p1-r163-l1-w1"
                 },
                 {
                   "text": "сборы,",
@@ -6376,7 +7016,9 @@
                   "y": 3293,
                   "w": 122,
                   "h": 41,
-                  "confidence": 93
+                  "confidence": 93,
+                  "id": "p1-b129-w3",
+                  "raw_id": "p1-r163-l1-w4"
                 },
                 {
                   "text": "прибыли",
@@ -6384,7 +7026,9 @@
                   "y": 3294,
                   "w": 162,
                   "h": 41,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b129-w4",
+                  "raw_id": "p1-r163-l1-w7"
                 },
                 {
                   "text": "(дохода)",
@@ -6392,7 +7036,9 @@
                   "y": 3295,
                   "w": 157,
                   "h": 41,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b129-w5",
+                  "raw_id": "p1-r163-l1-w8"
                 },
                 {
                   "text": "налоги",
@@ -6400,7 +7046,9 @@
                   "y": 3302,
                   "w": 123,
                   "h": 21,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b129-w6",
+                  "raw_id": "p1-r163-l1-w2"
                 },
                 {
                   "text": "и",
@@ -6408,7 +7056,9 @@
                   "y": 3303,
                   "w": 19,
                   "h": 20,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b129-w7",
+                  "raw_id": "p1-r163-l1-w3"
                 },
                 {
                   "text": "исчисляемые",
@@ -6416,7 +7066,9 @@
                   "y": 3303,
                   "w": 301,
                   "h": 32,
-                  "confidence": 92
+                  "confidence": 92,
+                  "id": "p1-b129-w8",
+                  "raw_id": "p1-r163-l1-w5"
                 }
               ],
               "block_id": "p1-b129",
@@ -6451,7 +7103,9 @@
                   "y": 3297,
                   "w": 58,
                   "h": 30,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p1-b130-w1",
+                  "raw_id": "p1-r164-l1-w1"
                 }
               ],
               "block_id": "p1-b130",
@@ -6486,7 +7140,9 @@
                   "y": 3288,
                   "w": 1,
                   "h": 37,
-                  "confidence": 92
+                  "confidence": 92,
+                  "id": "p1-b143-w1",
+                  "raw_id": "p1-r165-l1-w1"
                 }
               ],
               "block_id": "p1-b143",
@@ -6518,6 +7174,9 @@
             "period": "2025"
           },
           "block_id": "p1-b0",
+          "word_ids": [
+            "p1-b24-w1"
+          ],
           "raw_words": []
         },
         {
@@ -6540,6 +7199,14 @@
             "period": "2025"
           },
           "block_id": "p1-b1",
+          "word_ids": [
+            "p1-b1-w1",
+            "p1-b1-w2",
+            "p1-b1-w3",
+            "p1-b1-w4",
+            "p1-b1-w5",
+            "p1-b1-w6"
+          ],
           "raw_words": [
             "p1-r13-l1-w1",
             "p1-r13-l1-w2",
@@ -6562,6 +7229,10 @@
           "field": "extra::Учетный номер плательщика",
           "table_cell": null,
           "block_id": "p1-b2",
+          "word_ids": [
+            "p1-b2-w1",
+            "p1-b2-w2"
+          ],
           "raw_words": [
             "p1-r15-l1-w1",
             "p1-r15-l1-w2"
@@ -6580,6 +7251,14 @@
           "field": "extra::Вид экономической деятельности",
           "table_cell": null,
           "block_id": "p1-b3",
+          "word_ids": [
+            "p1-b3-w1",
+            "p1-b3-w2",
+            "p1-b3-w3",
+            "p1-b3-w4",
+            "p1-b3-w5",
+            "p1-b3-w6"
+          ],
           "raw_words": [
             "p1-r17-l1-w1",
             "p1-r17-l1-w2",
@@ -6602,6 +7281,9 @@
           "field": "extra::Орган управления юридическое лицо без ведомственной подчиненности   единица измерения",
           "table_cell": null,
           "block_id": "p1-b4",
+          "word_ids": [
+            "p1-b4-w1"
+          ],
           "raw_words": [
             "p1-r23-l1-w1"
           ]
@@ -6619,6 +7301,15 @@
           "field": "extra::Адрес",
           "table_cell": null,
           "block_id": "p1-b5",
+          "word_ids": [
+            "p1-b5-w1",
+            "p1-b5-w2",
+            "p1-b5-w3",
+            "p1-b5-w4",
+            "p1-b5-w5",
+            "p1-b5-w6",
+            "p1-b5-w7"
+          ],
           "raw_words": [
             "p1-r25-l1-w1",
             "p1-r25-l1-w2",
@@ -6649,6 +7340,14 @@
             "period": "2025"
           },
           "block_id": "p1-b6",
+          "word_ids": [
+            "p1-b1-w1",
+            "p1-b1-w2",
+            "p1-b1-w3",
+            "p1-b1-w4",
+            "p1-b1-w5",
+            "p1-b1-w6"
+          ],
           "raw_words": [
             "p1-r13-l1-w1",
             "p1-r13-l1-w2",
@@ -6671,6 +7370,14 @@
           "field": "extra::Организационно-правовая форма",
           "table_cell": null,
           "block_id": "p1-b7",
+          "word_ids": [
+            "p1-b7-w1",
+            "p1-b7-w2",
+            "p1-b7-w3",
+            "p1-b7-w4",
+            "p1-b7-w5",
+            "p1-b7-w6"
+          ],
           "raw_words": [
             "p1-r19-l1-w1",
             "p1-r19-l1-w2",
@@ -6693,6 +7400,13 @@
           "field": "extra::Орган управления",
           "table_cell": null,
           "block_id": "p1-b8",
+          "word_ids": [
+            "p1-b8-w1",
+            "p1-b8-w2",
+            "p1-b8-w3",
+            "p1-b8-w4",
+            "p1-b8-w5"
+          ],
           "raw_words": [
             "p1-r21-l1-w1",
             "p1-r21-l1-w2",
@@ -6714,6 +7428,9 @@
           "field": "extra::Единица измерения",
           "table_cell": null,
           "block_id": "p1-b9",
+          "word_ids": [
+            "p1-b4-w1"
+          ],
           "raw_words": [
             "p1-r23-l1-w1"
           ]
@@ -6738,6 +7455,9 @@
             "period": "2025"
           },
           "block_id": "p1-b10",
+          "word_ids": [
+            "p1-b10-w1"
+          ],
           "raw_words": []
         },
         {
@@ -6760,6 +7480,9 @@
             "period": "2024"
           },
           "block_id": "p1-b11",
+          "word_ids": [
+            "p1-b11-w1"
+          ],
           "raw_words": []
         },
         {
@@ -6782,6 +7505,9 @@
             "period": "2025"
           },
           "block_id": "p1-b12",
+          "word_ids": [
+            "p1-b12-w1"
+          ],
           "raw_words": []
         },
         {
@@ -6804,6 +7530,9 @@
             "period": "2024"
           },
           "block_id": "p1-b13",
+          "word_ids": [
+            "p1-b13-w1"
+          ],
           "raw_words": []
         },
         {
@@ -6826,6 +7555,9 @@
             "period": "2025"
           },
           "block_id": "p1-b14",
+          "word_ids": [
+            "p1-b14-w1"
+          ],
           "raw_words": []
         },
         {
@@ -6848,6 +7580,10 @@
             "period": "2024"
           },
           "block_id": "p1-b15",
+          "word_ids": [
+            "p1-b15-w1",
+            "p1-b15-w2"
+          ],
           "raw_words": []
         },
         {
@@ -6870,6 +7606,9 @@
             "period": "2025"
           },
           "block_id": "p1-b16",
+          "word_ids": [
+            "p1-b16-w1"
+          ],
           "raw_words": []
         },
         {
@@ -6892,6 +7631,9 @@
             "period": "2024"
           },
           "block_id": "p1-b17",
+          "word_ids": [
+            "p1-b17-w1"
+          ],
           "raw_words": []
         },
         {
@@ -6914,6 +7656,9 @@
             "period": "2025"
           },
           "block_id": "p1-b18",
+          "word_ids": [
+            "p1-b18-w1"
+          ],
           "raw_words": []
         },
         {
@@ -6936,6 +7681,10 @@
             "period": "2024"
           },
           "block_id": "p1-b19",
+          "word_ids": [
+            "p1-b19-w1",
+            "p1-b19-w2"
+          ],
           "raw_words": []
         },
         {
@@ -6958,6 +7707,10 @@
             "period": "2025"
           },
           "block_id": "p1-b20",
+          "word_ids": [
+            "p1-b20-w1",
+            "p1-b20-w2"
+          ],
           "raw_words": []
         },
         {
@@ -6980,6 +7733,9 @@
             "period": "2024"
           },
           "block_id": "p1-b21",
+          "word_ids": [
+            "p1-b21-w1"
+          ],
           "raw_words": []
         },
         {
@@ -7002,6 +7758,10 @@
             "period": "2025"
           },
           "block_id": "p1-b22",
+          "word_ids": [
+            "p1-b22-w1",
+            "p1-b22-w2"
+          ],
           "raw_words": []
         },
         {
@@ -7024,6 +7784,10 @@
             "period": "2024"
           },
           "block_id": "p1-b23",
+          "word_ids": [
+            "p1-b23-w1",
+            "p1-b23-w2"
+          ],
           "raw_words": []
         },
         {
@@ -7046,6 +7810,9 @@
             "period": "2025"
           },
           "block_id": "p1-b24",
+          "word_ids": [
+            "p1-b24-w1"
+          ],
           "raw_words": []
         },
         {
@@ -7068,6 +7835,10 @@
             "period": "2024"
           },
           "block_id": "p1-b25",
+          "word_ids": [
+            "p1-b25-w1",
+            "p1-b25-w2"
+          ],
           "raw_words": []
         },
         {
@@ -7090,6 +7861,10 @@
             "period": "2025"
           },
           "block_id": "p1-b26",
+          "word_ids": [
+            "p1-b26-w1",
+            "p1-b26-w2"
+          ],
           "raw_words": []
         },
         {
@@ -7112,6 +7887,10 @@
             "period": "2024"
           },
           "block_id": "p1-b27",
+          "word_ids": [
+            "p1-b27-w1",
+            "p1-b27-w2"
+          ],
           "raw_words": []
         },
         {
@@ -7134,6 +7913,9 @@
             "period": "2025"
           },
           "block_id": "p1-b28",
+          "word_ids": [
+            "p1-b28-w1"
+          ],
           "raw_words": []
         },
         {
@@ -7156,6 +7938,9 @@
             "period": "2024"
           },
           "block_id": "p1-b29",
+          "word_ids": [
+            "p1-b29-w1"
+          ],
           "raw_words": []
         },
         {
@@ -7178,6 +7963,10 @@
             "period": "2025"
           },
           "block_id": "p1-b30",
+          "word_ids": [
+            "p1-b30-w1",
+            "p1-b30-w2"
+          ],
           "raw_words": []
         },
         {
@@ -7200,6 +7989,10 @@
             "period": "2024"
           },
           "block_id": "p1-b31",
+          "word_ids": [
+            "p1-b31-w1",
+            "p1-b31-w2"
+          ],
           "raw_words": []
         },
         {
@@ -7222,6 +8015,10 @@
             "period": "2025"
           },
           "block_id": "p1-b32",
+          "word_ids": [
+            "p1-b32-w1",
+            "p1-b32-w2"
+          ],
           "raw_words": []
         },
         {
@@ -7244,6 +8041,10 @@
             "period": "2025"
           },
           "block_id": "p1-b33",
+          "word_ids": [
+            "p1-b33-w1",
+            "p1-b33-w2"
+          ],
           "raw_words": []
         },
         {
@@ -7266,6 +8067,9 @@
             "period": "2024"
           },
           "block_id": "p1-b34",
+          "word_ids": [
+            "p1-b34-w1"
+          ],
           "raw_words": []
         },
         {
@@ -7288,6 +8092,9 @@
             "period": "2025"
           },
           "block_id": "p1-b35",
+          "word_ids": [
+            "p1-b35-w1"
+          ],
           "raw_words": []
         },
         {
@@ -7310,6 +8117,9 @@
             "period": "2024"
           },
           "block_id": "p1-b36",
+          "word_ids": [
+            "p1-b36-w1"
+          ],
           "raw_words": []
         },
         {
@@ -7332,6 +8142,9 @@
             "period": "2025"
           },
           "block_id": "p1-b37",
+          "word_ids": [
+            "p1-b37-w1"
+          ],
           "raw_words": []
         },
         {
@@ -7354,6 +8167,9 @@
             "period": "2024"
           },
           "block_id": "p1-b38",
+          "word_ids": [
+            "p1-b38-w1"
+          ],
           "raw_words": []
         },
         {
@@ -7376,6 +8192,9 @@
             "period": "2025"
           },
           "block_id": "p1-b39",
+          "word_ids": [
+            "p1-b39-w1"
+          ],
           "raw_words": []
         },
         {
@@ -7398,6 +8217,9 @@
             "period": "2024"
           },
           "block_id": "p1-b40",
+          "word_ids": [
+            "p1-b40-w1"
+          ],
           "raw_words": []
         },
         {
@@ -7420,6 +8242,9 @@
             "period": "2025"
           },
           "block_id": "p1-b41",
+          "word_ids": [
+            "p1-b41-w1"
+          ],
           "raw_words": []
         },
         {
@@ -7442,6 +8267,9 @@
             "period": "2024"
           },
           "block_id": "p1-b42",
+          "word_ids": [
+            "p1-b42-w1"
+          ],
           "raw_words": []
         },
         {
@@ -7464,6 +8292,9 @@
             "period": "2025"
           },
           "block_id": "p1-b43",
+          "word_ids": [
+            "p1-b43-w1"
+          ],
           "raw_words": []
         },
         {
@@ -7486,6 +8317,9 @@
             "period": "2024"
           },
           "block_id": "p1-b44",
+          "word_ids": [
+            "p1-b44-w1"
+          ],
           "raw_words": []
         },
         {
@@ -7508,6 +8342,9 @@
             "period": "2025"
           },
           "block_id": "p1-b45",
+          "word_ids": [
+            "p1-b45-w1"
+          ],
           "raw_words": []
         },
         {
@@ -7530,6 +8367,10 @@
             "period": "2025"
           },
           "block_id": "p1-b46",
+          "word_ids": [
+            "p1-b46-w1",
+            "p1-b46-w2"
+          ],
           "raw_words": []
         },
         {
@@ -7552,6 +8393,10 @@
             "period": "2024"
           },
           "block_id": "p1-b47",
+          "word_ids": [
+            "p1-b47-w1",
+            "p1-b47-w2"
+          ],
           "raw_words": []
         },
         {
@@ -7574,6 +8419,9 @@
             "period": "2025"
           },
           "block_id": "p1-b48",
+          "word_ids": [
+            "p1-b48-w1"
+          ],
           "raw_words": []
         },
         {
@@ -7596,6 +8444,9 @@
             "period": "2024"
           },
           "block_id": "p1-b49",
+          "word_ids": [
+            "p1-b49-w1"
+          ],
           "raw_words": []
         },
         {
@@ -7613,6 +8464,9 @@
             "column": 0
           },
           "block_id": "p1-b50",
+          "word_ids": [
+            "p1-b50-w1"
+          ],
           "raw_words": [
             "p1-r12-l1-w1"
           ]
@@ -7632,6 +8486,11 @@
             "column": 0
           },
           "block_id": "p1-b51",
+          "word_ids": [
+            "p1-b51-w1",
+            "p1-b51-w2",
+            "p1-b51-w3"
+          ],
           "raw_words": [
             "p1-r14-l1-w1",
             "p1-r14-l1-w2",
@@ -7653,6 +8512,11 @@
             "column": 0
           },
           "block_id": "p1-b52",
+          "word_ids": [
+            "p1-b52-w1",
+            "p1-b52-w2",
+            "p1-b52-w3"
+          ],
           "raw_words": [
             "p1-r16-l1-w1",
             "p1-r16-l1-w2",
@@ -7674,6 +8538,10 @@
             "column": 0
           },
           "block_id": "p1-b53",
+          "word_ids": [
+            "p1-b53-w1",
+            "p1-b53-w2"
+          ],
           "raw_words": [
             "p1-r18-l1-w1",
             "p1-r18-l1-w2"
@@ -7694,6 +8562,10 @@
             "column": 0
           },
           "block_id": "p1-b54",
+          "word_ids": [
+            "p1-b54-w1",
+            "p1-b54-w2"
+          ],
           "raw_words": [
             "p1-r20-l1-w1",
             "p1-r20-l1-w2"
@@ -7714,6 +8586,10 @@
             "column": 0
           },
           "block_id": "p1-b55",
+          "word_ids": [
+            "p1-b55-w1",
+            "p1-b55-w2"
+          ],
           "raw_words": [
             "p1-r22-l1-w1",
             "p1-r22-l1-w2"
@@ -7734,6 +8610,9 @@
             "column": 0
           },
           "block_id": "p1-b56",
+          "word_ids": [
+            "p1-b56-w1"
+          ],
           "raw_words": [
             "p1-r24-l1-w1"
           ]
@@ -7753,6 +8632,10 @@
             "column": 0
           },
           "block_id": "p1-b57",
+          "word_ids": [
+            "p1-b57-w1",
+            "p1-b57-w2"
+          ],
           "raw_words": [
             "p1-r26-l1-w1",
             "p1-r26-l1-w2"
@@ -7773,6 +8656,10 @@
             "column": 1
           },
           "block_id": "p1-b58",
+          "word_ids": [
+            "p1-b58-w1",
+            "p1-b58-w2"
+          ],
           "raw_words": [
             "p1-r27-l1-w1",
             "p1-r33-l1-w1"
@@ -7793,6 +8680,13 @@
             "column": 2
           },
           "block_id": "p1-b59",
+          "word_ids": [
+            "p1-b59-w1",
+            "p1-b59-w2",
+            "p1-b59-w3",
+            "p1-b59-w4",
+            "p1-b59-w5"
+          ],
           "raw_words": [
             "p1-r29-l1-w3",
             "p1-r28-l1-w1",
@@ -7816,6 +8710,13 @@
             "column": 3
           },
           "block_id": "p1-b60",
+          "word_ids": [
+            "p1-b60-w1",
+            "p1-b60-w2",
+            "p1-b60-w3",
+            "p1-b60-w4",
+            "p1-b60-w5"
+          ],
           "raw_words": [
             "p1-r30-l1-w2",
             "p1-r31-l1-w2",
@@ -7839,6 +8740,9 @@
             "column": 0
           },
           "block_id": "p1-b61",
+          "word_ids": [
+            "p1-b61-w1"
+          ],
           "raw_words": [
             "p1-r37-l1-w1"
           ]
@@ -7858,6 +8762,9 @@
             "column": 1
           },
           "block_id": "p1-b62",
+          "word_ids": [
+            "p1-b62-w1"
+          ],
           "raw_words": [
             "p1-r38-l1-w1"
           ]
@@ -7877,6 +8784,9 @@
             "column": 2
           },
           "block_id": "p1-b63",
+          "word_ids": [
+            "p1-b63-w1"
+          ],
           "raw_words": [
             "p1-r39-l1-w1"
           ]
@@ -7896,6 +8806,9 @@
             "column": 3
           },
           "block_id": "p1-b64",
+          "word_ids": [
+            "p1-b64-w1"
+          ],
           "raw_words": [
             "p1-r40-l1-w1"
           ]
@@ -7915,6 +8828,13 @@
             "column": 0
           },
           "block_id": "p1-b65",
+          "word_ids": [
+            "p1-b65-w1",
+            "p1-b65-w2",
+            "p1-b65-w3",
+            "p1-b65-w4",
+            "p1-b65-w5"
+          ],
           "raw_words": [
             "p1-r42-l1-w2",
             "p1-r42-l1-w1",
@@ -7938,6 +8858,9 @@
             "column": 1
           },
           "block_id": "p1-b66",
+          "word_ids": [
+            "p1-b66-w1"
+          ],
           "raw_words": [
             "p1-r43-l1-w1"
           ]
@@ -7957,6 +8880,14 @@
             "column": 0
           },
           "block_id": "p1-b67",
+          "word_ids": [
+            "p1-b67-w1",
+            "p1-b67-w2",
+            "p1-b67-w3",
+            "p1-b67-w4",
+            "p1-b67-w5",
+            "p1-b67-w6"
+          ],
           "raw_words": [
             "p1-r45-l1-w2",
             "p1-r45-l1-w3",
@@ -7981,6 +8912,9 @@
             "column": 1
           },
           "block_id": "p1-b68",
+          "word_ids": [
+            "p1-b68-w1"
+          ],
           "raw_words": [
             "p1-r48-l1-w1"
           ]
@@ -8000,6 +8934,10 @@
             "column": 0
           },
           "block_id": "p1-b69",
+          "word_ids": [
+            "p1-b69-w1",
+            "p1-b69-w2"
+          ],
           "raw_words": [
             "p1-r51-l1-w2",
             "p1-r51-l1-w1"
@@ -8020,6 +8958,9 @@
             "column": 1
           },
           "block_id": "p1-b70",
+          "word_ids": [
+            "p1-b70-w1"
+          ],
           "raw_words": [
             "p1-r52-l1-w1"
           ]
@@ -8039,6 +8980,10 @@
             "column": 0
           },
           "block_id": "p1-b71",
+          "word_ids": [
+            "p1-b71-w1",
+            "p1-b71-w2"
+          ],
           "raw_words": [
             "p1-r56-l1-w1",
             "p1-r56-l1-w2"
@@ -8059,6 +9004,9 @@
             "column": 1
           },
           "block_id": "p1-b72",
+          "word_ids": [
+            "p1-b72-w1"
+          ],
           "raw_words": [
             "p1-r57-l1-w1"
           ]
@@ -8078,6 +9026,11 @@
             "column": 0
           },
           "block_id": "p1-b73",
+          "word_ids": [
+            "p1-b73-w1",
+            "p1-b73-w2",
+            "p1-b73-w3"
+          ],
           "raw_words": [
             "p1-r60-l1-w1",
             "p1-r60-l1-w2",
@@ -8099,6 +9052,9 @@
             "column": 1
           },
           "block_id": "p1-b74",
+          "word_ids": [
+            "p1-b74-w1"
+          ],
           "raw_words": [
             "p1-r61-l1-w1"
           ]
@@ -8118,6 +9074,9 @@
             "column": 2
           },
           "block_id": "p1-b75",
+          "word_ids": [
+            "p1-b75-w1"
+          ],
           "raw_words": [
             "p1-r62-l1-w1"
           ]
@@ -8137,6 +9096,16 @@
             "column": 0
           },
           "block_id": "p1-b76",
+          "word_ids": [
+            "p1-b76-w1",
+            "p1-b76-w2",
+            "p1-b76-w3",
+            "p1-b76-w4",
+            "p1-b76-w5",
+            "p1-b76-w6",
+            "p1-b76-w7",
+            "p1-b76-w8"
+          ],
           "raw_words": [
             "p1-r63-l1-w1",
             "p1-r63-l1-w2",
@@ -8163,6 +9132,9 @@
             "column": 1
           },
           "block_id": "p1-b77",
+          "word_ids": [
+            "p1-b77-w1"
+          ],
           "raw_words": [
             "p1-r65-l1-w1"
           ]
@@ -8182,6 +9154,13 @@
             "column": 0
           },
           "block_id": "p1-b78",
+          "word_ids": [
+            "p1-b78-w1",
+            "p1-b78-w2",
+            "p1-b78-w3",
+            "p1-b78-w4",
+            "p1-b78-w5"
+          ],
           "raw_words": [
             "p1-r68-l1-w5",
             "p1-r68-l1-w1",
@@ -8205,6 +9184,9 @@
             "column": 1
           },
           "block_id": "p1-b79",
+          "word_ids": [
+            "p1-b79-w1"
+          ],
           "raw_words": [
             "p1-r69-l1-w1"
           ]
@@ -8224,6 +9206,13 @@
             "column": 0
           },
           "block_id": "p1-b80",
+          "word_ids": [
+            "p1-b80-w1",
+            "p1-b80-w2",
+            "p1-b80-w3",
+            "p1-b80-w4",
+            "p1-b80-w5"
+          ],
           "raw_words": [
             "p1-r73-l1-w1",
             "p1-r73-l1-w4",
@@ -8247,6 +9236,9 @@
             "column": 1
           },
           "block_id": "p1-b81",
+          "word_ids": [
+            "p1-b81-w1"
+          ],
           "raw_words": [
             "p1-r74-l1-w1"
           ]
@@ -8266,6 +9258,13 @@
             "column": 0
           },
           "block_id": "p1-b82",
+          "word_ids": [
+            "p1-b82-w1",
+            "p1-b82-w2",
+            "p1-b82-w3",
+            "p1-b82-w4",
+            "p1-b82-w5"
+          ],
           "raw_words": [
             "p1-r77-l1-w3",
             "p1-r77-l1-w1",
@@ -8289,6 +9288,9 @@
             "column": 1
           },
           "block_id": "p1-b83",
+          "word_ids": [
+            "p1-b83-w1"
+          ],
           "raw_words": [
             "p1-r78-l1-w1"
           ]
@@ -8308,6 +9310,12 @@
             "column": 0
           },
           "block_id": "p1-b84",
+          "word_ids": [
+            "p1-b84-w1",
+            "p1-b84-w2",
+            "p1-b84-w3",
+            "p1-b84-w4"
+          ],
           "raw_words": [
             "p1-r83-l1-w1",
             "p1-r83-l1-w3",
@@ -8330,6 +9338,9 @@
             "column": 1
           },
           "block_id": "p1-b85",
+          "word_ids": [
+            "p1-b85-w1"
+          ],
           "raw_words": [
             "p1-r81-l1-w1"
           ]
@@ -8349,6 +9360,22 @@
             "column": 0
           },
           "block_id": "p1-b86",
+          "word_ids": [
+            "p1-b86-w1",
+            "p1-b86-w2",
+            "p1-b86-w3",
+            "p1-b86-w4",
+            "p1-b86-w5",
+            "p1-b86-w6",
+            "p1-b86-w7",
+            "p1-b86-w8",
+            "p1-b86-w9",
+            "p1-b86-w10",
+            "p1-b86-w11",
+            "p1-b86-w12",
+            "p1-b86-w13",
+            "p1-b86-w14"
+          ],
           "raw_words": [
             "p1-r85-l1-w2",
             "p1-r85-l1-w3",
@@ -8381,6 +9408,9 @@
             "column": 1
           },
           "block_id": "p1-b87",
+          "word_ids": [
+            "p1-b87-w1"
+          ],
           "raw_words": [
             "p1-r88-l1-w1"
           ]
@@ -8400,6 +9430,10 @@
             "column": 2
           },
           "block_id": "p1-b88",
+          "word_ids": [
+            "p1-b88-w1",
+            "p1-b88-w2"
+          ],
           "raw_words": [
             "p1-r89-l1-w1",
             "p1-r89-l1-w2"
@@ -8420,6 +9454,9 @@
             "column": 3
           },
           "block_id": "p1-b89",
+          "word_ids": [
+            "p1-b89-w1"
+          ],
           "raw_words": []
         },
         {
@@ -8437,6 +9474,16 @@
             "column": 0
           },
           "block_id": "p1-b90",
+          "word_ids": [
+            "p1-b90-w1",
+            "p1-b90-w2",
+            "p1-b90-w3",
+            "p1-b90-w4",
+            "p1-b90-w5",
+            "p1-b90-w6",
+            "p1-b90-w7",
+            "p1-b90-w8"
+          ],
           "raw_words": [
             "p1-r91-l1-w1",
             "p1-r91-l1-w2",
@@ -8463,6 +9510,9 @@
             "column": 1
           },
           "block_id": "p1-b91",
+          "word_ids": [
+            "p1-b91-w1"
+          ],
           "raw_words": [
             "p1-r92-l1-w1"
           ]
@@ -8482,6 +9532,9 @@
             "column": 2
           },
           "block_id": "p1-b92",
+          "word_ids": [
+            "p1-b92-w1"
+          ],
           "raw_words": [
             "p1-r94-l1-w1"
           ]
@@ -8501,6 +9554,11 @@
             "column": 0
           },
           "block_id": "p1-b93",
+          "word_ids": [
+            "p1-b93-w1",
+            "p1-b93-w2",
+            "p1-b93-w3"
+          ],
           "raw_words": [
             "p1-r95-l1-w1",
             "p1-r95-l1-w3",
@@ -8522,6 +9580,9 @@
             "column": 1
           },
           "block_id": "p1-b94",
+          "word_ids": [
+            "p1-b94-w1"
+          ],
           "raw_words": [
             "p1-r96-l1-w1"
           ]
@@ -8541,6 +9602,13 @@
             "column": 0
           },
           "block_id": "p1-b95",
+          "word_ids": [
+            "p1-b95-w1",
+            "p1-b95-w2",
+            "p1-b95-w3",
+            "p1-b95-w4",
+            "p1-b95-w5"
+          ],
           "raw_words": [
             "p1-r99-l1-w4",
             "p1-r99-l1-w1",
@@ -8564,6 +9632,9 @@
             "column": 1
           },
           "block_id": "p1-b96",
+          "word_ids": [
+            "p1-b96-w1"
+          ],
           "raw_words": [
             "p1-r100-l1-w1"
           ]
@@ -8583,6 +9654,12 @@
             "column": 0
           },
           "block_id": "p1-b97",
+          "word_ids": [
+            "p1-b97-w1",
+            "p1-b97-w2",
+            "p1-b97-w3",
+            "p1-b97-w4"
+          ],
           "raw_words": [
             "p1-r101-l1-w1",
             "p1-r101-l1-w3",
@@ -8605,6 +9682,9 @@
             "column": 1
           },
           "block_id": "p1-b98",
+          "word_ids": [
+            "p1-b98-w1"
+          ],
           "raw_words": [
             "p1-r102-l1-w1"
           ]
@@ -8624,6 +9704,22 @@
             "column": 0
           },
           "block_id": "p1-b99",
+          "word_ids": [
+            "p1-b99-w1",
+            "p1-b99-w2",
+            "p1-b99-w3",
+            "p1-b99-w4",
+            "p1-b99-w5",
+            "p1-b99-w6",
+            "p1-b99-w7",
+            "p1-b99-w8",
+            "p1-b99-w9",
+            "p1-b99-w10",
+            "p1-b99-w11",
+            "p1-b99-w12",
+            "p1-b99-w13",
+            "p1-b99-w14"
+          ],
           "raw_words": [
             "p1-r105-l1-w1",
             "p1-r105-l1-w2",
@@ -8656,6 +9752,9 @@
             "column": 1
           },
           "block_id": "p1-b100",
+          "word_ids": [
+            "p1-b100-w1"
+          ],
           "raw_words": [
             "p1-r111-l1-w1"
           ]
@@ -8675,6 +9774,10 @@
             "column": 2
           },
           "block_id": "p1-b101",
+          "word_ids": [
+            "p1-b101-w1",
+            "p1-b101-w2"
+          ],
           "raw_words": [
             "p1-r112-l1-w2",
             "p1-r112-l1-w1"
@@ -8695,6 +9798,10 @@
             "column": 3
           },
           "block_id": "p1-b102",
+          "word_ids": [
+            "p1-b102-w1",
+            "p1-b102-w2"
+          ],
           "raw_words": [
             "p1-r113-l1-w1",
             "p1-r113-l1-w2"
@@ -8715,6 +9822,13 @@
             "column": 0
           },
           "block_id": "p1-b103",
+          "word_ids": [
+            "p1-b103-w1",
+            "p1-b103-w2",
+            "p1-b103-w3",
+            "p1-b103-w4",
+            "p1-b103-w5"
+          ],
           "raw_words": [
             "p1-r114-l1-w5",
             "p1-r114-l1-w4",
@@ -8738,6 +9852,9 @@
             "column": 1
           },
           "block_id": "p1-b104",
+          "word_ids": [
+            "p1-b104-w1"
+          ],
           "raw_words": [
             "p1-r115-l1-w1"
           ]
@@ -8757,6 +9874,12 @@
             "column": 0
           },
           "block_id": "p1-b105",
+          "word_ids": [
+            "p1-b105-w1",
+            "p1-b105-w2",
+            "p1-b105-w3",
+            "p1-b105-w4"
+          ],
           "raw_words": [
             "p1-r116-l1-w1",
             "p1-r116-l1-w3",
@@ -8779,6 +9902,9 @@
             "column": 1
           },
           "block_id": "p1-b106",
+          "word_ids": [
+            "p1-b106-w1"
+          ],
           "raw_words": []
         },
         {
@@ -8796,6 +9922,18 @@
             "column": 0
           },
           "block_id": "p1-b107",
+          "word_ids": [
+            "p1-b107-w1",
+            "p1-b107-w2",
+            "p1-b107-w3",
+            "p1-b107-w4",
+            "p1-b107-w5",
+            "p1-b107-w6",
+            "p1-b107-w7",
+            "p1-b107-w8",
+            "p1-b107-w9",
+            "p1-b107-w10"
+          ],
           "raw_words": [
             "p1-r120-l1-w2",
             "p1-r120-l1-w3",
@@ -8824,6 +9962,9 @@
             "column": 1
           },
           "block_id": "p1-b108",
+          "word_ids": [
+            "p1-b108-w1"
+          ],
           "raw_words": [
             "p1-r121-l1-w1"
           ]
@@ -8843,6 +9984,13 @@
             "column": 0
           },
           "block_id": "p1-b109",
+          "word_ids": [
+            "p1-b109-w1",
+            "p1-b109-w2",
+            "p1-b109-w3",
+            "p1-b109-w4",
+            "p1-b109-w5"
+          ],
           "raw_words": [
             "p1-r125-l1-w6",
             "p1-r125-l1-w3",
@@ -8866,6 +10014,9 @@
             "column": 1
           },
           "block_id": "p1-b110",
+          "word_ids": [
+            "p1-b110-w1"
+          ],
           "raw_words": [
             "p1-r126-l1-w1"
           ]
@@ -8885,6 +10036,12 @@
             "column": 0
           },
           "block_id": "p1-b111",
+          "word_ids": [
+            "p1-b111-w1",
+            "p1-b111-w2",
+            "p1-b111-w3",
+            "p1-b111-w4"
+          ],
           "raw_words": [
             "p1-r128-l1-w1",
             "p1-r128-l1-w3",
@@ -8907,6 +10064,9 @@
             "column": 1
           },
           "block_id": "p1-b112",
+          "word_ids": [
+            "p1-b112-w1"
+          ],
           "raw_words": [
             "p1-r129-l1-w1"
           ]
@@ -8926,6 +10086,14 @@
             "column": 0
           },
           "block_id": "p1-b113",
+          "word_ids": [
+            "p1-b113-w1",
+            "p1-b113-w2",
+            "p1-b113-w3",
+            "p1-b113-w4",
+            "p1-b113-w5",
+            "p1-b113-w6"
+          ],
           "raw_words": [
             "p1-r132-l1-w1",
             "p1-r132-l1-w2",
@@ -8950,6 +10118,9 @@
             "column": 1
           },
           "block_id": "p1-b114",
+          "word_ids": [
+            "p1-b114-w1"
+          ],
           "raw_words": [
             "p1-r134-l1-w1"
           ]
@@ -8969,6 +10140,15 @@
             "column": 0
           },
           "block_id": "p1-b115",
+          "word_ids": [
+            "p1-b115-w1",
+            "p1-b115-w2",
+            "p1-b115-w3",
+            "p1-b115-w4",
+            "p1-b115-w5",
+            "p1-b115-w6",
+            "p1-b115-w7"
+          ],
           "raw_words": [
             "p1-r139-l1-w7",
             "p1-r139-l1-w1",
@@ -8994,6 +10174,9 @@
             "column": 1
           },
           "block_id": "p1-b116",
+          "word_ids": [
+            "p1-b116-w1"
+          ],
           "raw_words": [
             "p1-r137-l1-w1"
           ]
@@ -9013,6 +10196,13 @@
             "column": 0
           },
           "block_id": "p1-b117",
+          "word_ids": [
+            "p1-b117-w1",
+            "p1-b117-w2",
+            "p1-b117-w3",
+            "p1-b117-w4",
+            "p1-b117-w5"
+          ],
           "raw_words": [
             "p1-r141-l1-w4",
             "p1-r141-l1-w1",
@@ -9036,6 +10226,9 @@
             "column": 1
           },
           "block_id": "p1-b118",
+          "word_ids": [
+            "p1-b118-w1"
+          ],
           "raw_words": [
             "p1-r142-l1-w1"
           ]
@@ -9055,6 +10248,15 @@
             "column": 0
           },
           "block_id": "p1-b119",
+          "word_ids": [
+            "p1-b119-w1",
+            "p1-b119-w2",
+            "p1-b119-w3",
+            "p1-b119-w4",
+            "p1-b119-w5",
+            "p1-b119-w6",
+            "p1-b119-w7"
+          ],
           "raw_words": [
             "p1-r145-l1-w1",
             "p1-r145-l1-w2",
@@ -9080,6 +10282,9 @@
             "column": 1
           },
           "block_id": "p1-b120",
+          "word_ids": [
+            "p1-b120-w1"
+          ],
           "raw_words": [
             "p1-r147-l1-w1"
           ]
@@ -9099,6 +10304,12 @@
             "column": 0
           },
           "block_id": "p1-b121",
+          "word_ids": [
+            "p1-b121-w1",
+            "p1-b121-w2",
+            "p1-b121-w3",
+            "p1-b121-w4"
+          ],
           "raw_words": [
             "p1-r150-l1-w4",
             "p1-r150-l1-w2",
@@ -9121,6 +10332,9 @@
             "column": 1
           },
           "block_id": "p1-b122",
+          "word_ids": [
+            "p1-b122-w1"
+          ],
           "raw_words": [
             "p1-r151-l1-w1"
           ]
@@ -9140,6 +10354,11 @@
             "column": 0
           },
           "block_id": "p1-b123",
+          "word_ids": [
+            "p1-b123-w1",
+            "p1-b123-w2",
+            "p1-b123-w3"
+          ],
           "raw_words": [
             "p1-r155-l1-w1",
             "p1-r155-l1-w3",
@@ -9161,6 +10380,9 @@
             "column": 1
           },
           "block_id": "p1-b124",
+          "word_ids": [
+            "p1-b124-w1"
+          ],
           "raw_words": [
             "p1-r154-l1-w1"
           ]
@@ -9180,6 +10402,12 @@
             "column": 0
           },
           "block_id": "p1-b125",
+          "word_ids": [
+            "p1-b125-w1",
+            "p1-b125-w2",
+            "p1-b125-w3",
+            "p1-b125-w4"
+          ],
           "raw_words": [
             "p1-r158-l1-w5",
             "p1-r158-l1-w2",
@@ -9202,6 +10430,9 @@
             "column": 1
           },
           "block_id": "p1-b126",
+          "word_ids": [
+            "p1-b126-w1"
+          ],
           "raw_words": [
             "p1-r159-l1-w1"
           ]
@@ -9221,6 +10452,12 @@
             "column": 0
           },
           "block_id": "p1-b127",
+          "word_ids": [
+            "p1-b127-w1",
+            "p1-b127-w2",
+            "p1-b127-w3",
+            "p1-b127-w4"
+          ],
           "raw_words": [
             "p1-r162-l1-w2",
             "p1-r162-l1-w5",
@@ -9243,6 +10480,9 @@
             "column": 1
           },
           "block_id": "p1-b128",
+          "word_ids": [
+            "p1-b128-w1"
+          ],
           "raw_words": [
             "p1-r161-l1-w1"
           ]
@@ -9262,6 +10502,16 @@
             "column": 0
           },
           "block_id": "p1-b129",
+          "word_ids": [
+            "p1-b129-w1",
+            "p1-b129-w2",
+            "p1-b129-w3",
+            "p1-b129-w4",
+            "p1-b129-w5",
+            "p1-b129-w6",
+            "p1-b129-w7",
+            "p1-b129-w8"
+          ],
           "raw_words": [
             "p1-r163-l1-w6",
             "p1-r163-l1-w1",
@@ -9288,6 +10538,9 @@
             "column": 1
           },
           "block_id": "p1-b130",
+          "word_ids": [
+            "p1-b130-w1"
+          ],
           "raw_words": [
             "p1-r164-l1-w1"
           ]
@@ -9304,6 +10557,10 @@
           },
           "confidence": 96,
           "block_id": "p1-b131",
+          "word_ids": [
+            "p1-b131-w1",
+            "p1-b131-w2"
+          ],
           "raw_words": [
             "p1-r1-l1-w1",
             "p1-r1-l1-w2"
@@ -9321,6 +10578,12 @@
           },
           "confidence": 96,
           "block_id": "p1-b132",
+          "word_ids": [
+            "p1-b132-w1",
+            "p1-b132-w2",
+            "p1-b132-w3",
+            "p1-b132-w4"
+          ],
           "raw_words": [
             "p1-r2-l1-w1",
             "p1-r2-l1-w2",
@@ -9340,6 +10603,12 @@
           },
           "confidence": 94,
           "block_id": "p1-b133",
+          "word_ids": [
+            "p1-b133-w1",
+            "p1-b133-w2",
+            "p1-b133-w3",
+            "p1-b133-w4"
+          ],
           "raw_words": [
             "p1-r3-l1-w1",
             "p1-r3-l1-w2",
@@ -9359,6 +10628,10 @@
           },
           "confidence": 95,
           "block_id": "p1-b134",
+          "word_ids": [
+            "p1-b134-w1",
+            "p1-b134-w2"
+          ],
           "raw_words": [
             "p1-r4-l1-w1",
             "p1-r4-l1-w2"
@@ -9376,6 +10649,11 @@
           },
           "confidence": 96,
           "block_id": "p1-b135",
+          "word_ids": [
+            "p1-b135-w1",
+            "p1-b135-w2",
+            "p1-b135-w3"
+          ],
           "raw_words": [
             "p1-r5-l1-w1",
             "p1-r5-l1-w2",
@@ -9394,6 +10672,9 @@
           },
           "confidence": 95,
           "block_id": "p1-b136",
+          "word_ids": [
+            "p1-b136-w1"
+          ],
           "raw_words": [
             "p1-r6-l1-w1"
           ]
@@ -9410,6 +10691,9 @@
           },
           "confidence": 94,
           "block_id": "p1-b137",
+          "word_ids": [
+            "p1-b137-w1"
+          ],
           "raw_words": [
             "p1-r7-l1-w1"
           ]
@@ -9426,6 +10710,12 @@
           },
           "confidence": 96,
           "block_id": "p1-b138",
+          "word_ids": [
+            "p1-b138-w1",
+            "p1-b138-w2",
+            "p1-b138-w3",
+            "p1-b138-w4"
+          ],
           "raw_words": [
             "p1-r8-l1-w1",
             "p1-r8-l1-w2",
@@ -9445,6 +10735,9 @@
           },
           "confidence": 95,
           "block_id": "p1-b139",
+          "word_ids": [
+            "p1-b139-w1"
+          ],
           "raw_words": [
             "p1-r9-l1-w1"
           ]
@@ -9461,6 +10754,11 @@
           },
           "confidence": 92,
           "block_id": "p1-b140",
+          "word_ids": [
+            "p1-b140-w1",
+            "p1-b140-w2",
+            "p1-b140-w3"
+          ],
           "raw_words": [
             "p1-r10-l1-w1",
             "p1-r10-l1-w2",
@@ -9479,6 +10777,10 @@
           },
           "confidence": 95,
           "block_id": "p1-b141",
+          "word_ids": [
+            "p1-b141-w1",
+            "p1-b141-w2"
+          ],
           "raw_words": [
             "p1-r11-l1-w1",
             "p1-r11-l1-w2"
@@ -9496,6 +10798,9 @@
           },
           "confidence": 84,
           "block_id": "p1-b142",
+          "word_ids": [
+            "p1-b142-w1"
+          ],
           "raw_words": [
             "p1-r45-l1-w1"
           ]
@@ -9512,6 +10817,9 @@
           },
           "confidence": 92,
           "block_id": "p1-b143",
+          "word_ids": [
+            "p1-b143-w1"
+          ],
           "raw_words": [
             "p1-r165-l1-w1"
           ]
@@ -12698,7 +14006,9 @@
                   "y": 112,
                   "w": 162,
                   "h": 43,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p2-b4-w1",
+                  "raw_id": "p2-r4-l1-w6"
                 },
                 {
                   "text": "(дохода)",
@@ -12706,7 +14016,9 @@
                   "y": 113,
                   "w": 156,
                   "h": 39,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p2-b4-w2",
+                  "raw_id": "p2-r4-l1-w7"
                 },
                 {
                   "text": "исчисляемые",
@@ -12714,7 +14026,9 @@
                   "y": 122,
                   "w": 242,
                   "h": 23,
-                  "confidence": 91
+                  "confidence": 91,
+                  "id": "p2-b4-w3",
+                  "raw_id": "p2-r4-l1-w4"
                 },
                 {
                   "text": "из",
@@ -12722,7 +14036,9 @@
                   "y": 122,
                   "w": 37,
                   "h": 23,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p2-b4-w4",
+                  "raw_id": "p2-r4-l1-w5"
                 },
                 {
                   "text": "п",
@@ -12730,7 +14046,9 @@
                   "y": 123,
                   "w": 21,
                   "h": 33,
-                  "confidence": 94
+                  "confidence": 94,
+                  "id": "p2-b4-w5",
+                  "raw_id": "p2-r4-l1-w2"
                 },
                 {
                   "text": "платежи,",
@@ -12738,7 +14056,9 @@
                   "y": 123,
                   "w": 163,
                   "h": 33,
-                  "confidence": 93
+                  "confidence": 93,
+                  "id": "p2-b4-w6",
+                  "raw_id": "p2-r4-l1-w3"
                 }
               ],
               "block_id": "p2-b4",
@@ -12771,7 +14091,9 @@
                   "y": 115,
                   "w": 62,
                   "h": 31,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p2-b5-w1",
+                  "raw_id": "p2-r2-l1-w1"
                 }
               ],
               "block_id": "p2-b5",
@@ -12800,7 +14122,9 @@
                   "y": 103,
                   "w": 24,
                   "h": 1,
-                  "confidence": 85
+                  "confidence": 85,
+                  "id": "p2-b6-w1",
+                  "raw_id": "p2-r1-l1-w1"
                 }
               ],
               "block_id": "p2-b6",
@@ -12839,7 +14163,9 @@
                   "y": 160,
                   "w": 138,
                   "h": 44,
-                  "confidence": 52
+                  "confidence": 52,
+                  "id": "p2-b7-w1",
+                  "raw_id": "p2-r5-l1-w1"
                 },
                 {
                   "text": "прибыль",
@@ -12847,7 +14173,9 @@
                   "y": 171,
                   "w": 159,
                   "h": 44,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p2-b7-w2",
+                  "raw_id": "p2-r5-l1-w2"
                 },
                 {
                   "text": "(убыток)",
@@ -12855,7 +14183,9 @@
                   "y": 171,
                   "w": 160,
                   "h": 44,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p2-b7-w3",
+                  "raw_id": "p2-r5-l1-w3"
                 }
               ],
               "block_id": "p2-b7",
@@ -12885,7 +14215,9 @@
                   "y": 171,
                   "w": 63,
                   "h": 33,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p2-b8-w1",
+                  "raw_id": "p2-r6-l1-w1"
                 }
               ],
               "block_id": "p2-b8",
@@ -12916,7 +14248,8 @@
                   "y": 168,
                   "w": 108,
                   "h": 45,
-                  "confidence": 94
+                  "confidence": 94,
+                  "id": "p2-b2-w1"
                 }
               ],
               "block_id": "p2-b2",
@@ -12945,7 +14278,8 @@
                   "y": 171,
                   "w": 102,
                   "h": 44,
-                  "confidence": 92
+                  "confidence": 92,
+                  "id": "p2-b0-w1"
                 }
               ],
               "block_id": "p2-b0",
@@ -12982,7 +14316,9 @@
                   "y": 217,
                   "w": 186,
                   "h": 49,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p2-b9-w1",
+                  "raw_id": "p2-r9-l1-w1"
                 },
                 {
                   "text": "активов,",
@@ -12990,7 +14326,9 @@
                   "y": 217,
                   "w": 154,
                   "h": 47,
-                  "confidence": 95
+                  "confidence": 95,
+                  "id": "p2-b9-w2",
+                  "raw_id": "p2-r9-l1-w5"
                 },
                 {
                   "text": "долгосрочных",
@@ -12998,7 +14336,9 @@
                   "y": 233,
                   "w": 267,
                   "h": 34,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p2-b9-w3",
+                  "raw_id": "p2-r9-l1-w4"
                 },
                 {
                   "text": "от",
@@ -13006,7 +14346,9 @@
                   "y": 234,
                   "w": 39,
                   "h": 23,
-                  "confidence": 95
+                  "confidence": 95,
+                  "id": "p2-b9-w4",
+                  "raw_id": "p2-r9-l1-w2"
                 },
                 {
                   "text": "переоценки",
@@ -13014,7 +14356,9 @@
                   "y": 234,
                   "w": 213,
                   "h": 33,
-                  "confidence": 95
+                  "confidence": 95,
+                  "id": "p2-b9-w5",
+                  "raw_id": "p2-r9-l1-w3"
                 },
                 {
                   "text": "(убыток)",
@@ -13022,7 +14366,9 @@
                   "y": 282,
                   "w": 162,
                   "h": 41,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p2-b9-w6",
+                  "raw_id": "p2-r11-l1-w6"
                 },
                 {
                   "text": "прибыль",
@@ -13030,7 +14376,9 @@
                   "y": 283,
                   "w": 160,
                   "h": 41,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p2-b9-w7",
+                  "raw_id": "p2-r11-l1-w5"
                 },
                 {
                   "text": "включаемый",
@@ -13038,7 +14386,9 @@
                   "y": 286,
                   "w": 235,
                   "h": 30,
-                  "confidence": 91
+                  "confidence": 91,
+                  "id": "p2-b9-w8",
+                  "raw_id": "p2-r11-l1-w2"
                 },
                 {
                   "text": "чистую",
@@ -13046,7 +14396,9 @@
                   "y": 292,
                   "w": 135,
                   "h": 32,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p2-b9-w9",
+                  "raw_id": "p2-r11-l1-w4"
                 },
                 {
                   "text": "в",
@@ -13054,7 +14406,9 @@
                   "y": 293,
                   "w": 17,
                   "h": 22,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p2-b9-w10",
+                  "raw_id": "p2-r11-l1-w3"
                 },
                 {
                   "text": "не",
@@ -13062,7 +14416,9 @@
                   "y": 294,
                   "w": 40,
                   "h": 21,
-                  "confidence": 93
+                  "confidence": 93,
+                  "id": "p2-b9-w11",
+                  "raw_id": "p2-r11-l1-w1"
                 }
               ],
               "block_id": "p2-b9",
@@ -13100,7 +14456,9 @@
                   "y": 281,
                   "w": 63,
                   "h": 32,
-                  "confidence": 97
+                  "confidence": 97,
+                  "id": "p2-b10-w1",
+                  "raw_id": "p2-r12-l1-w1"
                 }
               ],
               "block_id": "p2-b10",
@@ -13135,7 +14493,9 @@
                   "y": 283,
                   "w": 1,
                   "h": 13,
-                  "confidence": 82
+                  "confidence": 82,
+                  "id": "p2-b24-w1",
+                  "raw_id": "p2-r10-l1-w1"
                 }
               ],
               "block_id": "p2-b24",
@@ -13174,7 +14534,9 @@
                   "y": 334,
                   "w": 181,
                   "h": 41,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p2-b11-w1",
+                  "raw_id": "p2-r14-l1-w1"
                 },
                 {
                   "text": "от",
@@ -13182,7 +14544,9 @@
                   "y": 342,
                   "w": 39,
                   "h": 23,
-                  "confidence": 94
+                  "confidence": 94,
+                  "id": "p2-b11-w2",
+                  "raw_id": "p2-r14-l1-w2"
                 },
                 {
                   "text": "операции,",
@@ -13190,7 +14554,9 @@
                   "y": 342,
                   "w": 173,
                   "h": 32,
-                  "confidence": 95
+                  "confidence": 95,
+                  "id": "p2-b11-w3",
+                  "raw_id": "p2-r14-l1-w4"
                 },
                 {
                   "text": "не",
@@ -13198,7 +14564,9 @@
                   "y": 342,
                   "w": 40,
                   "h": 23,
-                  "confidence": 93
+                  "confidence": 93,
+                  "id": "p2-b11-w4",
+                  "raw_id": "p2-r14-l1-w5"
                 },
                 {
                   "text": "включаемый",
@@ -13206,7 +14574,9 @@
                   "y": 342,
                   "w": 235,
                   "h": 22,
-                  "confidence": 90
+                  "confidence": 90,
+                  "id": "p2-b11-w5",
+                  "raw_id": "p2-r14-l1-w6"
                 },
                 {
                   "text": "прочих",
@@ -13214,7 +14584,9 @@
                   "y": 343,
                   "w": 132,
                   "h": 31,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p2-b11-w6",
+                  "raw_id": "p2-r14-l1-w3"
                 },
                 {
                   "text": "(убыток)",
@@ -13222,7 +14594,9 @@
                   "y": 390,
                   "w": 161,
                   "h": 40,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p2-b11-w7",
+                  "raw_id": "p2-r16-l1-w4"
                 },
                 {
                   "text": "прибыль",
@@ -13230,7 +14604,9 @@
                   "y": 391,
                   "w": 159,
                   "h": 40,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p2-b11-w8",
+                  "raw_id": "p2-r16-l1-w3"
                 },
                 {
                   "text": "в",
@@ -13238,7 +14614,9 @@
                   "y": 401,
                   "w": 17,
                   "h": 21,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p2-b11-w9",
+                  "raw_id": "p2-r16-l1-w1"
                 },
                 {
                   "text": "чистую",
@@ -13246,7 +14624,9 @@
                   "y": 401,
                   "w": 146,
                   "h": 33,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p2-b11-w10",
+                  "raw_id": "p2-r16-l1-w2"
                 }
               ],
               "block_id": "p2-b11",
@@ -13283,7 +14663,9 @@
                   "y": 389,
                   "w": 62,
                   "h": 30,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p2-b12-w1",
+                  "raw_id": "p2-r15-l1-w1"
                 }
               ],
               "block_id": "p2-b12",
@@ -13322,7 +14704,9 @@
                   "y": 444,
                   "w": 159,
                   "h": 42,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p2-b13-w1",
+                  "raw_id": "p2-r20-l1-w2"
                 },
                 {
                   "text": "(убыток)",
@@ -13330,7 +14714,9 @@
                   "y": 444,
                   "w": 161,
                   "h": 40,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p2-b13-w2",
+                  "raw_id": "p2-r20-l1-w3"
                 },
                 {
                   "text": "Совокупная",
@@ -13338,7 +14724,9 @@
                   "y": 445,
                   "w": 220,
                   "h": 42,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p2-b13-w3",
+                  "raw_id": "p2-r20-l1-w1"
                 }
               ],
               "block_id": "p2-b13",
@@ -13368,7 +14756,8 @@
                   "y": 445,
                   "w": 63,
                   "h": 32,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p2-b14-w1"
                 }
               ],
               "block_id": "p2-b14",
@@ -13397,7 +14786,8 @@
                   "y": 439,
                   "w": 31,
                   "h": 43,
-                  "confidence": 87
+                  "confidence": 87,
+                  "id": "p2-b3-w1"
                 },
                 {
                   "text": "490",
@@ -13405,7 +14795,8 @@
                   "y": 439,
                   "w": 74,
                   "h": 44,
-                  "confidence": 87
+                  "confidence": 87,
+                  "id": "p2-b3-w2"
                 }
               ],
               "block_id": "p2-b3",
@@ -13434,7 +14825,8 @@
                   "y": 441,
                   "w": 21,
                   "h": 43,
-                  "confidence": 69
+                  "confidence": 69,
+                  "id": "p2-b1-w1"
                 },
                 {
                   "text": "187",
@@ -13442,7 +14834,8 @@
                   "y": 440,
                   "w": 70,
                   "h": 44,
-                  "confidence": 69
+                  "confidence": 69,
+                  "id": "p2-b1-w2"
                 }
               ],
               "block_id": "p2-b1",
@@ -13479,7 +14872,9 @@
                   "y": 497,
                   "w": 159,
                   "h": 43,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p2-b15-w1",
+                  "raw_id": "p2-r24-l1-w2"
                 },
                 {
                   "text": "(убыток)",
@@ -13487,7 +14882,9 @@
                   "y": 497,
                   "w": 177,
                   "h": 43,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p2-b15-w2",
+                  "raw_id": "p2-r24-l1-w3"
                 },
                 {
                   "text": "А.",
@@ -13495,7 +14892,9 @@
                   "y": 498,
                   "w": 62,
                   "h": 42,
-                  "confidence": 37
+                  "confidence": 37,
+                  "id": "p2-b15-w3",
+                  "raw_id": "p2-r25-l1-w1"
                 },
                 {
                   "text": "Базовая",
@@ -13503,7 +14902,9 @@
                   "y": 499,
                   "w": 142,
                   "h": 31,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p2-b15-w4",
+                  "raw_id": "p2-r24-l1-w1"
                 },
                 {
                   "text": "Ha",
@@ -13511,7 +14912,9 @@
                   "y": 507,
                   "w": 46,
                   "h": 30,
-                  "confidence": 91
+                  "confidence": 91,
+                  "id": "p2-b15-w5",
+                  "raw_id": "p2-r24-l1-w4"
                 },
                 {
                   "text": "акцию.",
@@ -13519,7 +14922,9 @@
                   "y": 507,
                   "w": 150,
                   "h": 33,
-                  "confidence": 95
+                  "confidence": 95,
+                  "id": "p2-b15-w6",
+                  "raw_id": "p2-r24-l1-w5"
                 }
               ],
               "block_id": "p2-b15",
@@ -13552,7 +14957,9 @@
                   "y": 499,
                   "w": 62,
                   "h": 32,
-                  "confidence": 95
+                  "confidence": 95,
+                  "id": "p2-b16-w1",
+                  "raw_id": "p2-r26-l1-w2"
                 }
               ],
               "block_id": "p2-b16",
@@ -13591,7 +14998,9 @@
                   "y": 544,
                   "w": 144,
                   "h": 65,
-                  "confidence": 25
+                  "confidence": 25,
+                  "id": "p2-b17-w1",
+                  "raw_id": "p2-r30-l1-w4"
                 },
                 {
                   "text": "прибыль",
@@ -13599,7 +15008,9 @@
                   "y": 551,
                   "w": 160,
                   "h": 42,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p2-b17-w2",
+                  "raw_id": "p2-r30-l1-w2"
                 },
                 {
                   "text": "Разводненная",
@@ -13607,7 +15018,9 @@
                   "y": 552,
                   "w": 254,
                   "h": 36,
-                  "confidence": 92
+                  "confidence": 92,
+                  "id": "p2-b17-w3",
+                  "raw_id": "p2-r30-l1-w1"
                 }
               ],
               "block_id": "p2-b17",
@@ -13637,7 +15050,9 @@
                   "y": 552,
                   "w": 63,
                   "h": 31,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p2-b18-w1",
+                  "raw_id": "p2-r33-l1-w2"
                 }
               ],
               "block_id": "p2-b18",
@@ -13666,7 +15081,9 @@
                   "y": 545,
                   "w": 21,
                   "h": 48,
-                  "confidence": 91
+                  "confidence": 91,
+                  "id": "p2-b19-w1",
+                  "raw_id": "p2-r35-l1-w1"
                 }
               ],
               "block_id": "p2-b19",
@@ -13695,7 +15112,9 @@
                   "y": 541,
                   "w": 61,
                   "h": 1,
-                  "confidence": 57
+                  "confidence": 57,
+                  "id": "p2-b20-w1",
+                  "raw_id": "p2-r29-l1-w1"
                 }
               ],
               "block_id": "p2-b20",
@@ -13734,7 +15153,9 @@
                   "y": 598,
                   "w": 31,
                   "h": 17,
-                  "confidence": 25
+                  "confidence": 25,
+                  "id": "p2-b21-w1",
+                  "raw_id": "p2-r32-l1-w1"
                 },
                 {
                   "text": "Me",
@@ -13742,7 +15163,9 @@
                   "y": 598,
                   "w": 32,
                   "h": 24,
-                  "confidence": 33
+                  "confidence": 33,
+                  "id": "p2-b21-w2",
+                  "raw_id": "p2-r32-l1-w2"
                 },
                 {
                   "text": "ff",
@@ -13750,7 +15173,9 @@
                   "y": 635,
                   "w": 33,
                   "h": 62,
-                  "confidence": 44
+                  "confidence": 44,
+                  "id": "p2-b21-w3",
+                  "raw_id": "p2-r38-l1-w1"
                 },
                 {
                   "text": "yee",
@@ -13758,7 +15183,9 @@
                   "y": 642,
                   "w": 79,
                   "h": 64,
-                  "confidence": 30
+                  "confidence": 30,
+                  "id": "p2-b21-w4",
+                  "raw_id": "p2-r44-l1-w1"
                 },
                 {
                   "text": "И",
@@ -13766,7 +15193,9 @@
                   "y": 651,
                   "w": 29,
                   "h": 43,
-                  "confidence": 21
+                  "confidence": 21,
+                  "id": "p2-b21-w5",
+                  "raw_id": "p2-r37-l1-w1"
                 },
                 {
                   "text": "Руководитель",
@@ -13774,7 +15203,9 @@
                   "y": 669,
                   "w": 268,
                   "h": 43,
-                  "confidence": 95
+                  "confidence": 95,
+                  "id": "p2-b21-w6",
+                  "raw_id": "p2-r40-l1-w1"
                 },
                 {
                   "text": "‘ed",
@@ -13782,7 +15213,9 @@
                   "y": 677,
                   "w": 27,
                   "h": 23,
-                  "confidence": 50
+                  "confidence": 50,
+                  "id": "p2-b21-w7",
+                  "raw_id": "p2-r39-l1-w1"
                 },
                 {
                   "text": "а?",
@@ -13790,7 +15223,9 @@
                   "y": 681,
                   "w": 46,
                   "h": 20,
-                  "confidence": 44
+                  "confidence": 44,
+                  "id": "p2-b21-w8",
+                  "raw_id": "p2-r41-l1-w1"
                 },
                 {
                   "text": "АА",
@@ -13798,7 +15233,9 @@
                   "y": 689,
                   "w": 66,
                   "h": 31,
-                  "confidence": 23
+                  "confidence": 23,
+                  "id": "p2-b21-w9",
+                  "raw_id": "p2-r42-l1-w1"
                 }
               ],
               "block_id": "p2-b21",
@@ -13845,7 +15282,9 @@
                   "y": 700,
                   "w": 45,
                   "h": 59,
-                  "confidence": 0
+                  "confidence": 0,
+                  "id": "p2-b22-w1",
+                  "raw_id": "p2-r47-l1-w3"
                 },
                 {
                   "text": "A",
@@ -13853,7 +15292,9 @@
                   "y": 720,
                   "w": 19,
                   "h": 62,
-                  "confidence": 75
+                  "confidence": 75,
+                  "id": "p2-b22-w2",
+                  "raw_id": "p2-r50-l1-w2"
                 },
                 {
                   "text": "65)",
@@ -13861,7 +15302,9 @@
                   "y": 725,
                   "w": 42,
                   "h": 34,
-                  "confidence": 52
+                  "confidence": 52,
+                  "id": "p2-b22-w3",
+                  "raw_id": "p2-r47-l1-w4"
                 },
                 {
                   "text": "Benen",
@@ -13869,7 +15312,9 @@
                   "y": 731,
                   "w": 84,
                   "h": 48,
-                  "confidence": 8
+                  "confidence": 8,
+                  "id": "p2-b22-w4",
+                  "raw_id": "p2-r50-l1-w1"
                 },
                 {
                   "text": "Главный",
@@ -13877,7 +15322,9 @@
                   "y": 774,
                   "w": 169,
                   "h": 31,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p2-b22-w5",
+                  "raw_id": "p2-r49-l1-w1"
                 }
               ],
               "block_id": "p2-b22",
@@ -13920,7 +15367,9 @@
                   "y": 883,
                   "w": 99,
                   "h": 24,
-                  "confidence": 31
+                  "confidence": 31,
+                  "id": "p2-b23-w1",
+                  "raw_id": "p2-r57-l1-w1"
                 },
                 {
                   "text": "февраля",
@@ -13928,7 +15377,9 @@
                   "y": 889,
                   "w": 155,
                   "h": 43,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p2-b23-w2",
+                  "raw_id": "p2-r56-l1-w2"
                 },
                 {
                   "text": "16",
@@ -13936,7 +15387,9 @@
                   "y": 890,
                   "w": 37,
                   "h": 32,
-                  "confidence": 96
+                  "confidence": 96,
+                  "id": "p2-b23-w3",
+                  "raw_id": "p2-r56-l1-w1"
                 },
                 {
                   "text": "2026г.",
@@ -13944,7 +15397,9 @@
                   "y": 890,
                   "w": 141,
                   "h": 32,
-                  "confidence": 91
+                  "confidence": 91,
+                  "id": "p2-b23-w4",
+                  "raw_id": "p2-r56-l1-w3"
                 },
                 {
                   "text": "\"orgen™",
@@ -13952,7 +15407,9 @@
                   "y": 905,
                   "w": 129,
                   "h": 26,
-                  "confidence": 12
+                  "confidence": 12,
+                  "id": "p2-b23-w5",
+                  "raw_id": "p2-r58-l1-w1"
                 }
               ],
               "block_id": "p2-b23",
@@ -13991,7 +15448,9 @@
                   "y": 942,
                   "w": 66,
                   "h": 17,
-                  "confidence": 61
+                  "confidence": 61,
+                  "id": "p2-b25-w1",
+                  "raw_id": "p2-r59-l1-w2"
                 },
                 {
                   "text": "oes",
@@ -13999,7 +15458,9 @@
                   "y": 926,
                   "w": 44,
                   "h": 43,
-                  "confidence": 29
+                  "confidence": 29,
+                  "id": "p2-b25-w2",
+                  "raw_id": "p2-r59-l1-w3"
                 }
               ],
               "block_id": "p2-b25",
@@ -14035,7 +15496,9 @@
                   "y": 957,
                   "w": 42,
                   "h": 25,
-                  "confidence": 46
+                  "confidence": 46,
+                  "id": "p2-b26-w1",
+                  "raw_id": "p2-r60-l1-w1"
                 },
                 {
                   "text": "ры",
@@ -14043,7 +15506,9 @@
                   "y": 966,
                   "w": 67,
                   "h": 23,
-                  "confidence": 23
+                  "confidence": 23,
+                  "id": "p2-b26-w2",
+                  "raw_id": "p2-r60-l1-w2"
                 },
                 {
                   "text": "mma",
@@ -14051,7 +15516,9 @@
                   "y": 954,
                   "w": 80,
                   "h": 31,
-                  "confidence": 50
+                  "confidence": 50,
+                  "id": "p2-b26-w3",
+                  "raw_id": "p2-r60-l1-w3"
                 }
               ],
               "block_id": "p2-b26",
@@ -14085,6 +15552,9 @@
             "period": "2024"
           },
           "block_id": "p2-b0",
+          "word_ids": [
+            "p2-b0-w1"
+          ],
           "raw_words": []
         },
         {
@@ -14107,6 +15577,10 @@
             "period": "2024"
           },
           "block_id": "p2-b1",
+          "word_ids": [
+            "p2-b1-w1",
+            "p2-b1-w2"
+          ],
           "raw_words": []
         },
         {
@@ -14129,6 +15603,9 @@
             "period": "2025"
           },
           "block_id": "p2-b2",
+          "word_ids": [
+            "p2-b2-w1"
+          ],
           "raw_words": []
         },
         {
@@ -14151,6 +15628,10 @@
             "period": "2025"
           },
           "block_id": "p2-b3",
+          "word_ids": [
+            "p2-b3-w1",
+            "p2-b3-w2"
+          ],
           "raw_words": []
         },
         {
@@ -14168,6 +15649,14 @@
             "column": 0
           },
           "block_id": "p2-b4",
+          "word_ids": [
+            "p2-b4-w1",
+            "p2-b4-w2",
+            "p2-b4-w3",
+            "p2-b4-w4",
+            "p2-b4-w5",
+            "p2-b4-w6"
+          ],
           "raw_words": [
             "p2-r4-l1-w6",
             "p2-r4-l1-w7",
@@ -14192,6 +15681,9 @@
             "column": 1
           },
           "block_id": "p2-b5",
+          "word_ids": [
+            "p2-b5-w1"
+          ],
           "raw_words": [
             "p2-r2-l1-w1"
           ]
@@ -14211,6 +15703,9 @@
             "column": 3
           },
           "block_id": "p2-b6",
+          "word_ids": [
+            "p2-b6-w1"
+          ],
           "raw_words": [
             "p2-r1-l1-w1"
           ]
@@ -14230,6 +15725,11 @@
             "column": 0
           },
           "block_id": "p2-b7",
+          "word_ids": [
+            "p2-b7-w1",
+            "p2-b7-w2",
+            "p2-b7-w3"
+          ],
           "raw_words": [
             "p2-r5-l1-w1",
             "p2-r5-l1-w2",
@@ -14251,6 +15751,9 @@
             "column": 1
           },
           "block_id": "p2-b8",
+          "word_ids": [
+            "p2-b8-w1"
+          ],
           "raw_words": [
             "p2-r6-l1-w1"
           ]
@@ -14270,6 +15773,19 @@
             "column": 0
           },
           "block_id": "p2-b9",
+          "word_ids": [
+            "p2-b9-w1",
+            "p2-b9-w2",
+            "p2-b9-w3",
+            "p2-b9-w4",
+            "p2-b9-w5",
+            "p2-b9-w6",
+            "p2-b9-w7",
+            "p2-b9-w8",
+            "p2-b9-w9",
+            "p2-b9-w10",
+            "p2-b9-w11"
+          ],
           "raw_words": [
             "p2-r9-l1-w1",
             "p2-r9-l1-w5",
@@ -14299,6 +15815,9 @@
             "column": 1
           },
           "block_id": "p2-b10",
+          "word_ids": [
+            "p2-b10-w1"
+          ],
           "raw_words": [
             "p2-r12-l1-w1"
           ]
@@ -14318,6 +15837,18 @@
             "column": 0
           },
           "block_id": "p2-b11",
+          "word_ids": [
+            "p2-b11-w1",
+            "p2-b11-w2",
+            "p2-b11-w3",
+            "p2-b11-w4",
+            "p2-b11-w5",
+            "p2-b11-w6",
+            "p2-b11-w7",
+            "p2-b11-w8",
+            "p2-b11-w9",
+            "p2-b11-w10"
+          ],
           "raw_words": [
             "p2-r14-l1-w1",
             "p2-r14-l1-w2",
@@ -14346,6 +15877,9 @@
             "column": 1
           },
           "block_id": "p2-b12",
+          "word_ids": [
+            "p2-b12-w1"
+          ],
           "raw_words": [
             "p2-r15-l1-w1"
           ]
@@ -14365,6 +15899,11 @@
             "column": 0
           },
           "block_id": "p2-b13",
+          "word_ids": [
+            "p2-b13-w1",
+            "p2-b13-w2",
+            "p2-b13-w3"
+          ],
           "raw_words": [
             "p2-r20-l1-w2",
             "p2-r20-l1-w3",
@@ -14386,6 +15925,9 @@
             "column": 1
           },
           "block_id": "p2-b14",
+          "word_ids": [
+            "p2-b14-w1"
+          ],
           "raw_words": []
         },
         {
@@ -14403,6 +15945,14 @@
             "column": 0
           },
           "block_id": "p2-b15",
+          "word_ids": [
+            "p2-b15-w1",
+            "p2-b15-w2",
+            "p2-b15-w3",
+            "p2-b15-w4",
+            "p2-b15-w5",
+            "p2-b15-w6"
+          ],
           "raw_words": [
             "p2-r24-l1-w2",
             "p2-r24-l1-w3",
@@ -14427,6 +15977,9 @@
             "column": 1
           },
           "block_id": "p2-b16",
+          "word_ids": [
+            "p2-b16-w1"
+          ],
           "raw_words": [
             "p2-r26-l1-w2"
           ]
@@ -14446,6 +15999,11 @@
             "column": 0
           },
           "block_id": "p2-b17",
+          "word_ids": [
+            "p2-b17-w1",
+            "p2-b17-w2",
+            "p2-b17-w3"
+          ],
           "raw_words": [
             "p2-r30-l1-w4",
             "p2-r30-l1-w2",
@@ -14467,6 +16025,9 @@
             "column": 1
           },
           "block_id": "p2-b18",
+          "word_ids": [
+            "p2-b18-w1"
+          ],
           "raw_words": [
             "p2-r33-l1-w2"
           ]
@@ -14486,6 +16047,9 @@
             "column": 2
           },
           "block_id": "p2-b19",
+          "word_ids": [
+            "p2-b19-w1"
+          ],
           "raw_words": [
             "p2-r35-l1-w1"
           ]
@@ -14505,6 +16069,9 @@
             "column": 3
           },
           "block_id": "p2-b20",
+          "word_ids": [
+            "p2-b20-w1"
+          ],
           "raw_words": [
             "p2-r29-l1-w1"
           ]
@@ -14524,6 +16091,17 @@
             "column": 0
           },
           "block_id": "p2-b21",
+          "word_ids": [
+            "p2-b21-w1",
+            "p2-b21-w2",
+            "p2-b21-w3",
+            "p2-b21-w4",
+            "p2-b21-w5",
+            "p2-b21-w6",
+            "p2-b21-w7",
+            "p2-b21-w8",
+            "p2-b21-w9"
+          ],
           "raw_words": [
             "p2-r32-l1-w1",
             "p2-r32-l1-w2",
@@ -14551,6 +16129,13 @@
             "column": 0
           },
           "block_id": "p2-b22",
+          "word_ids": [
+            "p2-b22-w1",
+            "p2-b22-w2",
+            "p2-b22-w3",
+            "p2-b22-w4",
+            "p2-b22-w5"
+          ],
           "raw_words": [
             "p2-r47-l1-w3",
             "p2-r50-l1-w2",
@@ -14574,6 +16159,13 @@
             "column": 0
           },
           "block_id": "p2-b23",
+          "word_ids": [
+            "p2-b23-w1",
+            "p2-b23-w2",
+            "p2-b23-w3",
+            "p2-b23-w4",
+            "p2-b23-w5"
+          ],
           "raw_words": [
             "p2-r57-l1-w1",
             "p2-r56-l1-w2",
@@ -14594,6 +16186,9 @@
           },
           "confidence": 82,
           "block_id": "p2-b24",
+          "word_ids": [
+            "p2-b24-w1"
+          ],
           "raw_words": [
             "p2-r10-l1-w1"
           ]
@@ -14610,6 +16205,10 @@
           },
           "confidence": 29,
           "block_id": "p2-b25",
+          "word_ids": [
+            "p2-b25-w1",
+            "p2-b25-w2"
+          ],
           "raw_words": [
             "p2-r59-l1-w2",
             "p2-r59-l1-w3"
@@ -14627,6 +16226,11 @@
           },
           "confidence": 23,
           "block_id": "p2-b26",
+          "word_ids": [
+            "p2-b26-w1",
+            "p2-b26-w2",
+            "p2-b26-w3"
+          ],
           "raw_words": [
             "p2-r60-l1-w1",
             "p2-r60-l1-w2",
