@@ -300,6 +300,22 @@
   .bar-toggles .vis-btn { width: 100%; }
   .bar-toggles .vis-btn.switch::after { margin-left: auto; }
 
+  /* Слои: меню с галочками поверх документа */
+  .layers-menu {
+    display: none; position: fixed; z-index: 200; min-width: 300px; padding: 8px;
+    background: var(--surface); border: 1px solid var(--accent); border-radius: 10px;
+    box-shadow: 0 12px 32px rgba(0,0,0,.55);
+  }
+  .layers-menu.open { display: block; }
+  .layer-row { display: grid; grid-template-columns: 18px 14px auto; column-gap: 8px; align-items: center;
+               padding: 6px 8px; border-radius: 6px; cursor: pointer; }
+  .layer-row:hover { background: var(--card); }
+  .layer-row input { accent-color: var(--accent); width: 16px; height: 16px; cursor: pointer; }
+  .layer-swatch { width: 14px; height: 14px; border-radius: 3px; }
+  .layer-name { font-size: 13px; font-weight: 600; color: var(--text); }
+  .layer-hint { grid-column: 3; font-size: 11px; color: var(--muted); }
+  .parse-bar-actions .layers-btn { font-family: var(--mono); }
+
   /* Закреплённый блок (щелчок по блоку или ссылка на блок) */
   .block-pin { display: none; align-items: center; gap: 6px; }
   .block-pin.visible { display: inline-flex; }
@@ -314,6 +330,8 @@
 
 
 <main>
+  <!-- Меню слоёв: снаружи строки над документом, иначе его обрежет -->
+  <div class="layers-menu" id="layersMenu" onclick="event.stopPropagation()"></div>
   <!-- Просмотр ОДНОГО разбора: /view?id=<ID разбора> -->
     <div class="workspace">
 
@@ -344,6 +362,8 @@
               <button class="btn btn-secondary" id="blockLinkBtn" onclick="copyBlockLink()" title="Ссылка, по которой откроется этот разбор с выделенным блоком или словом. Отдельные слова — переключатель «По словам»">🔗 Ссылка на блок</button>
               <button class="btn btn-secondary" onclick="unpinStep()" title="Снять выделение (Esc)">✕</button>
             </span>
+            <button class="btn btn-secondary layers-btn" id="layersBtn" onclick="toggleLayersMenu(event)"
+                    title="Слои: части JSON разбора, которые можно показать поверх документа">Слои 1/5 ▾</button>
             <button class="btn btn-primary" onclick="copyParseLink()">⎘ Ссылка на результат</button>
           </div>
           <span id="parseBarFile" style="display:none"></span>
@@ -1216,6 +1236,8 @@ function redrawCanvas() {
   const canvas = document.getElementById('highlightCanvas');
   const ctx    = canvas.getContext('2d');
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+  // Слои (кнопка «Слои») рисуются поверх всего остального — при любом выходе ниже
+  try {
 
   // Подсветка слева выключена пользователем — оставляем канвас пустым,
   // независимо от того, что там есть в маппинге
@@ -1244,6 +1266,9 @@ function redrawCanvas() {
   // Акцент при наведении на конкретное поле
   const fieldName = getActiveFieldName();
   if (fieldName) drawEmphasis(ctx, mapping, fieldName, parsed);
+  } finally {
+    drawLayers(ctx, getPreviewPageData(), getPreviewMapping());
+  }
 }
 
 function clearHighlights() {
@@ -1470,6 +1495,7 @@ function resultToView(result) {
       lines: page.lines || [],
       segments: page.segments || [],          // весь текст страницы блоками (формат 1.2)
       table: (result.tables || []).find(t => t.page === n) || null,
+      table_grid: page.table_grid || null,          // линии таблицы — слой «Таблица»
     });
   }
   const placed = new Set();
@@ -1891,8 +1917,12 @@ function drawSegmentBlock(ctx, seg, solid, active) {
 }
 
 function drawSegmentsLayer(ctx, pd, links, solid, side) {
-  const segs = visibleSegments(pd, side);
-  if (!segs.length && !pinnedOn(pd)) return;       // справа текст скрыт и закреплённого блока нет
+  // Слой «Блоки» выключен — блоков не видно, кроме того, на который навели
+  // или который закреплён (иначе непонятно, что выбрано)
+  const blocksOn = state.layers.blocks;
+  const segs = blocksOn ? visibleSegments(pd, side) : [];
+  const activeOnly = !blocksOn && !(side === 'right' && !_rightTextVisible);
+  if (!segs.length && !pinnedOn(pd) && !(activeOnly && (state.activeSegment != null || state.hoverWord))) return;
   const active = activeSegmentIds(pd, links);
   // Блок закреплён (щелчком или по ссылке) — остальное приглушаем, чтобы он
   // сразу бросался в глаза, но было видно, где он стоит на листе
@@ -1903,7 +1933,8 @@ function drawSegmentsLayer(ctx, pd, links, solid, side) {
   ctx.restore();
   // выделенные — поверх остальных, чтобы свечение не перекрывали соседи;
   // при скрытом тексте справа — только закреплённый блок
-  const shown = segs.length ? pd.segments : pd.segments.filter(seg => isPinnedSeg(pd, seg));
+  const shown = segs.length ? pd.segments
+    : pd.segments.filter(seg => isPinnedSeg(pd, seg) || (activeOnly && active.has(seg.id)));
   shown.forEach(seg => { if (active.has(seg.id)) drawSegmentBlock(ctx, seg, solid, true); });
   if (dim && state.pinned.raw) drawPinnedRaw(ctx, state.pinned.raw);
   if (dim && state.pinned.word) drawPinnedRaw(ctx, state.pinned.word);   // закреплённое слово
@@ -2084,6 +2115,131 @@ function relatedForSegment(pd, seg) {
     }
   }
   return out;
+}
+
+// ════════════════════════════════════════════════
+// СЛОИ: части JSON, которые включаются галочками поверх обоих листов
+//   Блоки       — pages[].segments: наши итоговые блоки (включён по умолчанию)
+//   Слова OCR   — сырой JSON: каждое слово, как его прочитал Tesseract
+//   Строки OCR  — сырой JSON: строки, как их собрал Tesseract
+//   Таблица     — pages[].table_grid: найденные линии таблицы
+//   Поля        — documents[].fields: найденные значения, цветом поля
+// ════════════════════════════════════════════════
+const LAYERS = [
+  { key: 'blocks',   name: 'Блоки',      hint: 'итоговые блоки текста',             color: '#3b82f6' },
+  { key: 'ocrWords', name: 'Слова OCR',  hint: 'слова, как их прочитал Tesseract',  color: '#f59e0b' },
+  { key: 'ocrLines', name: 'Строки OCR', hint: 'строки, как их собрал Tesseract',   color: '#a855f7' },
+  { key: 'table',    name: 'Таблица',    hint: 'найденные линии строк и граф',      color: '#16a34a' },
+  { key: 'fields',   name: 'Поля',       hint: 'найденные значения полей',          color: '#ec4899' },
+];
+state.layers = { blocks: true, ocrWords: false, ocrLines: false, table: false, fields: false };
+state.raw = null;              // сырой JSON разбора — грузится, когда нужен слой OCR
+state.rawLoading = null;
+
+function renderLayersMenu() {
+  const menu = document.getElementById('layersMenu');
+  if (!menu) return;
+  menu.innerHTML = LAYERS.map(l => `
+    <label class="layer-row">
+      <input type="checkbox" ${state.layers[l.key] ? 'checked' : ''} onchange="setLayer('${l.key}', this.checked)">
+      <span class="layer-swatch" style="background:${l.color}"></span>
+      <span class="layer-name">${l.name}</span>
+      <span class="layer-hint">${l.hint}</span>
+    </label>`).join('');
+  const on = LAYERS.filter(l => state.layers[l.key]).length;
+  document.getElementById('layersBtn').textContent = `Слои ${on}/${LAYERS.length} ▾`;
+}
+
+function toggleLayersMenu(event) {
+  if (event) event.stopPropagation();
+  const menu = document.getElementById('layersMenu');
+  const open = !menu.classList.contains('open');
+  if (open) {
+    // меню — поверх всего: строка над документом обрезает всё, что ниже неё
+    const r = document.getElementById('layersBtn').getBoundingClientRect();
+    menu.style.top = (r.bottom + 6) + 'px';
+    menu.style.right = Math.max(8, window.innerWidth - r.right) + 'px';
+    renderLayersMenu();
+  }
+  menu.classList.toggle('open', open);
+}
+
+document.addEventListener('click', e => {
+  const menu = document.getElementById('layersMenu');
+  if (menu && menu.classList.contains('open') && !menu.contains(e.target)) menu.classList.remove('open');
+});
+
+async function setLayer(key, on) {
+  state.layers[key] = on;
+  renderLayersMenu();
+  if (on && (key === 'ocrWords' || key === 'ocrLines') && !state.raw) {
+    const res = state.results[state.currentResFileIdx];
+    try {
+      state.rawLoading = state.rawLoading || loadRaw(res.parse_id);
+      state.raw = await state.rawLoading;
+    } catch (e) {
+      state.rawLoading = null;
+      state.layers[key] = false;
+      renderLayersMenu();
+      showToast('Сырой JSON недоступен: ' + e.message, 'error');
+      return;
+    }
+  }
+  redrawCanvas(); redrawAnnotation();
+}
+
+function rawPage(pd) {
+  return state.raw && pd ? (state.raw.pages || []).find(p => p.number === pd.number) : null;
+}
+
+function strokeBox(ctx, b, color, width, dash) {
+  const s = scaleBlock(bboxToBlock(b));
+  ctx.save();
+  ctx.strokeStyle = color; ctx.lineWidth = width;
+  if (dash) ctx.setLineDash(dash);
+  ctx.strokeRect(s.x, s.y, s.w, s.h);
+  ctx.restore();
+}
+
+function drawLayers(ctx, pd, mapping) {
+  if (!pd || !state.imgNaturalW) return;
+  const L = state.layers;
+  if (L.table && pd.table_grid) {
+    const g = pd.table_grid, k = state.imgDisplayW / state.imgNaturalW, ky = state.imgDisplayH / state.imgNaturalH;
+    const x0 = g.cols[0] * k, x1 = g.cols[g.cols.length - 1] * k;
+    const y0 = g.rows[0] * ky, y1 = g.rows[g.rows.length - 1] * ky;
+    ctx.save();
+    ctx.strokeStyle = 'rgba(22,163,74,0.85)'; ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    g.rows.forEach(y => { ctx.moveTo(x0, y * ky); ctx.lineTo(x1, y * ky); });
+    g.cols.forEach(x => { ctx.moveTo(x * k, y0); ctx.lineTo(x * k, y1); });
+    ctx.stroke();
+    ctx.restore();
+  }
+  const rp = (L.ocrLines || L.ocrWords) ? rawPage(pd) : null;
+  if (rp && L.ocrLines) {
+    (rp.blocks || []).forEach(b => (b.lines || []).forEach(l =>
+      strokeBox(ctx, l.bbox, 'rgba(168,85,247,0.9)', 1.5, [5, 3])));
+  }
+  if (rp && L.ocrWords) {
+    (rp.blocks || []).forEach(b => (b.lines || []).forEach(l => (l.words || []).forEach(w =>
+      // неуверенно прочитанное (меньше 50%) — пунктиром
+      strokeBox(ctx, { x: w.x, y: w.y, w: w.w, h: w.h }, 'rgba(245,158,11,0.95)', 1.2,
+                w.confidence != null && w.confidence < 50 ? [3, 2] : null))));
+  }
+  if (L.fields && mapping) {
+    // одним цветом слоя (как его значок в меню), чтобы не путать с блоками
+    Object.keys(mapping).forEach(key => {
+      (mapping[key] || []).forEach(b => {
+        const s = scaleBlock(b);
+        ctx.save();
+        ctx.fillStyle = 'rgba(236,72,153,0.22)'; ctx.fillRect(s.x - 2, s.y - 2, s.w + 4, s.h + 4);
+        ctx.strokeStyle = 'rgba(219,39,119,1)'; ctx.lineWidth = 2;
+        ctx.strokeRect(s.x - 2, s.y - 2, s.w + 4, s.h + 4);
+        ctx.restore();
+      });
+    });
+  }
 }
 
 // ════════════════════════════════════════════════
@@ -2477,6 +2633,7 @@ function drawAnnotationCanvas(mapping, parsed) {
   const ctx = canvas.getContext('2d');
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   ctx.clearRect(0, 0, dispW, dispH);
+  try {          // слои — поверх, при любом выходе ниже
 
   const pageData = getCurrentPageData();
   drawTableLink(ctx, pageData, getActiveLink(getCurrentLinks()));
@@ -2504,6 +2661,9 @@ function drawAnnotationCanvas(mapping, parsed) {
   // на обеих сторонах, а не только на левой.
   const fieldName = getActiveFieldName();
   if (fieldName) drawEmphasis(ctx, mapping, fieldName, resolvedParsed);
+  } finally {
+    drawLayers(ctx, getCurrentPageData(), getCurrentMapping());
+  }
 }
 
 // Переключить видимость оригинального изображения слева
